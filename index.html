@@ -3,413 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partage de Fichiers</title>
+    <title>Mveng - Référentiel Touristique</title>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+        /* ------------------- Styles généraux ------------------- */
         body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
             background-color: #f5f7fa;
             color: #333;
-            line-height: 1.6;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-        
+
+        h1, h2 {
+            font-weight: 600;
+        }
+
+        /* ------------------- Header ------------------- */
         header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-            border-bottom: 1px solid #e1e4e8;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .description {
-            color: #7f8c8d;
-            font-size: 1.1rem;
-        }
-        
-        .upload-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .upload-area {
-            border: 2px dashed #3498db;
-            border-radius: 8px;
-            padding: 40px 20px;
-            margin: 20px 0;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .upload-area:hover, .upload-area.dragover {
-            background-color: #ecf0f1;
-            border-color: #2980b9;
-        }
-        
-        .upload-icon {
-            font-size: 48px;
-            color: #3498db;
-            margin-bottom: 15px;
-        }
-        
-        .file-input {
-            display: none;
-        }
-        
-        .btn {
-            background-color: #3498db;
+            background: #1e90ff;
             color: white;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        nav a {
+            margin-left: 25px;
+            font-size: 16px;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* ------------------- Hero Section ------------------- */
+        .hero {
+            background: url('https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg') no-repeat center center/cover;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .hero .btn {
+            background: white;
+            color: #1e90ff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        /* ------------------- Section Entreprises ------------------- */
+        .section {
+            padding: 60px 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .card small {
+            display: block;
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .btn-card {
+            background: #1e90ff;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* ------------------- Catégories ------------------- */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .cat {
+            background: #e8f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+
+        /* ------------------- Contact ------------------- */
+        form {
+            max-width: 450px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, form textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        form button {
+            background: #1e90ff;
+            color: white;
+            padding: 12px;
             border: none;
-            padding: 12px 24px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            margin: 10px 5px;
+            font-weight: 600;
         }
-        
-        .btn:hover {
-            background-color: #2980b9;
-        }
-        
-        .btn-secondary {
-            background-color: #95a5a6;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #7f8c8d;
-        }
-        
-        .files-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section-title {
-            margin-bottom: 20px;
-            color: #2c3e50;
-            border-bottom: 1px solid #e1e4e8;
-            padding-bottom: 10px;
-        }
-        
-        .file-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .file-card {
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .file-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .file-icon {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: #3498db;
-        }
-        
-        .file-name {
-            font-weight: bold;
-            margin-bottom: 10px;
-            word-break: break-word;
-        }
-        
-        .file-size {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .file-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .link-container {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
-            display: none;
-        }
-        
-        .share-link {
-            word-break: break-all;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 4px;
-            border: 1px solid #bdc3c7;
-        }
-        
-        .copy-btn {
-            background-color: #2ecc71;
-        }
-        
-        .copy-btn:hover {
-            background-color: #27ae60;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #7f8c8d;
-        }
-        
-        .empty-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            color: #bdc3c7;
-        }
-        
+
+        /* ------------------- Footer ------------------- */
         footer {
+            background: #1e90ff;
+            color: white;
             text-align: center;
-            margin-top: 40px;
-            padding: 20px 0;
-            color: #7f8c8d;
-            border-top: 1px solid #e1e4e8;
-        }
-        
-        @media (max-width: 768px) {
-            .file-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .file-actions {
-                flex-direction: column;
-            }
-            
-            .file-actions .btn {
-                margin-bottom: 10px;
-                width: 100%;
-            }
+            padding: 20px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Partage de Fichiers</h1>
-            <p class="description">Téléchargez vos fichiers et partagez-les facilement avec un lien</p>
-        </header>
-        
-        <section class="upload-section">
-            <h2 class="section-title">Ajouter un fichier</h2>
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon">📁</div>
-                <p>Glissez-déposez vos fichiers ici ou</p>
-                <input type="file" id="fileInput" class="file-input" multiple>
-                <button class="btn" id="selectFileBtn">Sélectionner des fichiers</button>
-            </div>
-            <button class="btn" id="uploadBtn">Télécharger</button>
-        </section>
-        
-        <section class="files-section">
-            <h2 class="section-title">Fichiers partagés</h2>
-            <div class="file-list" id="fileList">
-                <div class="empty-state" id="emptyState">
-                    <div class="empty-icon">📂</div>
-                    <p>Aucun fichier partagé pour le moment</p>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Mveng</div>
+        <nav>
+            <a href="#accueil">Accueil</a>
+            <a href="#entreprises">Entreprises</a>
+            <a href="#categories">Catégories</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="accueil">
+        <h1>Mveng – Référentiel d'entreprises touristiques</h1>
+        <p>Découvrez les meilleures agences, hôtels, restaurants et guides touristiques.</p>
+        <a href="#entreprises" class="btn">Voir les entreprises</a>
+    </section>
+
+    <!-- Section entreprises -->
+    <section class="section" id="entreprises">
+        <h2>Entreprises touristiques</h2>
+        <div class="grid">
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg">
+                <div class="card-content">
+                    <h3>Hôtel Emeraude</h3>
+                    <small>Libreville, Hôtel 4★</small>
+                    <a class="btn-card">Voir plus</a>
                 </div>
             </div>
-        </section>
-        
-        <footer>
-            <p>Système de partage de fichiers &copy; 2023</p>
-        </footer>
-    </div>
 
-    <script>
-        // Variables globales
-        let selectedFiles = [];
-        
-        // Éléments DOM
-        const fileInput = document.getElementById('fileInput');
-        const selectFileBtn = document.getElementById('selectFileBtn');
-        const uploadBtn = document.getElementById('uploadBtn');
-        const uploadArea = document.getElementById('uploadArea');
-        const fileList = document.getElementById('fileList');
-        const emptyState = document.getElementById('emptyState');
-        
-        // Événements
-        selectFileBtn.addEventListener('click', () => fileInput.click());
-        fileInput.addEventListener('change', handleFileSelect);
-        uploadBtn.addEventListener('click', uploadFiles);
-        
-        // Gestion du drag and drop
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-        
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-        
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFileSelect({ target: { files: e.dataTransfer.files } });
-        });
-        
-        // Fonctions
-        function handleFileSelect(e) {
-            const files = Array.from(e.target.files);
-            selectedFiles = [...selectedFiles, ...files];
-            updateFileList();
-        }
-        
-        function updateFileList() {
-            // Masquer l'état vide s'il y a des fichiers
-            if (selectedFiles.length > 0) {
-                emptyState.style.display = 'none';
-            } else {
-                emptyState.style.display = 'block';
-            }
-            
-            // Afficher les fichiers sélectionnés
-            fileList.innerHTML = '';
-            
-            selectedFiles.forEach((file, index) => {
-                const fileCard = document.createElement('div');
-                fileCard.className = 'file-card';
-                
-                const fileIcon = getFileIcon(file.type);
-                const fileSize = formatFileSize(file.size);
-                
-                fileCard.innerHTML = `
-                    <div class="file-icon">${fileIcon}</div>
-                    <div class="file-name">${file.name}</div>
-                    <div class="file-size">${fileSize}</div>
-                    <div class="file-actions">
-                        <button class="btn" onclick="shareFile(${index})">Partager</button>
-                        <button class="btn btn-secondary" onclick="removeFile(${index})">Supprimer</button>
-                    </div>
-                `;
-                
-                fileList.appendChild(fileCard);
-            });
-        }
-        
-        function getFileIcon(fileType) {
-            if (fileType.startsWith('image/')) return '🖼️';
-            if (fileType.startsWith('video/')) return '🎬';
-            if (fileType.startsWith('audio/')) return '🎵';
-            if (fileType.includes('pdf')) return '📕';
-            if (fileType.includes('word') || fileType.includes('document')) return '📄';
-            if (fileType.includes('spreadsheet') || fileType.includes('excel')) return '📊';
-            if (fileType.includes('presentation') || fileType.includes('powerpoint')) return '📑';
-            if (fileType.includes('zip') || fileType.includes('archive')) return '📦';
-            return '📄';
-        }
-        
-        function formatFileSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-        }
-        
-        function uploadFiles() {
-            if (selectedFiles.length === 0) {
-                alert('Veuillez sélectionner au moins un fichier');
-                return;
-            }
-            
-            // Dans un système réel, vous enverriez les fichiers à un serveur
-            // Ici, nous simulons simplement le téléchargement
-            alert(`${selectedFiles.length} fichier(s) téléchargé(s) avec succès!`);
-            
-            // Réinitialiser la sélection
-            selectedFiles = [];
-            fileInput.value = '';
-            updateFileList();
-        }
-        
-        function removeFile(index) {
-            selectedFiles.splice(index, 1);
-            updateFileList();
-        }
-        
-        function shareFile(index) {
-            const file = selectedFiles[index];
-            
-            // Dans un système réel, vous généreriez un lien unique vers le fichier sur le serveur
-            // Ici, nous simulons simplement la génération d'un lien
-            const baseUrl = window.location.href.split('?')[0];
-            const fileId = generateFileId();
-            const shareUrl = `${baseUrl}?file=${fileId}`;
-            
-            // Afficher le lien de partage
-            const fileCard = document.querySelectorAll('.file-card')[index];
-            let linkContainer = fileCard.querySelector('.link-container');
-            
-            if (!linkContainer) {
-                linkContainer = document.createElement('div');
-                linkContainer.className = 'link-container';
-                fileCard.appendChild(linkContainer);
-            }
-            
-            linkContainer.innerHTML = `
-                <p>Lien de partage :</p>
-                <div class="share-link">${shareUrl}</div>
-                <button class="btn copy-btn" onclick="copyToClipboard('${shareUrl}')">Copier le lien</button>
-            `;
-            
-            linkContainer.style.display = 'block';
-        }
-        
-        function generateFileId() {
-            return 'file_' + Math.random().toString(36).substr(2, 9);
-        }
-        
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Lien copié dans le presse-papier!');
-            }).catch(err => {
-                console.error('Erreur lors de la copie: ', err);
-                // Fallback pour les anciens navigateurs
-                const textArea = document.createElement('textarea');
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('Lien copié dans le presse-papier!');
-            });
-        }
-        
-        // Initialisation
-        updateFileList();
-    </script>
+            <div class="card">
+                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg">
+                <div class="card-content">
+                    <h3>Tropic Agency</h3>
+                    <small>Agence de voyage – Port-Gentil</small>
+                    <a class="btn-card">Voir plus</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg">
+                <div class="card-content">
+                    <h3>African Tours</h3>
+                    <small>Excursions – Lambaréné</small>
+                    <a class="btn-card">Voir plus</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg">
+                <div class="card-content">
+                    <h3>Safari Ventures</h3>
+                    <small>Safari – La Lopé</small>
+                    <a class="btn-card">Voir plus</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg">
+                <div class="card-content">
+                    <h3>Blue Ocean Travel</h3>
+                    <small>Transport maritime – Libreville</small>
+                    <a class="btn-card">Voir plus</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.pexels.com/photos/221457/pexels-photo-221457.jpeg">
+                <div class="card-content">
+                    <h3>Le Relais Gourmand</h3>
+                    <small>Restaurant touristique – Franceville</small>
+                    <a class="btn-card">Voir plus</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Catégories -->
+    <section class="section" id="categories">
+        <h2>Catégories</h2>
+        <div class="categories">
+            <div class="cat">Hôtels</div>
+            <div class="cat">Agences de voyage</div>
+            <div class="cat">Sites touristiques</div>
+            <div class="cat">Restaurants</div>
+            <div class="cat">Transport</div>
+            <div class="cat">Guides touristiques</div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <h2>Contact</h2>
+        <form>
+            <input type="text" placeholder="Nom">
+            <input type="email" placeholder="Email">
+            <textarea rows="5" placeholder="Message"></textarea>
+            <button>Envoyer</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        © 2025 Mveng – Référentiel touristique
+    </footer>
+
 </body>
 </html>
