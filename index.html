@@ -3,15 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mveng - Référentiel Touristique</title>
-
+    <title>Mveng - Référentiel d'entreprises touristiques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ------------------- Styles généraux ------------------- */
-        body {
+        /* Variables CSS */
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --accent-color: #fbbc05;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset et styles de base */
+        * {
             margin: 0;
-            font-family: "Poppins", sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
         }
 
         a {
@@ -19,277 +39,615 @@
             color: inherit;
         }
 
-        h1, h2 {
-            font-weight: 600;
+        ul {
+            list-style: none;
         }
 
-        /* ------------------- Header ------------------- */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: #0d62d9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #2c8e44;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Header */
         header {
-            background: #1e90ff;
-            color: white;
-            padding: 15px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        header .logo {
-            font-size: 26px;
-            font-weight: 700;
-        }
-
-        nav a {
-            margin-left: 25px;
-            font-size: 16px;
-            color: white;
-            font-weight: 500;
-        }
-
-        /* ------------------- Hero Section ------------------- */
-        .hero {
-            background: url('https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg') no-repeat center center/cover;
-            height: 85vh;
+        .header-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
             text-align: center;
-            padding: 0 20px;
-            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 45px;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Entreprises Section */
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .company-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .company-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .company-card:hover .company-img img {
+            transform: scale(1.1);
+        }
+
+        .company-info {
+            padding: 20px;
+        }
+
+        .company-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .company-type {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--text-light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .company-location {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .company-location i {
+            margin-right: 5px;
+        }
+
+        /* Catégories Section */
+        .categories {
+            background-color: var(--light-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .hero .btn {
-            background: white;
-            color: #1e90ff;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: 600;
-        }
-
-        /* ------------------- Section Entreprises ------------------- */
-        .section {
-            padding: 60px 40px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-
-        .card-content {
-            padding: 15px;
-        }
-
-        .card h3 {
-            margin: 0;
-            font-size: 20px;
-        }
-
-        .card small {
+        .form-group label {
             display: block;
-            margin: 5px 0;
-            color: #666;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
-        .btn-card {
-            background: #1e90ff;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-            font-size: 14px;
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
         }
 
-        /* ------------------- Catégories ------------------- */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            text-align: center;
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
         }
 
-        .cat {
-            background: #e8f3ff;
-            padding: 20px;
-            border-radius: 10px;
-            font-weight: 600;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
 
-        /* ------------------- Contact ------------------- */
-        form {
-            max-width: 450px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        form input, form textarea {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: none;
-        }
-
-        form button {
-            background: #1e90ff;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* ------------------- Footer ------------------- */
+        /* Footer */
         footer {
-            background: #1e90ff;
-            color: white;
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links li {
+            margin-left: 20px;
+        }
+
+        .footer-links a {
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 20px;
-            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                margin-top: 20px;
+            }
+
+            .footer-links li {
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <header>
-        <div class="logo">Mveng</div>
-        <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#entreprises">Entreprises</a>
-            <a href="#categories">Catégories</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="container header-container">
+            <a href="#" class="logo">Mv<span>eng</span></a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#entreprises">Entreprises</a></li>
+                <li><a href="#categories">Catégories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero" id="accueil">
-        <h1>Mveng – Référentiel d'entreprises touristiques</h1>
-        <p>Découvrez les meilleures agences, hôtels, restaurants et guides touristiques.</p>
-        <a href="#entreprises" class="btn">Voir les entreprises</a>
+        <div class="container hero-content">
+            <h1>Mveng – Référentiel d'entreprises touristiques</h1>
+            <p>Découvrez les meilleures agences, hôtels, guides, tours et services touristiques</p>
+            <a href="#entreprises" class="btn">Voir les entreprises</a>
+        </div>
     </section>
 
-    <!-- Section entreprises -->
+    <!-- Entreprises Section -->
     <section class="section" id="entreprises">
-        <h2>Entreprises touristiques</h2>
-        <div class="grid">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos entreprises partenaires</h2>
+                <p>Découvrez une sélection des meilleures entreprises touristiques de la région</p>
+            </div>
+            <div class="companies-grid">
+                <!-- Entreprise 1 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hôtel Paradis">
+                    </div>
+                    <div class="company-info">
+                        <h3>Hôtel Paradis</h3>
+                        <span class="company-type">Hôtel</span>
+                        <div class="company-location">
+                            <i>📍</i> Douala, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
+                </div>
 
-            <div class="card">
-                <img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg">
-                <div class="card-content">
-                    <h3>Hôtel Emeraude</h3>
-                    <small>Libreville, Hôtel 4★</small>
-                    <a class="btn-card">Voir plus</a>
+                <!-- Entreprise 2 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Safari Aventure">
+                    </div>
+                    <div class="company-info">
+                        <h3>Safari Aventure</h3>
+                        <span class="company-type">Agence de voyage</span>
+                        <div class="company-location">
+                            <i>📍</i> Yaoundé, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
+                </div>
+
+                <!-- Entreprise 3 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Restaurant Le Gourmet">
+                    </div>
+                    <div class="company-info">
+                        <h3>Restaurant Le Gourmet</h3>
+                        <span class="company-type">Restaurant</span>
+                        <div class="company-location">
+                            <i>📍</i> Limbe, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
+                </div>
+
+                <!-- Entreprise 4 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transport Express">
+                    </div>
+                    <div class="company-info">
+                        <h3>Transport Express</h3>
+                        <span class="company-type">Transport</span>
+                        <div class="company-location">
+                            <i>📍</i> Bafoussam, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
+                </div>
+
+                <!-- Entreprise 5 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chutes de la Lobé">
+                    </div>
+                    <div class="company-info">
+                        <h3>Chutes de la Lobé</h3>
+                        <span class="company-type">Site touristique</span>
+                        <div class="company-location">
+                            <i>📍</i> Kribi, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
+                </div>
+
+                <!-- Entreprise 6 -->
+                <div class="company-card">
+                    <div class="company-img">
+                        <img src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Guides Expérimentés">
+                    </div>
+                    <div class="company-info">
+                        <h3>Guides Expérimentés</h3>
+                        <span class="company-type">Guide touristique</span>
+                        <div class="company-location">
+                            <i>📍</i> Dschang, Cameroun
+                        </div>
+                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg">
-                <div class="card-content">
-                    <h3>Tropic Agency</h3>
-                    <small>Agence de voyage – Port-Gentil</small>
-                    <a class="btn-card">Voir plus</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg">
-                <div class="card-content">
-                    <h3>African Tours</h3>
-                    <small>Excursions – Lambaréné</small>
-                    <a class="btn-card">Voir plus</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg">
-                <div class="card-content">
-                    <h3>Safari Ventures</h3>
-                    <small>Safari – La Lopé</small>
-                    <a class="btn-card">Voir plus</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg">
-                <div class="card-content">
-                    <h3>Blue Ocean Travel</h3>
-                    <small>Transport maritime – Libreville</small>
-                    <a class="btn-card">Voir plus</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pexels.com/photos/221457/pexels-photo-221457.jpeg">
-                <div class="card-content">
-                    <h3>Le Relais Gourmand</h3>
-                    <small>Restaurant touristique – Franceville</small>
-                    <a class="btn-card">Voir plus</a>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <!-- Catégories -->
-    <section class="section" id="categories">
-        <h2>Catégories</h2>
-        <div class="categories">
-            <div class="cat">Hôtels</div>
-            <div class="cat">Agences de voyage</div>
-            <div class="cat">Sites touristiques</div>
-            <div class="cat">Restaurants</div>
-            <div class="cat">Transport</div>
-            <div class="cat">Guides touristiques</div>
+    <!-- Catégories Section -->
+    <section class="section categories" id="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Catégories</h2>
+                <p>Explorez nos différentes catégories d'entreprises touristiques</p>
+            </div>
+            <div class="categories-grid">
+                <!-- Catégorie 1 -->
+                <div class="category-card">
+                    <div class="category-icon">🏨</div>
+                    <h3>Hôtels</h3>
+                </div>
+
+                <!-- Catégorie 2 -->
+                <div class="category-card">
+                    <div class="category-icon">✈️</div>
+                    <h3>Agences de voyage</h3>
+                </div>
+
+                <!-- Catégorie 3 -->
+                <div class="category-card">
+                    <div class="category-icon">🗺️</div>
+                    <h3>Sites touristiques</h3>
+                </div>
+
+                <!-- Catégorie 4 -->
+                <div class="category-card">
+                    <div class="category-icon">🍽️</div>
+                    <h3>Restaurants</h3>
+                </div>
+
+                <!-- Catégorie 5 -->
+                <div class="category-card">
+                    <div class="category-icon">🚗</div>
+                    <h3>Transport</h3>
+                </div>
+
+                <!-- Catégorie 6 -->
+                <div class="category-card">
+                    <div class="category-icon">👨‍🏫</div>
+                    <h3>Guides touristiques</h3>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Contact Section -->
     <section class="section" id="contact">
-        <h2>Contact</h2>
-        <form>
-            <input type="text" placeholder="Nom">
-            <input type="email" placeholder="Email">
-            <textarea rows="5" placeholder="Message"></textarea>
-            <button>Envoyer</button>
-        </form>
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-nous</h2>
+                <p>Une question ou une suggestion ? N'hésitez pas à nous contacter</p>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        © 2025 Mveng – Référentiel touristique
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">Mveng</div>
+                <ul class="footer-links">
+                    <li><a href="#">Confidentialité</a></li>
+                    <li><a href="#">Termes</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                © 2025 Mveng – Référentiel touristique
+            </div>
+        </div>
     </footer>
 
+    <script>
+        // Menu mobile
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Fermer le menu mobile en cliquant sur un lien
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
