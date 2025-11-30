@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mveng - Référentiel d'entreprises touristiques</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>MVENG - Découvrez nos activités extra-citadines</title>
     <style>
         /* Variables CSS */
         :root {
-            --primary-color: #1a73e8;
-            --secondary-color: #34a853;
-            --accent-color: #fbbc05;
-            --dark-color: #202124;
+            --primary-color: #2c5530;
+            --secondary-color: #73a580;
+            --accent-color: #f9a826;
             --light-color: #f8f9fa;
+            --dark-color: #343a40;
             --text-color: #333;
-            --text-light: #6c757d;
-            --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
@@ -28,10 +26,10 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
-            background-color: var(--white);
+            background-color: var(--light-color);
         }
 
         a {
@@ -43,77 +41,59 @@
             list-style: none;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 600;
             transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
         .btn:hover {
-            background-color: #0d62d9;
+            background-color: #e0971f;
             transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: #2c8e44;
-        }
-
-        .section {
-            padding: 80px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
+            position: relative;
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
         }
 
         /* Header */
         header {
-            background-color: var(--white);
-            box-shadow: var(--shadow);
+            background-color: white;
+            box-shadow: var(--box-shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .header-container {
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
         .logo {
@@ -123,42 +103,30 @@
         }
 
         .logo span {
-            color: var(--secondary-color);
+            color: var(--accent-color);
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
+            gap: 25px;
         }
 
-        .nav-menu li {
-            margin-left: 30px;
-        }
-
-        .nav-menu a {
+        .nav-links a {
             font-weight: 500;
             transition: var(--transition);
         }
 
-        .nav-menu a:hover {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .nav-links a:hover {
+            color: var(--accent-color);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            color: var(--white);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
             text-align: center;
         }
 
@@ -168,177 +136,180 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
-            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            opacity: 0.9;
         }
 
-        /* Entreprises Section */
-        .companies-grid {
+        /* Activités Section */
+        .activites {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .activites-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .company-card {
-            background-color: var(--white);
-            border-radius: 8px;
+        .activite-card {
+            background-color: white;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--box-shadow);
             transition: var(--transition);
         }
 
-        .company-card:hover {
+        .activite-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .company-img {
+        .activite-img {
             height: 200px;
-            overflow: hidden;
-        }
-
-        .company-img img {
             width: 100%;
-            height: 100%;
             object-fit: cover;
-            transition: var(--transition);
         }
 
-        .company-card:hover .company-img img {
-            transform: scale(1.1);
-        }
-
-        .company-info {
+        .activite-content {
             padding: 20px;
         }
 
-        .company-info h3 {
-            font-size: 1.3rem;
+        .activite-content h3 {
             margin-bottom: 10px;
-        }
-
-        .company-type {
-            display: inline-block;
-            background-color: var(--light-color);
-            color: var(--text-light);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-
-        .company-location {
-            display: flex;
-            align-items: center;
-            color: var(--text-light);
-            margin-bottom: 15px;
-        }
-
-        .company-location i {
-            margin-right: 5px;
-        }
-
-        /* Catégories Section */
-        .categories {
-            background-color: var(--light-color);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .category-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
             color: var(--primary-color);
         }
 
-        .category-card h3 {
-            font-size: 1.2rem;
+        .activite-content p {
+            margin-bottom: 15px;
+            color: var(--text-color);
         }
 
-        /* Contact Section */
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
+        /* Entreprises Section */
+        .entreprises {
+            padding: 80px 0;
+            background-color: #f8f9fa;
         }
 
-        .form-group {
+        .entreprise-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .entreprise-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--secondary-color);
+        }
+
+        .entreprise-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .entreprise-card p {
+            margin-bottom: 15px;
+        }
+
+        .activites-entreprise {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .activite-tag {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 0;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter h2 {
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+        .newsletter p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .form-control {
-            width: 100%;
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
         }
 
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .newsletter-form button {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            border: none;
         }
 
         /* Footer */
         footer {
             background-color: var(--dark-color);
-            color: var(--white);
-            padding: 50px 0 20px;
+            color: white;
+            padding: 60px 0 30px;
         }
 
-        .footer-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+        .footer-column h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
 
-        .footer-links {
-            display: flex;
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
         .footer-links li {
-            margin-left: 20px;
+            margin-bottom: 10px;
         }
 
         .footer-links a {
@@ -347,77 +318,61 @@
 
         .footer-links a:hover {
             color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-        }
-
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--white);
+            .navbar {
                 flex-direction: column;
-                align-items: center;
-                padding-top: 50px;
-                transition: var(--transition);
+                gap: 15px;
             }
 
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-menu li {
-                margin: 15px 0;
+            .nav-links {
+                gap: 15px;
             }
 
             .hero h1 {
                 font-size: 2.2rem;
             }
 
-            .footer-container {
+            .newsletter-form {
                 flex-direction: column;
-                text-align: center;
+                gap: 10px;
             }
 
-            .footer-links {
-                margin-top: 20px;
-            }
-
-            .footer-links li {
-                margin: 0 10px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: var(--border-radius);
             }
         }
     </style>
@@ -425,229 +380,188 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Mv<span>eng</span></a>
-            <button class="mobile-menu-btn">☰</button>
-            <ul class="nav-menu">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#entreprises">Entreprises</a></li>
-                <li><a href="#categories">Catégories</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">MV<span>ENG</span></a>
+                <ul class="nav-links">
+                    <li><a href="#activites">Activités</a></li>
+                    <li><a href="#entreprises">Entreprises</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <div class="container hero-content">
-            <h1>Mveng – Référentiel d'entreprises touristiques</h1>
-            <p>Découvrez les meilleures agences, hôtels, guides, tours et services touristiques</p>
-            <a href="#entreprises" class="btn">Voir les entreprises</a>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Découvrez des activités extra-citadines inoubliables</h1>
+                <p>Randonnée, ateliers de peinture, balades en mer et bien plus encore. Partez à l'aventure avec MVENG.</p>
+                <a href="#activites" class="btn">Explorer les activités</a>
+            </div>
         </div>
     </section>
 
-    <!-- Entreprises Section -->
-    <section class="section" id="entreprises">
+    <!-- Activités Section -->
+    <section id="activites" class="activites">
         <div class="container">
-            <div class="section-title">
-                <h2>Nos entreprises partenaires</h2>
-                <p>Découvrez une sélection des meilleures entreprises touristiques de la région</p>
-            </div>
-            <div class="companies-grid">
-                <!-- Entreprise 1 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hôtel Paradis">
-                    </div>
-                    <div class="company-info">
-                        <h3>Hôtel Paradis</h3>
-                        <span class="company-type">Hôtel</span>
-                        <div class="company-location">
-                            <i>📍</i> Douala, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+            <h2 class="section-title">Nos Activités</h2>
+            <div class="activites-grid">
+                <!-- Activité 1 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Randonnée" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Randonnée en montagne</h3>
+                        <p>Découvrez des paysages à couper le souffle lors de nos randonnées guidées en montagne.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Entreprise 2 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Safari Aventure">
-                    </div>
-                    <div class="company-info">
-                        <h3>Safari Aventure</h3>
-                        <span class="company-type">Agence de voyage</span>
-                        <div class="company-location">
-                            <i>📍</i> Yaoundé, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                <!-- Activité 2 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Atelier de peinture" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Atelier de peinture en plein air</h3>
+                        <p>Laissez libre cours à votre créativité lors de nos ateliers de peinture dans des cadres naturels exceptionnels.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Entreprise 3 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Restaurant Le Gourmet">
-                    </div>
-                    <div class="company-info">
-                        <h3>Restaurant Le Gourmet</h3>
-                        <span class="company-type">Restaurant</span>
-                        <div class="company-location">
-                            <i>📍</i> Limbe, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                <!-- Activité 3 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Balade en mer" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Balade en mer</h3>
+                        <p>Profitez d'une journée en mer à bord de nos bateaux pour découvrir la côte sous un nouvel angle.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Entreprise 4 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transport Express">
-                    </div>
-                    <div class="company-info">
-                        <h3>Transport Express</h3>
-                        <span class="company-type">Transport</span>
-                        <div class="company-location">
-                            <i>📍</i> Bafoussam, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                <!-- Activité 4 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Observation des étoiles" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Observation des étoiles</h3>
+                        <p>Partez à la découverte du ciel nocturne avec nos astronomes passionnés.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Entreprise 5 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chutes de la Lobé">
-                    </div>
-                    <div class="company-info">
-                        <h3>Chutes de la Lobé</h3>
-                        <span class="company-type">Site touristique</span>
-                        <div class="company-location">
-                            <i>📍</i> Kribi, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                <!-- Activité 5 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Vélo en forêt" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Vélo en forêt</h3>
+                        <p>Parcourez des sentiers forestiers adaptés à tous les niveaux lors de nos excursions à vélo.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
 
-                <!-- Entreprise 6 -->
-                <div class="company-card">
-                    <div class="company-img">
-                        <img src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Guides Expérimentés">
-                    </div>
-                    <div class="company-info">
-                        <h3>Guides Expérimentés</h3>
-                        <span class="company-type">Guide touristique</span>
-                        <div class="company-location">
-                            <i>📍</i> Dschang, Cameroun
-                        </div>
-                        <a href="#" class="btn btn-secondary">Voir plus</a>
+                <!-- Activité 6 -->
+                <div class="activite-card">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Photographie nature" class="activite-img">
+                    <div class="activite-content">
+                        <h3>Atelier photo nature</h3>
+                        <p>Apprenez les techniques de photographie en pleine nature avec nos photographes professionnels.</p>
+                        <a href="#" class="btn">En savoir plus</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Catégories Section -->
-    <section class="section categories" id="categories">
+    <!-- Entreprises Section -->
+    <section id="entreprises" class="entreprises">
         <div class="container">
-            <div class="section-title">
-                <h2>Catégories</h2>
-                <p>Explorez nos différentes catégories d'entreprises touristiques</p>
+            <h2 class="section-title">Nos Entreprises Partenaires</h2>
+            
+            <!-- Entreprise 1 -->
+            <div class="entreprise-card">
+                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Nature Aventure" class="entreprise-logo">
+                <h3>Nature Aventure</h3>
+                <p>Spécialiste des activités de plein air depuis plus de 15 ans, Nature Aventure vous propose des expériences uniques en pleine nature.</p>
+                <div class="activites-entreprise">
+                    <span class="activite-tag">Randonnée</span>
+                    <span class="activite-tag">Vélo</span>
+                    <span class="activite-tag">Escalade</span>
+                </div>
             </div>
-            <div class="categories-grid">
-                <!-- Catégorie 1 -->
-                <div class="category-card">
-                    <div class="category-icon">🏨</div>
-                    <h3>Hôtels</h3>
-                </div>
 
-                <!-- Catégorie 2 -->
-                <div class="category-card">
-                    <div class="category-icon">✈️</div>
-                    <h3>Agences de voyage</h3>
+            <!-- Entreprise 2 -->
+            <div class="entreprise-card">
+                <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Art en Plein Air" class="entreprise-logo">
+                <h3>Art en Plein Air</h3>
+                <p>Découvrez votre âme d'artiste lors de nos ateliers créatifs organisés dans des cadres naturels inspirants.</p>
+                <div class="activites-entreprise">
+                    <span class="activite-tag">Peinture</span>
+                    <span class="activite-tag">Dessin</span>
+                    <span class="activite-tag">Sculpture</span>
                 </div>
+            </div>
 
-                <!-- Catégorie 3 -->
-                <div class="category-card">
-                    <div class="category-icon">🗺️</div>
-                    <h3>Sites touristiques</h3>
-                </div>
-
-                <!-- Catégorie 4 -->
-                <div class="category-card">
-                    <div class="category-icon">🍽️</div>
-                    <h3>Restaurants</h3>
-                </div>
-
-                <!-- Catégorie 5 -->
-                <div class="category-card">
-                    <div class="category-icon">🚗</div>
-                    <h3>Transport</h3>
-                </div>
-
-                <!-- Catégorie 6 -->
-                <div class="category-card">
-                    <div class="category-icon">👨‍🏫</div>
-                    <h3>Guides touristiques</h3>
+            <!-- Entreprise 3 -->
+            <div class="entreprise-card">
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Mer & Découverte" class="entreprise-logo">
+                <h3>Mer & Découverte</h3>
+                <p>Explorez le monde marin avec nos excursions en mer, observations de la faune et activités nautiques.</p>
+                <div class="activites-entreprise">
+                    <span class="activite-tag">Balade en mer</span>
+                    <span class="activite-tag">Plongée</span>
+                    <span class="activite-tag">Observation des dauphins</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section" id="contact">
+    <!-- Newsletter -->
+    <section class="newsletter">
         <div class="container">
-            <div class="section-title">
-                <h2>Contactez-nous</h2>
-                <p>Une question ou une suggestion ? N'hésitez pas à nous contacter</p>
-            </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nom</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="btn">Envoyer</button>
+            <h2>Restez informé</h2>
+            <p>Inscrivez-vous à notre newsletter pour recevoir nos dernières offres d'activités et actualités.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre adresse email" required>
+                <button type="submit" class="btn">S'inscrire</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-logo">Mveng</div>
-                <ul class="footer-links">
-                    <li><a href="#">Confidentialité</a></li>
-                    <li><a href="#">Termes</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MVENG</h3>
+                    <p>Votre plateforme de référence pour découvrir des activités extra-citadines et les entreprises qui les proposent.</p>
+                    <div class="social-links">
+                        <a href="#"><i>FB</i></a>
+                        <a href="#"><i>IG</i></a>
+                        <a href="#"><i>TW</i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#activites">Activités</a></li>
+                        <li><a href="#entreprises">Entreprises</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li>123 Rue de l'Aventure</li>
+                        <li>75000 Paris, France</li>
+                        <li>contact@mveng.com</li>
+                        <li>+33 1 23 45 67 89</li>
+                    </ul>
+                </div>
             </div>
             <div class="copyright">
-                © 2025 Mveng – Référentiel touristique
+                <p>&copy; 2023 MVENG. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-
-    <script>
-        // Menu mobile
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            document.querySelector('.nav-menu').classList.toggle('active');
-        });
-
-        // Fermer le menu mobile en cliquant sur un lien
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.nav-menu').classList.remove('active');
-            });
-        });
-    </script>
 </body>
 </html>
