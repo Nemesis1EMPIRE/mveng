@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Variables CSS */
         :root {
@@ -34,6 +35,7 @@
             line-height: 1.6;
             color: var(--soft-gray);
             background-color: var(--off-white);
+            padding-bottom: 70px; /* Espace pour la bottom bar mobile */
         }
 
         h1, h2, h3, h4 {
@@ -123,10 +125,64 @@
             font-size: 1.5rem;
         }
 
+        /* Bottom Bar Mobile */
+        .bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+            padding: 0.5rem 0;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            flex: 1;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
+        }
+
+        .bottom-nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--soft-gray);
+        }
+
+        .bottom-nav-item span {
+            font-size: 0.7rem;
+            color: var(--soft-gray);
+        }
+
+        .bottom-nav-item.active {
+            background-color: rgba(43, 122, 75, 0.1);
+        }
+
+        .bottom-nav-item.active i,
+        .bottom-nav-item.active span {
+            color: var(--forest-green);
+        }
+
+        .bottom-nav-item:hover {
+            background-color: rgba(43, 122, 75, 0.05);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://via.placeholder.com/1600x900') no-repeat center center/cover;
+                        url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
             text-align: center;
             padding: 8rem 1.5rem;
@@ -680,6 +736,7 @@
                 transition: 0.3s;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
                 padding: 2rem;
+                z-index: 150;
             }
 
             .nav-menu.active {
@@ -690,8 +747,22 @@
                 margin: 0 0 1.5rem 0;
             }
 
+            /* Afficher la bottom bar sur mobile */
+            .bottom-bar {
+                display: block;
+            }
+
+            /* Ajuster le padding du body pour la bottom bar */
+            body {
+                padding-bottom: 70px;
+            }
+
             .hero h1 {
                 font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
             }
 
             .btn-container {
@@ -708,6 +779,10 @@
                 flex-direction: column;
             }
 
+            .filter-group {
+                min-width: 100%;
+            }
+
             .sorting {
                 flex-direction: column;
                 align-items: flex-start;
@@ -721,8 +796,35 @@
                 font-size: 1.7rem;
             }
 
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
             .contact-form {
                 padding: 1.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 6rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -731,17 +833,43 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">mveng</a>
+            <a href="#accueil" class="logo">mveng</a>
             <div class="hamburger" id="hamburger">☰</div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#activites">Activités</a></li>
-                <li><a href="#entreprises">Entreprises</a></li>
-                <li><a href="#galerie">Galerie</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#activites"><i class="fas fa-hiking"></i> Activités</a></li>
+                <li><a href="#entreprises"><i class="fas fa-building"></i> Entreprises</a></li>
+                <li><a href="#galerie"><i class="fas fa-images"></i> Galerie</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </header>
+
+    <!-- Bottom Bar Mobile -->
+    <div class="bottom-bar">
+        <nav class="bottom-nav">
+            <a href="#accueil" class="bottom-nav-item active" data-target="accueil">
+                <i class="fas fa-home"></i>
+                <span>Accueil</span>
+            </a>
+            <a href="#activites" class="bottom-nav-item" data-target="activites">
+                <i class="fas fa-hiking"></i>
+                <span>Activités</span>
+            </a>
+            <a href="#entreprises" class="bottom-nav-item" data-target="entreprises">
+                <i class="fas fa-building"></i>
+                <span>Entreprises</span>
+            </a>
+            <a href="#galerie" class="bottom-nav-item" data-target="galerie">
+                <i class="fas fa-images"></i>
+                <span>Galerie</span>
+            </a>
+            <a href="#contact" class="bottom-nav-item" data-target="contact">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="accueil">
@@ -824,7 +952,7 @@
             <div class="grid">
                 <!-- Activité 1 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Randonnée en montagne" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Randonnée en montagne" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Randonnée en montagne</h3>
                         <p class="card-description">Découvrez les plus beaux sentiers de montagne avec un guide expérimenté. Paysages à couper le souffle garantis.</p>
@@ -843,7 +971,7 @@
 
                 <!-- Activité 2 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Atelier de peinture en pleine nature" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Atelier de peinture en pleine nature" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Atelier de peinture en pleine nature</h3>
                         <p class="card-description">Laissez parler votre créativité lors d'un atelier de peinture dans un cadre naturel exceptionnel.</p>
@@ -862,7 +990,7 @@
 
                 <!-- Activité 3 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Balade en mer en catamaran" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Balade en mer en catamaran" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Balade en mer en catamaran</h3>
                         <p class="card-description">Naviguez le long des côtes bretonnes à bord d'un catamaran confortable. Observation des dauphins possible.</p>
@@ -881,7 +1009,7 @@
 
                 <!-- Activité 4 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Descente en VTT" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Descente en VTT" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Descente en VTT</h3>
                         <p class="card-description">Parcourez les sentiers forestiers en VTT avec un moniteur diplômé. Matériel fourni.</p>
@@ -900,7 +1028,7 @@
 
                 <!-- Activité 5 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Camping sauvage" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Camping sauvage" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Camping sauvage</h3>
                         <p class="card-description">Passez une nuit sous les étoiles en pleine nature. Apprenez les techniques de survie en douceur.</p>
@@ -919,7 +1047,7 @@
 
                 <!-- Activité 6 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Observation des oiseaux" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Observation des oiseaux" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Observation des oiseaux</h3>
                         <p class="card-description">Partez à la découverte de la faune aviaire locale avec un ornithologue passionné.</p>
@@ -938,7 +1066,7 @@
 
                 <!-- Activité 7 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Escalade en falaise" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Escalade en falaise" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Escalade en falaise</h3>
                         <p class="card-description">Initiation à l'escalade sur des sites naturels sécurisés. Encadrement par des moniteurs diplômés.</p>
@@ -957,7 +1085,7 @@
 
                 <!-- Activité 8 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Canoë-kayak en rivière" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Canoë-kayak en rivière" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Canoë-kayak en rivière</h3>
                         <p class="card-description">Descendez une rivière calme en canoë ou kayak. Parfait pour les débutants et les familles.</p>
@@ -976,7 +1104,7 @@
 
                 <!-- Activité 9 -->
                 <div class="activity-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Yoga en plein air" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Yoga en plein air" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">Yoga en plein air</h3>
                         <p class="card-description">Pratiquez le yoga dans un cadre naturel apaisant. Séance adaptée à tous les niveaux.</p>
@@ -1003,55 +1131,91 @@
             <div class="grid">
                 <!-- Entreprise 1 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo Nature Aventure" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo Nature Aventure" class="company-logo">
                     <h3 class="company-name">Nature Aventure</h3>
                     <p class="company-description">Spécialiste des activités de plein air depuis 15 ans. Encadrement par des guides diplômés.</p>
-                    <div class="company-rating">★★★★★</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
 
                 <!-- Entreprise 2 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo CréaNature" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo CréaNature" class="company-logo">
                     <h3 class="company-name">CréaNature</h3>
                     <p class="company-description">Ateliers créatifs en pleine nature. Découvrez votre potentiel artistique dans des cadres exceptionnels.</p>
-                    <div class="company-rating">★★★★☆</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
 
                 <!-- Entreprise 3 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo Mer & Découverte" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo Mer & Découverte" class="company-logo">
                     <h3 class="company-name">Mer & Découverte</h3>
                     <p class="company-description">Sorties en mer et activités nautiques. Découvrez la faune marine et les paysages côtiers.</p>
-                    <div class="company-rating">★★★★★</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
 
                 <!-- Entreprise 4 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo Montagne Expérience" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo Montagne Expérience" class="company-logo">
                     <h3 class="company-name">Montagne Expérience</h3>
                     <p class="company-description">Randonnées et activités en montagne toute l'année. Matériel de qualité et sécurité maximale.</p>
-                    <div class="company-rating">★★★★☆</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
 
                 <!-- Entreprise 5 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo VTT Passion" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1511994717241-8e4f04b8e6d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo VTT Passion" class="company-logo">
                     <h3 class="company-name">VTT Passion</h3>
                     <p class="company-description">Location et encadrement VTT. Parcours adaptés à tous les niveaux dans des forêts préservées.</p>
-                    <div class="company-rating">★★★★☆</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
 
                 <!-- Entreprise 6 -->
                 <div class="company-card">
-                    <img src="https://via.placeholder.com/150" alt="Logo Zen & Nature" class="company-logo">
+                    <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Logo Zen & Nature" class="company-logo">
                     <h3 class="company-name">Zen & Nature</h3>
                     <p class="company-description">Activités bien-être en pleine nature. Yoga, méditation et détente dans des cadres apaisants.</p>
-                    <div class="company-rating">★★★★★</div>
+                    <div class="company-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                     <a href="#" class="company-btn">Voir les activités</a>
                 </div>
             </div>
@@ -1064,28 +1228,28 @@
             <h2 class="section-title">Notre <span>galerie</span></h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Paysage de montagne" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Paysage de montagne" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Atelier de peinture" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w-800&q=80" alt="Atelier de peinture" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Balade en mer" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Balade en mer" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Descente en VTT" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Descente en VTT" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Camping en forêt" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Camping en forêt" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Observation des oiseaux" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Observation des oiseaux" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Escalade" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1534188753412-9f0337dbaa52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Escalade" class="gallery-img">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://via.placeholder.com/400x300" alt="Canoë-kayak" class="gallery-img">
+                    <img src="https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Canoë-kayak" class="gallery-img">
                 </div>
             </div>
         </div>
@@ -1100,11 +1264,17 @@
                 <div class="testimonial-card">
                     <p class="testimonial-text">"La randonnée en montagne était magnifique ! Notre guide était très compétent et nous a fait découvrir des endroits incroyables."</p>
                     <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/100" alt="Photo de Marie" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Photo de Marie" class="author-avatar">
                         <div class="author-info">
                             <h4>Marie L.</h4>
                             <p>Randonnée en montagne</p>
-                            <div class="rating">★★★★★</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1113,11 +1283,17 @@
                 <div class="testimonial-card">
                     <p class="testimonial-text">"L'atelier de peinture était une expérience unique. Le cadre était idyllique et l'animatrice très pédagogue."</p>
                     <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/100" alt="Photo de Thomas" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Photo de Thomas" class="author-avatar">
                         <div class="author-info">
                             <h4>Thomas D.</h4>
                             <p>Atelier de peinture</p>
-                            <div class="rating">★★★★☆</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1126,11 +1302,17 @@
                 <div class="testimonial-card">
                     <p class="testimonial-text">"La balade en catamaran était fantastique ! Nous avons même pu observer des dauphins. Une journée inoubliable."</p>
                     <div class="testimonial-author">
-                        <img src="https://via.placeholder.com/100" alt="Photo de Sophie" class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Photo de Sophie" class="author-avatar">
                         <div class="author-info">
                             <h4>Sophie M.</h4>
                             <p>Balade en mer</p>
-                            <div class="rating">★★★★★</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1280,6 +1462,35 @@
             navMenu.classList.toggle('active');
         });
 
+        // Bottom bar navigation
+        const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+        
+        bottomNavItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Retirer la classe active de tous les éléments
+                bottomNavItems.forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Ajouter la classe active à l'élément cliqué
+                this.classList.add('active');
+                
+                // Navigation fluide vers la section cible
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
         // FAQ accordéon
         const faqItems = document.querySelectorAll('.faq-item');
 
@@ -1299,7 +1510,7 @@
             });
         });
 
-        // Navigation fluide
+        // Navigation fluide pour tous les liens d'ancrage
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1316,8 +1527,52 @@
                     
                     // Fermer le menu mobile si ouvert
                     navMenu.classList.remove('active');
+                    
+                    // Mettre à jour la bottom bar active
+                    if (window.innerWidth <= 768) {
+                        bottomNavItems.forEach(el => {
+                            el.classList.remove('active');
+                            if (el.getAttribute('href') === targetId) {
+                                el.classList.add('active');
+                            }
+                        });
+                    }
                 }
             });
+        });
+
+        // Mettre à jour la bottom bar active lors du défilement
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                const sections = document.querySelectorAll('section[id]');
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                bottomNavItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-target') === current) {
+                        item.classList.add('active');
+                    }
+                });
+                
+                // Si on est en haut de page, activer l'accueil
+                if (scrollY < 100) {
+                    bottomNavItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === 'accueil') {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            }
         });
     </script>
 </body>
