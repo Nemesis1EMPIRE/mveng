@@ -10,24 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables CSS améliorées */
+        /* Variables CSS élégantes */
         :root {
             --forest-green: #2B7A4B;
             --light-green: #8FD19E;
-            --deep-blue: #0B3D91;
+            --dark-green: #1e5631;
             --off-white: #FAFAF8;
-            --soft-gray: #555;
-            --light-gray: #f0f0f0;
-            --accent-orange: #FF6B35;
-            --accent-purple: #9B5DE5;
+            --light-gray: #f5f5f5;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-gray: #555;
             --border-radius: 12px;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --transition-slow: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --gradient-primary: linear-gradient(135deg, #2B7A4B 0%, #8FD19E 100%);
-            --gradient-secondary: linear-gradient(135deg, #0B3D91 0%, #4A6FA5 100%);
-            --gradient-accent: linear-gradient(135deg, #FF6B35 0%, #FF9E6D 100%);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --transition-fast: all 0.2s ease;
         }
 
         /* Reset et styles de base */
@@ -40,15 +37,14 @@
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--soft-gray);
+            color: var(--text-gray);
             background-color: var(--off-white);
             overflow-x: hidden;
-            padding-bottom: 70px; /* Espace pour la bottom bar mobile */
         }
 
         h1, h2, h3, h4 {
-            font-weight: 700;
-            color: #222;
+            font-weight: 600;
+            color: var(--dark-gray);
             margin-bottom: 1.2rem;
         }
 
@@ -64,86 +60,48 @@
         img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
 
         .container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Animations globales */
+        /* Animations subtiles */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
         @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes slideInLeft {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes textReveal {
             from { 
-                clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-                transform: translateY(20px);
+                transform: translateY(20px); 
+                opacity: 0; 
             }
             to { 
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-                transform: translateY(0);
+                transform: translateY(0); 
+                opacity: 1; 
             }
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes scaleIn {
+            from { 
+                transform: scale(0.95); 
+                opacity: 0; 
+            }
+            to { 
+                transform: scale(1); 
+                opacity: 1; 
+            }
         }
 
-        /* Éléments animés */
-        .animated-element {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .animated-element.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Header amélioré */
+        /* Header élégant */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             position: fixed;
             top: 0;
             left: 0;
@@ -156,38 +114,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
         }
 
         .logo {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--forest-green);
-            cursor: pointer;
-            position: relative;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: var(--transition);
         }
 
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gradient-primary);
-            transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .logo-icon {
-            font-size: 1.8rem;
-            animation: float 3s ease-in-out infinite;
+        .logo:hover {
+            color: var(--dark-green);
+            transform: translateY(-1px);
         }
 
         .nav-menu {
@@ -201,10 +143,11 @@
         }
 
         .nav-menu a {
-            font-weight: 600;
+            font-weight: 500;
             padding: 0.5rem 0;
             position: relative;
-            transition: var(--transition);
+            transition: var(--transition-fast);
+            color: var(--text-gray);
         }
 
         .nav-menu a::after {
@@ -214,7 +157,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--gradient-primary);
+            background: var(--forest-green);
             transition: width 0.3s ease;
         }
 
@@ -223,10 +166,7 @@
             width: 100%;
         }
 
-        .nav-menu a:hover {
-            color: var(--forest-green);
-        }
-
+        .nav-menu a:hover,
         .nav-menu a.active {
             color: var(--forest-green);
         }
@@ -234,7 +174,7 @@
         .hamburger {
             display: none;
             cursor: pointer;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--forest-green);
             transition: var(--transition);
         }
@@ -243,160 +183,52 @@
             transform: rotate(90deg);
         }
 
-        /* Bottom Bar Mobile améliorée */
-        .bottom-bar {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.08);
-            z-index: 200;
-            padding: 0.8rem 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .bottom-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            flex: 1;
-            transition: var(--transition);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bottom-nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-
-        .bottom-nav-item i {
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-            color: var(--soft-gray);
-            transition: var(--transition);
-        }
-
-        .bottom-nav-item span {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--soft-gray);
-            transition: var(--transition);
-        }
-
-        .bottom-nav-item.active::before {
-            left: 0;
-            opacity: 0.1;
-        }
-
-        .bottom-nav-item.active i,
-        .bottom-nav-item.active span {
-            color: var(--forest-green);
-        }
-
-        .bottom-nav-item:hover::before {
-            left: 0;
-            opacity: 0.05;
-        }
-
-        .bottom-nav-item:hover i,
-        .bottom-nav-item:hover span {
-            color: var(--forest-green);
-            transform: translateY(-2px);
-        }
-
-        /* Pages */
+        /* Pages avec transition douce */
         .page {
             display: none;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            animation: fadeIn 0.5s ease forwards;
+            padding-top: 80px;
             min-height: 100vh;
-            padding-top: 100px;
         }
 
         .page.active {
             display: block;
             opacity: 1;
-            transform: translateY(0);
         }
 
-        /* Page Accueil - HERO amélioré */
+        /* Page d'accueil */
         .hero-section {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(43, 122, 75, 0.1) 0%, rgba(143, 209, 158, 0.05) 100%);
-            border-radius: 0 0 40px 40px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            color: white;
             margin-bottom: 4rem;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(143, 209, 158, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(11, 61, 145, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
-            z-index: -1;
-            animation: gradientShift 15s ease infinite;
-            background-size: 400% 400%;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-            position: relative;
-            z-index: 2;
+            animation: slideUp 0.8s ease 0.3s both;
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            display: inline-block;
-            animation: textReveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            line-height: 1.2;
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--soft-gray);
+            font-size: 1.3rem;
             margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: slideUp 0.8s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
         .hero-buttons {
@@ -404,227 +236,159 @@
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: slideUp 0.8s 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
         }
 
-        /* Boutons premium */
+        /* Boutons élégants */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8rem;
-            padding: 1.2rem 2.5rem;
+            gap: 0.7rem;
+            padding: 1rem 2rem;
             border-radius: var(--border-radius);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: var(--transition);
             cursor: pointer;
             border: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            outline: none;
         }
 
         .btn-primary {
-            background: var(--gradient-primary);
+            background-color: var(--forest-green);
             color: white;
-            box-shadow: 0 10px 30px rgba(43, 122, 75, 0.3);
         }
 
         .btn-primary:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(43, 122, 75, 0.4);
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(43, 122, 75, 0.2);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--forest-green);
-            border: 2px solid var(--forest-green);
-            box-shadow: 0 10px 30px rgba(43, 122, 75, 0.1);
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .btn-secondary:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: var(--forest-green);
-            color: white;
-            box-shadow: 0 20px 40px rgba(43, 122, 75, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .btn-accent {
-            background: var(--gradient-accent);
-            color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        .btn-small {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
         }
 
-        .btn-accent:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        /* Section Recherche améliorée */
+        /* Section Recherche élégante */
         .search-section {
-            background: white;
-            padding: 4rem 0;
+            background-color: white;
+            padding: 3rem 0;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .search-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-primary);
-            animation: shimmer 3s infinite;
+            margin: 0 auto 4rem;
+            max-width: 1000px;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            font-size: 2.8rem;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            font-size: 2.2rem;
         }
 
         .section-title span {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--forest-green);
             position: relative;
         }
 
-        .section-title::after {
+        .section-title span::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -5px;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
+            height: 3px;
+            background: var(--forest-green);
             transform: scaleX(0);
-            animation: expandLine 1s 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            transform-origin: left;
+            animation: expandLine 0.8s ease 0.5s forwards;
         }
 
         @keyframes expandLine {
-            from { transform: scaleX(0); }
             to { transform: scaleX(1); }
         }
 
         .search-container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .search-bar {
             display: flex;
             margin-bottom: 2rem;
-            position: relative;
-            animation: slideUp 0.8s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-            opacity: 0;
         }
 
         .search-input {
             flex: 1;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid #e0e0e0;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--medium-gray);
             border-radius: var(--border-radius) 0 0 var(--border-radius);
-            font-size: 1.1rem;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: var(--transition-fast);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--forest-green);
             box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
-            transform: translateY(-2px);
         }
 
         .search-btn {
-            background: var(--gradient-primary);
+            background-color: var(--forest-green);
             color: white;
             border: none;
             padding: 0 2rem;
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: var(--transition);
         }
 
         .search-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(43, 122, 75, 0.3);
+            background-color: var(--dark-green);
         }
 
         .filters {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
-            animation: slideUp 0.8s 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-            opacity: 0;
-        }
-
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
         }
 
         .filter-group label {
             display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
         }
 
         .filter-select {
             width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.8rem;
+            border: 1px solid var(--medium-gray);
             border-radius: var(--border-radius);
             background-color: white;
             cursor: pointer;
-            font-size: 1rem;
-            transition: var(--transition);
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232B7A4B' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 16px;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
         }
 
         .filter-select:focus {
             outline: none;
             border-color: var(--forest-green);
-            box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 0 0 2px rgba(43, 122, 75, 0.1);
         }
 
         .sorting {
@@ -633,17 +397,12 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1.5rem;
-            animation: slideUp 0.8s 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-            opacity: 0;
         }
 
         .results-count {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 500;
             color: var(--forest-green);
-            background: rgba(43, 122, 75, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
         }
 
         .sort-options {
@@ -654,153 +413,78 @@
 
         .sort-btn {
             background: none;
-            border: 2px solid #e0e0e0;
-            color: var(--soft-gray);
+            border: 1px solid var(--medium-gray);
+            color: var(--text-gray);
             cursor: pointer;
             font-size: 0.9rem;
-            font-weight: 600;
-            transition: var(--transition);
+            transition: var(--transition-fast);
             padding: 0.5rem 1.2rem;
-            border-radius: 50px;
+            border-radius: 20px;
+            font-weight: 500;
         }
 
         .sort-btn.active {
-            background: var(--gradient-primary);
+            background-color: var(--forest-green);
             color: white;
-            border-color: transparent;
-            box-shadow: 0 5px 15px rgba(43, 122, 75, 0.2);
+            border-color: var(--forest-green);
         }
 
         .sort-btn:hover:not(.active) {
             border-color: var(--forest-green);
             color: var(--forest-green);
-            transform: translateY(-2px);
         }
 
-        /* Page Activités */
-        .activities-page {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(143, 209, 158, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
-        }
-
-        /* Page Entreprises */
-        .companies-page {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(11, 61, 145, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
-        }
-
-        /* Page Galerie */
-        .gallery-page {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
-        }
-
-        /* Page Contact */
-        .contact-page {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(155, 93, 229, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
-        }
-
-        /* Grille de cartes améliorée */
+        /* Grille de cartes */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        /* Cartes d'activités premium */
+        /* Cartes d'activités élégantes */
         .activity-card {
-            background: white;
+            background-color: white;
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-        }
-
-        .activity-card:nth-child(1) { animation-delay: 0.1s; }
-        .activity-card:nth-child(2) { animation-delay: 0.2s; }
-        .activity-card:nth-child(3) { animation-delay: 0.3s; }
-        .activity-card:nth-child(4) { animation-delay: 0.4s; }
-        .activity-card:nth-child(5) { animation-delay: 0.5s; }
-        .activity-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            animation: scaleIn 0.5s ease both;
         }
 
         .activity-card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
         }
 
-        .activity-card:hover::before {
-            transform: scaleX(1);
-        }
-
         .card-img-container {
-            height: 220px;
-            width: 100%;
+            height: 200px;
             overflow: hidden;
-            position: relative;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition-slow);
-        }
-
-        .activity-card:hover .card-img {
-            transform: scale(1.1) rotate(1deg);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient-accent);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
-            z-index: 2;
-        }
-
-        .card-content {
-            padding: 2rem;
-            position: relative;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: #222;
             transition: var(--transition);
         }
 
-        .activity-card:hover .card-title {
-            color: var(--forest-green);
+        .activity-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.8rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-gray);
         }
 
         .card-description {
-            color: var(--soft-gray);
+            color: var(--text-gray);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
@@ -817,12 +501,12 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .card-price {
             color: var(--forest-green);
-            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .card-tags {
@@ -833,192 +517,142 @@
         }
 
         .tag {
-            background: rgba(43, 122, 75, 0.1);
+            background-color: rgba(43, 122, 75, 0.1);
             color: var(--forest-green);
             padding: 0.4rem 0.8rem;
-            border-radius: 50px;
+            border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .tag:hover {
-            background: var(--forest-green);
-            color: white;
-            transform: translateY(-2px);
+            font-weight: 500;
         }
 
         .card-btn {
             display: block;
             text-align: center;
-            background: var(--gradient-primary);
+            background-color: var(--forest-green);
             color: white;
-            padding: 1rem;
+            padding: 0.9rem;
             border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
         }
 
         .card-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(43, 122, 75, 0.3);
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
         }
 
-        /* Cartes d'entreprises premium */
+        /* Cartes d'entreprises élégantes */
         .company-card {
-            background: white;
+            background-color: white;
             border-radius: var(--border-radius);
-            padding: 2.5rem;
+            padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            animation: scaleIn 0.5s ease both;
         }
 
-        .company-card:nth-child(1) { animation-delay: 0.1s; }
-        .company-card:nth-child(2) { animation-delay: 0.2s; }
-        .company-card:nth-child(3) { animation-delay: 0.3s; }
-        .company-card:nth-child(4) { animation-delay: 0.4s; }
-        .company-card:nth-child(5) { animation-delay: 0.5s; }
-        .company-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .company-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 0;
-        }
-
-        .company-card:hover::before {
-            opacity: 0.03;
+        .company-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
         .company-logo-container {
-            position: relative;
             width: 100px;
             height: 100px;
             margin: 0 auto 1.5rem;
-            z-index: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--light-green);
+            padding: 5px;
+            background-color: white;
         }
 
         .company-logo {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
-            border: 3px solid white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            position: relative;
-            z-index: 2;
-        }
-
-        .company-card:hover .company-logo {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(43, 122, 75, 0.3);
+            border-radius: 50%;
         }
 
         .company-name {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 0.8rem;
-            color: #222;
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
-        }
-
-        .company-card:hover .company-name {
-            color: var(--forest-green);
+            color: var(--dark-gray);
         }
 
         .company-description {
-            color: var(--soft-gray);
+            color: var(--text-gray);
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
-            position: relative;
-            z-index: 1;
         }
 
         .company-rating {
             margin-bottom: 1.5rem;
-            color: #ffc107;
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 1;
+            color: #FFC107;
+            font-size: 1.1rem;
         }
 
         .company-btn {
             display: inline-block;
-            background: var(--gradient-primary);
+            background-color: var(--forest-green);
             color: white;
             padding: 0.8rem 2rem;
             border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
+            border: none;
+            outline: none;
         }
 
         .company-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(43, 122, 75, 0.3);
+            background-color: var(--dark-green);
+            transform: translateY(-2px);
         }
 
-        /* Galerie premium */
+        /* Page Activités */
+        .activities-page {
+            padding: 4rem 0;
+        }
+
+        /* Page Entreprises */
+        .companies-page {
+            padding: 4rem 0;
+        }
+
+        /* Page Galerie */
+        .gallery-page {
+            padding: 4rem 0;
+        }
+
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .gallery-item {
-            position: relative;
             border-radius: var(--border-radius);
             overflow: hidden;
             height: 250px;
+            position: relative;
             cursor: pointer;
-            opacity: 0;
-            transform: scale(0.9);
-            animation: fadeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+            animation: scaleIn 0.5s ease both;
         }
-
-        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
-        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
-        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
-        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
-        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
 
         .gallery-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition-slow);
-            filter: brightness(0.95);
+            transition: var(--transition);
         }
 
         .gallery-item:hover .gallery-img {
-            transform: scale(1.1) rotate(2deg);
-            filter: brightness(1);
+            transform: scale(1.05);
         }
 
         .gallery-overlay {
@@ -1028,6 +662,7 @@
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
             padding: 1.5rem;
+            color: white;
             transform: translateY(100%);
             transition: var(--transition);
         }
@@ -1037,89 +672,216 @@
         }
 
         .gallery-title {
-            color: white;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .gallery-category {
-            color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        /* Formulaire de contact premium */
+        /* Page Contact */
+        .contact-page {
+            padding: 4rem 0;
+        }
+
         .contact-form {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
+            background-color: white;
+            padding: 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 0.8s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-primary);
+            animation: slideUp 0.5s ease 0.2s both;
         }
 
         .form-group {
-            margin-bottom: 2rem;
-            position: relative;
+            margin-bottom: 1.8rem;
         }
 
         .form-label {
             display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            color: #333;
-            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
         }
 
         .form-input, .form-textarea {
             width: 100%;
-            padding: 1.2rem 1.5rem;
-            border: 2px solid #e0e0e0;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--medium-gray);
             border-radius: var(--border-radius);
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            transition: var(--transition);
-            background: rgba(255, 255, 255, 0.9);
+            transition: var(--transition-fast);
         }
 
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--forest-green);
             box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
-            transform: translateY(-2px);
         }
 
         .form-textarea {
-            min-height: 180px;
+            min-height: 150px;
             resize: vertical;
         }
 
         .required {
-            color: var(--accent-orange);
+            color: #e74c3c;
         }
 
-        /* Footer premium */
-        footer {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            padding: 5rem 0 2rem;
+        /* Pages de détail épurées */
+        .detail-page {
+            padding: 0;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        .profile-header {
             position: relative;
+            height: 300px;
             overflow: hidden;
+        }
+
+        .profile-back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--forest-green);
+            font-size: 1.2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .profile-back-btn:hover {
+            transform: translateX(-3px);
+            background: white;
+        }
+
+        .profile-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            padding: 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .profile-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+        }
+
+        .profile-description {
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .profile-section {
+            margin-bottom: 3rem;
+        }
+
+        .profile-section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-section-title i {
+            color: var(--forest-green);
+        }
+
+        .partner-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .partner-card:hover {
+            background-color: rgba(43, 122, 75, 0.05);
+        }
+
+        .partner-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--light-green);
+        }
+
+        .partner-info {
+            flex: 1;
+        }
+
+        .partner-info h4 {
+            margin-bottom: 0.3rem;
+            color: var(--dark-gray);
+        }
+
+        .partner-info p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+        }
+
+        .contact-item i {
+            color: var(--forest-green);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        /* Footer élégant */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 4rem 0 2rem;
         }
 
         .footer-container {
@@ -1127,33 +889,17 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
-            position: relative;
-            z-index: 2;
         }
 
         .footer-col h3 {
             color: white;
             margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
+            font-size: 1.2rem;
         }
 
         .footer-col p {
             color: #bbb;
             margin-bottom: 1.5rem;
-            line-height: 1.7;
         }
 
         .footer-links {
@@ -1166,16 +912,11 @@
 
         .footer-links a {
             color: #bbb;
-            transition: var(--transition);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: var(--transition-fast);
         }
 
         .footer-links a:hover {
             color: var(--light-green);
-            transform: translateX(5px);
         }
 
         .footer-bottom {
@@ -1184,106 +925,16 @@
             border-top: 1px solid #444;
             color: #888;
             font-size: 0.9rem;
-            position: relative;
-            z-index: 2;
         }
 
-        /* Pages de détail (Instagram style) */
-        .detail-page {
-            padding: 0;
-            min-height: 100vh;
-            background: white;
-        }
-
-        .instagram-profile {
-            max-width: 100%;
-            overflow-x: hidden;
-            background: white;
-        }
-
-        .profile-header {
-            position: relative;
-        }
-
-        .profile-back-btn {
-            position: absolute;
-            top: 20px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--forest-green);
-            font-size: 1.2rem;
-        }
-
-        .profile-back-btn:hover {
-            transform: translateX(-5px) scale(1.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Indicateur de chargement entre pages */
-        .page-transition {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-
-        .page-transition.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive amélioré */
-        @media (max-width: 1200px) {
+        /* Responsive design propre */
+        @media (max-width: 1024px) {
             .container {
                 padding: 0 1.5rem;
             }
             
             .hero-title {
-                font-size: 3.5rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-title {
                 font-size: 3rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
             }
             
             .grid {
@@ -1301,14 +952,13 @@
                 top: 80px;
                 right: -100%;
                 flex-direction: column;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
+                background-color: white;
                 width: 80%;
                 height: calc(100vh - 80px);
-                transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
                 padding: 2rem;
-                z-index: 150;
+                z-index: 100;
             }
 
             .nav-menu.active {
@@ -1319,23 +969,12 @@
                 margin: 0 0 1.5rem 0;
             }
 
-            .nav-menu a {
-                font-size: 1.2rem;
-                padding: 0.8rem 0;
-                display: block;
-            }
-
-            /* Afficher la bottom bar sur mobile */
-            .bottom-bar {
-                display: block;
-            }
-
             .hero-title {
                 font-size: 2.5rem;
             }
 
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .hero-buttons {
@@ -1353,11 +992,7 @@
             }
 
             .filters {
-                flex-direction: column;
-            }
-
-            .filter-group {
-                min-width: 100%;
+                grid-template-columns: 1fr;
             }
 
             .sorting {
@@ -1367,7 +1002,7 @@
 
             .grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .gallery-grid {
@@ -1375,17 +1010,30 @@
             }
 
             .contact-form {
-                padding: 2rem;
+                padding: 1.5rem;
+            }
+
+            .profile-content {
+                padding: 1.5rem;
+            }
+
+            .profile-title {
+                font-size: 1.8rem;
+            }
+
+            .profile-meta {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
 
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2rem;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
             }
             
-            .hero-subtitle {
-                font-size: 1rem;
+            .hero-title {
+                font-size: 2rem;
             }
             
             .section-title {
@@ -1396,85 +1044,51 @@
                 grid-template-columns: 1fr;
             }
             
-            .container {
-                padding: 0 1rem;
+            .footer-container {
+                grid-template-columns: 1fr;
             }
         }
 
         /* États de recherche */
         .no-results {
             text-align: center;
-            padding: 4rem;
-            color: var(--soft-gray);
-            font-size: 1.2rem;
-            opacity: 0;
-            animation: fadeIn 0.8s 0.3s forwards;
+            padding: 4rem 2rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
         }
 
         .no-results i {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: #ddd;
+            color: var(--medium-gray);
         }
     </style>
 </head>
 <body>
-    <!-- Indicateur de transition entre pages -->
-    <div class="page-transition" id="pageTransition">
-        <div class="loader"></div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo" id="homeLogo">
-                <i class="fas fa-mountain logo-icon"></i>
+            <a href="#" class="logo" id="homeLogo">
+                <i class="fas fa-mountain"></i>
                 <span>mveng</span>
-            </div>
+            </a>
             <div class="hamburger" id="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Accueil</a></li>
-                <li><a href="#" class="nav-link" data-page="activities"><i class="fas fa-hiking"></i> Activités</a></li>
-                <li><a href="#" class="nav-link" data-page="companies"><i class="fas fa-building"></i> Entreprises</a></li>
-                <li><a href="#" class="nav-link" data-page="gallery"><i class="fas fa-images"></i> Galerie</a></li>
-                <li><a href="#" class="nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#" class="nav-link active" data-page="home">Accueil</a></li>
+                <li><a href="#" class="nav-link" data-page="activities">Activités</a></li>
+                <li><a href="#" class="nav-link" data-page="companies">Entreprises</a></li>
+                <li><a href="#" class="nav-link" data-page="gallery">Galerie</a></li>
+                <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Bottom Bar Mobile -->
-    <div class="bottom-bar">
-        <nav class="bottom-nav">
-            <div class="bottom-nav-item active" data-page="home">
-                <i class="fas fa-home"></i>
-                <span>Accueil</span>
-            </div>
-            <div class="bottom-nav-item" data-page="activities">
-                <i class="fas fa-hiking"></i>
-                <span>Activités</span>
-            </div>
-            <div class="bottom-nav-item" data-page="companies">
-                <i class="fas fa-building"></i>
-                <span>Entreprises</span>
-            </div>
-            <div class="bottom-nav-item" data-page="gallery">
-                <i class="fas fa-images"></i>
-                <span>Galerie</span>
-            </div>
-            <div class="bottom-nav-item" data-page="contact">
-                <i class="fas fa-envelope"></i>
-                <span>Contact</span>
-            </div>
-        </nav>
-    </div>
-
     <!-- Page d'accueil -->
     <div id="homePage" class="page active">
-        <!-- Hero Section -->
+        <!-- Hero Section avec belle image -->
         <section class="hero-section">
-            <div class="hero-bg"></div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">mveng — Vivez l'aventure près de chez vous</h1>
@@ -1492,19 +1106,19 @@
         </section>
 
         <!-- Section Recherche -->
-        <section class="search-section">
-            <div class="container">
-                <h2 class="section-title">Trouvez votre <span>prochaine aventure</span></h2>
+        <section class="container">
+            <div class="search-section">
+                <h2 class="section-title">Trouvez votre <span>aventure</span></h2>
                 <div class="search-container">
                     <div class="search-bar">
-                        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une activité, une entreprise...">
+                        <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une activité ou une entreprise...">
                         <button class="search-btn" id="searchBtn">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                     <div class="filters">
                         <div class="filter-group">
-                            <label for="type"><i class="fas fa-filter"></i> Type d'activité</label>
+                            <label for="type">Type d'activité</label>
                             <select id="type" class="filter-select">
                                 <option value="">Tous les types</option>
                                 <option value="randonnee">Randonnée</option>
@@ -1515,7 +1129,7 @@
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label for="duree"><i class="fas fa-clock"></i> Durée</label>
+                            <label for="duree">Durée</label>
                             <select id="duree" class="filter-select">
                                 <option value="">Toutes les durées</option>
                                 <option value="2">Moins de 4h</option>
@@ -1523,7 +1137,7 @@
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label for="prix"><i class="fas fa-euro-sign"></i> Prix</label>
+                            <label for="prix">Prix</label>
                             <select id="prix" class="filter-select">
                                 <option value="">Tous les prix</option>
                                 <option value="20">Moins de 20€</option>
@@ -1532,7 +1146,7 @@
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label for="localisation"><i class="fas fa-map-marker-alt"></i> Localisation</label>
+                            <label for="localisation">Localisation</label>
                             <select id="localisation" class="filter-select">
                                 <option value="">Toutes les régions</option>
                                 <option value="bretagne">Bretagne</option>
@@ -1547,18 +1161,10 @@
                             <i class="fas fa-search"></i> 9 activités trouvées
                         </div>
                         <div class="sort-options">
-                            <button class="sort-btn active" data-sort="popularity">
-                                <i class="fas fa-fire"></i> Popularité
-                            </button>
-                            <button class="sort-btn" data-sort="price-asc">
-                                <i class="fas fa-euro-sign"></i> Prix croissant
-                            </button>
-                            <button class="sort-btn" data-sort="price-desc">
-                                <i class="fas fa-euro-sign"></i> Prix décroissant
-                            </button>
-                            <button class="sort-btn" data-sort="duration">
-                                <i class="fas fa-clock"></i> Durée
-                            </button>
+                            <button class="sort-btn active" data-sort="popularity">Popularité</button>
+                            <button class="sort-btn" data-sort="price-asc">Prix croissant</button>
+                            <button class="sort-btn" data-sort="price-desc">Prix décroissant</button>
+                            <button class="sort-btn" data-sort="duration">Durée</button>
                         </div>
                     </div>
                 </div>
@@ -1578,25 +1184,19 @@
     <div id="activitiesPage" class="page activities-page">
         <div class="container">
             <h1 class="section-title">Toutes nos <span>activités</span></h1>
-            <p class="hero-subtitle" style="text-align: center; margin-bottom: 3rem;">Découvrez notre sélection d'activités extracitadines pour tous les goûts et tous les niveaux.</p>
+            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Découvrez notre sélection d'activités extracitadines pour tous les goûts et tous les niveaux.
+            </p>
             
-            <div class="sorting" style="margin-bottom: 3rem;">
+            <div class="sorting" style="margin-bottom: 2rem;">
                 <div class="results-count" id="activitiesResultsCount">
                     <i class="fas fa-hiking"></i> 9 activités disponibles
                 </div>
                 <div class="sort-options">
-                    <button class="sort-btn active" data-sort="popularity">
-                        <i class="fas fa-fire"></i> Popularité
-                    </button>
-                    <button class="sort-btn" data-sort="price-asc">
-                        <i class="fas fa-euro-sign"></i> Prix croissant
-                    </button>
-                    <button class="sort-btn" data-sort="price-desc">
-                        <i class="fas fa-euro-sign"></i> Prix décroissant
-                    </button>
-                    <button class="sort-btn" data-sort="duration">
-                        <i class="fas fa-clock"></i> Durée
-                    </button>
+                    <button class="sort-btn active" data-sort="popularity">Popularité</button>
+                    <button class="sort-btn" data-sort="price-asc">Prix croissant</button>
+                    <button class="sort-btn" data-sort="price-desc">Prix décroissant</button>
+                    <button class="sort-btn" data-sort="duration">Durée</button>
                 </div>
             </div>
             
@@ -1610,7 +1210,9 @@
     <div id="companiesPage" class="page companies-page">
         <div class="container">
             <h1 class="section-title">Nos <span>entreprises partenaires</span></h1>
-            <p class="hero-subtitle" style="text-align: center; margin-bottom: 3rem;">Des professionnels passionnés pour vous accompagner dans vos aventures.</p>
+            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Des professionnels passionnés pour vous accompagner dans vos aventures.
+            </p>
             
             <div class="grid" id="allCompaniesGrid">
                 <!-- Toutes les entreprises seront générées par JavaScript -->
@@ -1622,7 +1224,9 @@
     <div id="galleryPage" class="page gallery-page">
         <div class="container">
             <h1 class="section-title">Notre <span>galerie photos</span></h1>
-            <p class="hero-subtitle" style="text-align: center; margin-bottom: 3rem;">Captures d'instants magiques partagés avec nos partenaires et participants.</p>
+            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Captures d'instants magiques partagés avec nos partenaires et participants.
+            </p>
             
             <div class="gallery-grid" id="galleryGrid">
                 <!-- La galerie sera générée par JavaScript -->
@@ -1634,32 +1238,26 @@
     <div id="contactPage" class="page contact-page">
         <div class="container">
             <h1 class="section-title">Nous <span>contacter</span></h1>
-            <p class="hero-subtitle" style="text-align: center; margin-bottom: 3rem;">Une question ? Une suggestion ? N'hésitez pas à nous écrire !</p>
+            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Une question ? Une suggestion ? N'hésitez pas à nous écrire !
+            </p>
             
             <div class="contact-form">
                 <form id="contactForm">
                     <div class="form-group">
-                        <label for="name" class="form-label">
-                            <i class="fas fa-user"></i> Nom <span class="required">*</span>
-                        </label>
+                        <label for="name" class="form-label">Nom <span class="required">*</span></label>
                         <input type="text" id="name" class="form-input" placeholder="Votre nom" required>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="form-label">
-                            <i class="fas fa-envelope"></i> Email <span class="required">*</span>
-                        </label>
+                        <label for="email" class="form-label">Email <span class="required">*</span></label>
                         <input type="email" id="email" class="form-input" placeholder="Votre adresse email" required>
                     </div>
                     <div class="form-group">
-                        <label for="subject" class="form-label">
-                            <i class="fas fa-tag"></i> Sujet
-                        </label>
+                        <label for="subject" class="form-label">Sujet</label>
                         <input type="text" id="subject" class="form-input" placeholder="Sujet de votre message">
                     </div>
                     <div class="form-group">
-                        <label for="message" class="form-label">
-                            <i class="fas fa-comment"></i> Message <span class="required">*</span>
-                        </label>
+                        <label for="message" class="form-label">Message <span class="required">*</span></label>
                         <textarea id="message" class="form-textarea" placeholder="Votre message..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
@@ -1667,42 +1265,30 @@
                     </button>
                 </form>
             </div>
-            
-            <div style="text-align: center; margin-top: 4rem;">
-                <h3 style="margin-bottom: 1.5rem;">Autres moyens de nous contacter</h3>
-                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-                    <div style="text-align: center;">
-                        <div style="background: var(--gradient-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <p style="font-weight: 600;">01 23 45 67 89</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="background: var(--gradient-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <p style="font-weight: 600;">contact@mveng.fr</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="background: var(--gradient-primary); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem;">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <p style="font-weight: 600;">Paris, France</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Pages de détail (cachées par défaut) -->
+    <!-- Pages de détail -->
     <div id="activityDetailPage" class="page detail-page">
-        <div class="instagram-profile" id="activityProfile">
+        <div class="profile-header">
+            <button class="profile-back-btn" id="backFromActivityDetail">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div id="activityHeroImage"></div>
+        </div>
+        <div class="profile-content" id="activityProfile">
             <!-- Contenu généré par JavaScript -->
         </div>
     </div>
 
     <div id="companyDetailPage" class="page detail-page">
-        <div class="instagram-profile" id="companyProfile">
+        <div class="profile-header">
+            <button class="profile-back-btn" id="backFromCompanyDetail">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div id="companyHeroImage"></div>
+        </div>
+        <div class="profile-content" id="companyProfile">
             <!-- Contenu généré par JavaScript -->
         </div>
     </div>
@@ -1714,46 +1300,39 @@
                 <div class="footer-col">
                     <h3>mveng</h3>
                     <p>Découvrez des activités extracitadines avec des professionnels locaux. Randonnées, ateliers créatifs, balades en mer et bien plus encore.</p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                        <a href="#" style="color: #bbb; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: #bbb; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: #bbb; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: #bbb; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
-                    </div>
                 </div>
                 <div class="footer-col">
                     <h3>Navigation</h3>
                     <ul class="footer-links">
-                        <li><a href="#" class="footer-link" data-page="home"><i class="fas fa-chevron-right"></i> Accueil</a></li>
-                        <li><a href="#" class="footer-link" data-page="activities"><i class="fas fa-chevron-right"></i> Activités</a></li>
-                        <li><a href="#" class="footer-link" data-page="companies"><i class="fas fa-chevron-right"></i> Entreprises</a></li>
-                        <li><a href="#" class="footer-link" data-page="gallery"><i class="fas fa-chevron-right"></i> Galerie</a></li>
-                        <li><a href="#" class="footer-link" data-page="contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="#" class="footer-link" data-page="home">Accueil</a></li>
+                        <li><a href="#" class="footer-link" data-page="activities">Activités</a></li>
+                        <li><a href="#" class="footer-link" data-page="companies">Entreprises</a></li>
+                        <li><a href="#" class="footer-link" data-page="gallery">Galerie</a></li>
+                        <li><a href="#" class="footer-link" data-page="contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Catégories</h3>
                     <ul class="footer-links">
-                        <li><a href="#" data-filter="randonnee"><i class="fas fa-chevron-right"></i> Randonnée</a></li>
-                        <li><a href="#" data-filter="atelier"><i class="fas fa-chevron-right"></i> Ateliers créatifs</a></li>
-                        <li><a href="#" data-filter="mer"><i class="fas fa-chevron-right"></i> Activités nautiques</a></li>
-                        <li><a href="#" data-filter="vtt"><i class="fas fa-chevron-right"></i> VTT</a></li>
-                        <li><a href="#" data-filter="camping"><i class="fas fa-chevron-right"></i> Camping</a></li>
+                        <li><a href="#" data-filter="randonnee">Randonnée</a></li>
+                        <li><a href="#" data-filter="atelier">Ateliers créatifs</a></li>
+                        <li><a href="#" data-filter="mer">Activités nautiques</a></li>
+                        <li><a href="#" data-filter="vtt">VTT</a></li>
+                        <li><a href="#" data-filter="camping">Camping</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h3>Informations</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Mentions légales</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Politique de confidentialité</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> CGV</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">CGV</a></li>
+                        <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 mveng. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color: var(--light-green);"></i> pour les amoureux de la nature</p>
+                <p>&copy; 2023 mveng. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
@@ -1765,8 +1344,8 @@
                 id: 1,
                 name: "Randonnée en montagne",
                 description: "Découvrez les plus beaux sentiers de montagne avec un guide expérimenté.",
-                longDescription: "Partez pour une journée inoubliable dans les massifs montagneux de la région. Notre randonnée guidée vous emmène à travers des sentiers préservés, avec des points de vue spectaculaires. Le guide partagera avec vous ses connaissances sur la flore, la faune et la géologie locale.",
-                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Partez pour une journée inoubliable dans les massifs montagneux de la région. Notre randonnée guidée vous emmène à travers des sentiers préservés, avec des points de vue spectaculaires. Le guide partagera avec vous ses connaissances sur la flore, la faune et la géologie locale. Prévoir de bonnes chaussures de randonnée.",
+                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "4h",
                 durationValue: 4,
                 price: "35€",
@@ -1782,8 +1361,8 @@
                 id: 2,
                 name: "Atelier de peinture en pleine nature",
                 description: "Laissez parler votre créativité lors d'un atelier de peinture dans un cadre naturel exceptionnel.",
-                longDescription: "Inspirez-vous de la beauté naturelle pour créer votre propre œuvre d'art. Cet atelier est encadré par un artiste peintre professionnel qui vous guidera pas à pas. Peu importe votre niveau, débutant ou confirmé, vous repartirez avec votre création.",
-                image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Inspirez-vous de la beauté naturelle pour créer votre propre œuvre d'art. Cet atelier est encadré par un artiste peintre professionnel qui vous guidera pas à pas. Peu importe votre niveau, débutant ou confirmé, vous repartirez avec votre création. Tout le matériel est fourni.",
+                image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "3h",
                 durationValue: 3,
                 price: "45€",
@@ -1799,8 +1378,8 @@
                 id: 3,
                 name: "Balade en mer en catamaran",
                 description: "Naviguez le long des côtes bretonnes à bord d'un catamaran confortable.",
-                longDescription: "Embarquez pour une journée en mer à bord d'un catamaran de 12 mètres. Notre skipper expérimenté vous fera découvrir les criques secrètes et les paysages côtiers magnifiques. Avec un peu de chance, vous pourrez observer des dauphins, des phoques et une variété d'oiseaux marins.",
-                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Embarquez pour une journée en mer à bord d'un catamaran de 12 mètres. Notre skipper expérimenté vous fera découvrir les criques secrètes et les paysages côtiers magnifiques. Avec un peu de chance, vous pourrez observer des dauphins, des phoques et une variété d'oiseaux marins. Le déjeuner est inclus.",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "6h",
                 durationValue: 6,
                 price: "75€",
@@ -1816,8 +1395,8 @@
                 id: 4,
                 name: "Descente en VTT",
                 description: "Parcourez les sentiers forestiers en VTT avec un moniteur diplômé.",
-                longDescription: "Une descente endiablée à travers les sentiers forestiers, adaptée à votre niveau. Notre moniteur diplômé vous accompagnera tout au long du parcours et vous donnera des conseils techniques. Le VTT et le casque sont fournis.",
-                image: "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Une descente endiablée à travers les sentiers forestiers, adaptée à votre niveau. Notre moniteur diplômé vous accompagnera tout au long du parcours et vous donnera des conseils techniques. Le VTT et le casque sont fournis. Plusieurs parcours disponibles selon votre niveau.",
+                image: "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "3h",
                 durationValue: 3,
                 price: "40€",
@@ -1832,8 +1411,8 @@
                 id: 5,
                 name: "Camping sauvage",
                 description: "Passez une nuit sous les étoiles en pleine nature.",
-                longDescription: "Une expérience unique pour se reconnecter à la nature. Nous vous apprendrons à monter un campement, à faire un feu sans allumettes, à filtrer de l'eau et à vous orienter sans GPS. La nuit se passera sous tente ou à la belle étoile selon vos préférences.",
-                image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Une expérience unique pour se reconnecter à la nature. Nous vous apprendrons à monter un campement, à faire un feu sans allumettes, à filtrer de l'eau et à vous orienter sans GPS. La nuit se passera sous tente ou à la belle étoile selon vos préférences. Le petit-déjeuner campagnard est inclus.",
+                image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "24h",
                 durationValue: 24,
                 price: "60€",
@@ -1848,8 +1427,8 @@
                 id: 6,
                 name: "Observation des oiseaux",
                 description: "Partez à la découverte de la faune aviaire locale avec un ornithologue passionné.",
-                longDescription: "Muni de jumelles et d'un guide d'identification, partez à la rencontre des oiseaux de notre région. Notre ornithologue vous fera découvrir les différentes espèces, leurs chants, leurs habitats et leurs comportements.",
-                image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Muni de jumelles et d'un guide d'identification, partez à la rencontre des oiseaux de notre région. Notre ornithologue vous fera découvrir les différentes espèces, leurs chants, leurs habitats et leurs comportements. Le matériel d'observation est fourni.",
+                image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "2h",
                 durationValue: 2,
                 price: "25€",
@@ -1864,8 +1443,8 @@
                 id: 7,
                 name: "Escalade en falaise",
                 description: "Initiation à l'escalade sur des sites naturels sécurisés.",
-                longDescription: "Découvrez les sensations de l'escalade en pleine nature sur des falaises adaptées aux débutants. Nos moniteurs diplômés d'État vous assurent une progression en toute sécurité. Tout l'équipement technique est fourni.",
-                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Découvrez les sensations de l'escalade en pleine nature sur des falaises adaptées aux débutants. Nos moniteurs diplômés d'État vous assurent une progression en toute sécurité. Tout l'équipement technique est fourni : baudrier, cordes, mousquetons, etc.",
+                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "4h",
                 durationValue: 4,
                 price: "55€",
@@ -1880,8 +1459,8 @@
                 id: 8,
                 name: "Canoë-kayak en rivière",
                 description: "Descendez une rivière calme en canoë ou kayak.",
-                longDescription: "Une balade paisible en canoë ou kayak sur une rivière aux eaux calmes, idéale pour les débutants et les familles. Vous découvrirez la faune et la flore des berges depuis un point de vue unique.",
-                image: "https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Une balade paisible en canoë ou kayak sur une rivière aux eaux calmes, idéale pour les débutants et les familles. Vous découvrirez la faune et la flore des berges depuis un point de vue unique. Notre guide vous donnera les techniques de base de pagayage.",
+                image: "https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "3h",
                 durationValue: 3,
                 price: "35€",
@@ -1896,8 +1475,8 @@
                 id: 9,
                 name: "Yoga en plein air",
                 description: "Pratiquez le yoga dans un cadre naturel apaisant.",
-                longDescription: "Reconnectez-vous à votre corps et à votre esprit lors d'une séance de yoga en pleine nature. Notre professeur certifié adapte la séance à votre niveau, du débutant au pratiquant confirmé.",
-                image: "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                longDescription: "Reconnectez-vous à votre corps et à votre esprit lors d'une séance de yoga en pleine nature. Notre professeur certifié adapte la séance à votre niveau, du débutant au pratiquant confirmé. Les postures sont choisies pour harmoniser le corps avec l'environnement naturel.",
+                image: "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 duration: "1h30",
                 durationValue: 1.5,
                 price: "20€",
@@ -1916,8 +1495,8 @@
                 id: 1,
                 name: "Nature Aventure",
                 description: "Spécialiste des activités de plein air depuis 15 ans.",
-                longDescription: "Nature Aventure est une entreprise familiale créée en 2008. Nous sommes spécialisés dans les activités de plein air en montagne et en forêt. Notre équipe de guides diplômés d'État vous garantit des expériences sécurisées et enrichissantes.",
-                logo: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "Nature Aventure est une entreprise familiale créée en 2008. Nous sommes spécialisés dans les activités de plein air en montagne et en forêt. Notre équipe de guides diplômés d'État vous garantit des expériences sécurisées et enrichissantes. Nous accordons une grande importance à la préservation de l'environnement.",
+                logo: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 5,
                 contact: {
                     email: "contact@nature-aventure.fr",
@@ -1937,8 +1516,8 @@
                 id: 2,
                 name: "CréaNature",
                 description: "Ateliers créatifs en pleine nature.",
-                longDescription: "CréaNature propose des ateliers artistiques en immersion totale dans la nature. Fondée par une artiste peintre professionnelle, notre entreprise a pour mission de rendre l'art accessible à tous, dans des lieux inspirants.",
-                logo: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "CréaNature propose des ateliers artistiques en immersion totale dans la nature. Fondée par une artiste peintre professionnelle, notre entreprise a pour mission de rendre l'art accessible à tous, dans des lieux inspirants. Nos ateliers combinent création artistique et connexion avec la nature.",
+                logo: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 4,
                 contact: {
                     email: "info@creanature.fr",
@@ -1957,8 +1536,8 @@
                 id: 3,
                 name: "Mer & Découverte",
                 description: "Sorties en mer et activités nautiques.",
-                longDescription: "Mer & Découverte est une entreprise bretonne spécialisée dans les activités nautiques et la découverte du milieu marin. Notre flotte de catamarans et de kayaks vous permet d'explorer les côtes bretonnes en toute sécurité.",
-                logo: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "Mer & Découverte est une entreprise bretonne spécialisée dans les activités nautiques et la découverte du milieu marin. Notre flotte de catamarans et de kayaks vous permet d'explorer les côtes bretonnes en toute sécurité. Nos guides naturalistes partagent avec passion leurs connaissances.",
+                logo: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 5,
                 contact: {
                     email: "contact@mer-decouverte.fr",
@@ -1977,8 +1556,8 @@
                 id: 4,
                 name: "Montagne Expérience",
                 description: "Randonnées et activités en montagne toute l'année.",
-                longDescription: "Montagne Expérience est une référence dans les activités de montagne. Notre équipe de guides de haute montagne vous accompagne été comme hiver pour des expériences inoubliables.",
-                logo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "Montagne Expérience est une référence dans les activités de montagne. Notre équipe de guides de haute montagne vous accompagne été comme hiver pour des expériences inoubliables. Nous mettons un point d'honneur à utiliser du matériel de haute qualité et à respecter les normes de sécurité.",
+                logo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 4,
                 contact: {
                     email: "info@montagne-experience.fr",
@@ -1997,8 +1576,8 @@
                 id: 5,
                 name: "VTT Passion",
                 description: "Location et encadrement VTT.",
-                longDescription: "VTT Passion est née de la passion de deux amis pour le vélo tout terrain. Nous proposons des parcours adaptés à tous les niveaux, des débutants aux experts.",
-                logo: "https://images.unsplash.com/photo-1511994717241-8e4f04b8e6d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "VTT Passion est née de la passion de deux amis pour le vélo tout terrain. Nous proposons des parcours adaptés à tous les niveaux, des débutants aux experts. Notre parc de VTT est renouvelé chaque année pour vous garantir un matériel performant et sécurisé.",
+                logo: "https://images.unsplash.com/photo-1511994717241-8e4f04b8e6d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 4,
                 contact: {
                     email: "contact@vtt-passion.fr",
@@ -2016,8 +1595,8 @@
                 id: 6,
                 name: "Zen & Nature",
                 description: "Activités bien-être en pleine nature.",
-                longDescription: "Zen & Nature vous invite à ralentir et à vous reconnecter avec vous-même au cœur de la nature. Nos instructeurs certifiés en yoga, méditation et sophrologie vous accompagnent dans des pratiques adaptées à vos besoins.",
-                logo: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+                longDescription: "Zen & Nature vous invite à ralentir et à vous reconnecter avec vous-même au cœur de la nature. Nos instructeurs certifiés en yoga, méditation et sophrologie vous accompagnent dans des pratiques adaptées à vos besoins. Nous organisons également des retraites bien-être.",
+                logo: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
                 rating: 5,
                 contact: {
                     email: "zen@zen-nature.fr",
@@ -2037,49 +1616,49 @@
         const galleryItems = [
             {
                 id: 1,
-                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Coucher de soleil en montagne",
                 category: "Nature"
             },
             {
                 id: 2,
-                image: "https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w-800&q=80",
+                image: "https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Atelier de peinture en forêt",
                 category: "Créatif"
             },
             {
                 id: 3,
-                image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Balade en mer",
                 category: "Aventure"
             },
             {
                 id: 4,
-                image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Descente en VTT",
                 category: "Sport"
             },
             {
                 id: 5,
-                image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Camping sous les étoiles",
                 category: "Aventure"
             },
             {
                 id: 6,
-                image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Observation des oiseaux",
                 category: "Nature"
             },
             {
                 id: 7,
-                image: "https://images.unsplash.com/photo-1534188753412-9f0337dbaa52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1534188753412-9f0337dbaa52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Escalade en falaise",
                 category: "Sport"
             },
             {
                 id: 8,
-                image: "https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
                 title: "Canoë-kayak en rivière",
                 category: "Détente"
             }
@@ -2101,15 +1680,9 @@
             
             // Gestionnaires d'événements
             setupEventListeners();
-            
-            // Animation au chargement
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-                animateElements();
-            }, 100);
         });
 
-        // Fonction de transition entre pages
+        // Navigation entre pages
         function navigateToPage(pageId) {
             // Masquer la page actuelle
             const currentPageElement = document.getElementById(currentPage + 'Page');
@@ -2117,41 +1690,22 @@
                 currentPageElement.classList.remove('active');
             }
             
-            // Afficher l'indicateur de transition
-            const pageTransition = document.getElementById('pageTransition');
-            pageTransition.classList.add('active');
-            
             // Mettre à jour la navigation
             updateNavigation(pageId);
             
-            // Changer de page après un délai
+            // Afficher la nouvelle page
             setTimeout(() => {
-                // Afficher la nouvelle page
                 const newPageElement = document.getElementById(pageId + 'Page');
                 if (newPageElement) {
                     newPageElement.classList.add('active');
                 }
                 
-                // Masquer l'indicateur de transition
-                pageTransition.classList.remove('active');
-                
                 // Mettre à jour la page courante
                 currentPage = pageId;
                 
-                // Animer les éléments de la nouvelle page
-                setTimeout(animateElements, 100);
-                
                 // Remonter en haut de la page
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Masquer la bottom bar sur les pages de détail
-                const bottomBar = document.querySelector('.bottom-bar');
-                if (pageId === 'activityDetail' || pageId === 'companyDetail') {
-                    if (bottomBar) bottomBar.style.display = 'none';
-                } else if (window.innerWidth <= 768) {
-                    if (bottomBar) bottomBar.style.display = 'block';
-                }
-            }, 600);
+            }, 10);
         }
 
         // Mettre à jour la navigation active
@@ -2162,31 +1716,6 @@
                 if (link.getAttribute('data-page') === pageId) {
                     link.classList.add('active');
                 }
-            });
-            
-            // Mettre à jour la bottom bar
-            document.querySelectorAll('.bottom-nav-item').forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('data-page') === pageId) {
-                    item.classList.add('active');
-                }
-            });
-        }
-
-        // Animer les éléments de la page
-        function animateElements() {
-            const elements = document.querySelectorAll('.animated-element');
-            elements.forEach(element => {
-                element.classList.add('visible');
-            });
-            
-            // Animation des cartes (s'ils existent)
-            const cards = document.querySelectorAll('.activity-card, .company-card, .gallery-item');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0) scale(1)';
-                }, index * 100);
             });
         }
 
@@ -2227,7 +1756,6 @@
             card.innerHTML = `
                 <div class="card-img-container">
                     <img src="${activity.image}" alt="${activity.name}" class="card-img">
-                    ${activity.featured ? '<div class="card-badge">Vedette</div>' : ''}
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">${activity.name}</h3>
@@ -2291,9 +1819,9 @@
                 <h3 class="company-name">${company.name}</h3>
                 <p class="company-description">${company.description}</p>
                 <div class="company-rating">${stars}</div>
-                <div class="company-btn" data-company-id="${company.id}">
+                <button class="company-btn" data-company-id="${company.id}">
                     <i class="fas fa-arrow-right"></i> Voir les activités
-                </div>
+                </button>
             `;
             
             // Ajouter l'événement au bouton
@@ -2335,9 +1863,13 @@
                 activity.companyIds.includes(company.id)
             );
             
+            // Mettre à jour l'image du header
+            const heroImage = document.getElementById('activityHeroImage');
+            heroImage.innerHTML = `<img src="${activity.image}" alt="${activity.name}" class="profile-hero-img">`;
+            
             const profile = document.getElementById('activityProfile');
             
-            // Générer les étoiles pour chaque entreprise
+            // Générer les cartes d'entreprises
             const companyCards = activityCompanies.map(company => {
                 let stars = '';
                 for (let i = 1; i <= 5; i++) {
@@ -2349,82 +1881,46 @@
                 }
                 
                 return `
-                    <div class="partner-card" style="background-color: rgba(43, 122, 75, 0.05); border-radius: var(--border-radius); padding: 1.2rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 1.2rem; transition: var(--transition); border: 1px solid rgba(43, 122, 75, 0.1);">
-                        <img src="${company.logo}" alt="Logo ${company.name}" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--light-green); transition: var(--transition);">
-                        <div style="flex: 1;">
-                            <h4 style="margin-bottom: 0.3rem; color: #222;">${company.name}</h4>
-                            <p style="margin-bottom: 0.3rem; font-size: 0.9rem; color: var(--soft-gray);">${company.description}</p>
-                            <div style="color: #ffc107; font-size: 0.9rem;">${stars}</div>
+                    <div class="partner-card">
+                        <img src="${company.logo}" alt="Logo ${company.name}" class="partner-logo">
+                        <div class="partner-info">
+                            <h4>${company.name}</h4>
+                            <p>${company.description}</p>
+                            <div style="color: #FFC107;">${stars}</div>
                         </div>
-                        <button class="btn btn-small btn-primary" data-company-id="${company.id}" style="padding: 0.5rem 1rem; white-space: nowrap;">
-                            <i class="fas fa-eye"></i> Voir
+                        <button class="btn btn-small btn-primary" data-company-id="${company.id}">
+                            Voir
                         </button>
                     </div>
                 `;
             }).join('');
             
             profile.innerHTML = `
-                <div class="profile-header">
-                    <button class="profile-back-btn" id="backFromActivityDetail">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="profile-hero">
-                        <img src="${activity.image}" alt="${activity.name}" class="profile-hero-img">
+                <h1 class="profile-title">${activity.name}</h1>
+                <div class="profile-meta">
+                    <div><i class="fas fa-clock"></i> ${activity.duration}</div>
+                    <div><i class="fas fa-euro-sign"></i> ${activity.price}</div>
+                    <div><i class="fas fa-map-marker-alt"></i> ${activity.location}</div>
+                </div>
+                
+                <div class="profile-description">
+                    <p>${activity.longDescription}</p>
+                    <div class="card-tags" style="margin-top: 1.5rem;">
+                        ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
                     </div>
                 </div>
                 
-                <div class="profile-info">
-                    <div class="profile-header-info">
-                        <div style="width: 100%;">
-                            <h1 class="profile-name" style="font-size: 1.8rem; margin-bottom: 1rem;">${activity.name}</h1>
-                            <div class="profile-stats">
-                                <div class="stat">
-                                    <div class="stat-value" style="color: var(--forest-green);">${activity.duration}</div>
-                                    <div class="stat-label">Durée</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value" style="color: var(--forest-green);">${activity.price}</div>
-                                    <div class="stat-label">Prix</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value" style="color: var(--forest-green);">${activity.popularity}%</div>
-                                    <div class="stat-label">Popularité</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-actions">
-                        <button class="profile-action-btn primary" style="width: 100%;">
-                            <i class="fas fa-calendar-alt"></i> Réserver cette activité
-                        </button>
-                    </div>
-                    
-                    <div class="profile-description">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-info-circle" style="color: var(--forest-green);"></i> Description
-                        </h3>
-                        <p>${activity.longDescription}</p>
-                        
-                        <div class="card-tags" style="margin-top: 1.5rem;">
-                            ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-map-marker-alt" style="color: var(--forest-green);"></i> Localisation
-                        </h3>
-                        <p><strong>Région :</strong> ${activity.location}</p>
-                        <p><strong>Type d'activité :</strong> ${activity.category.charAt(0).toUpperCase() + activity.category.slice(1)}</p>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-building" style="color: var(--forest-green);"></i> Entreprises proposant cette activité
-                        </h3>
-                        ${companyCards}
-                    </div>
+                <div class="profile-section">
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 2rem;">
+                        <i class="fas fa-calendar-alt"></i> Réserver cette activité
+                    </button>
+                </div>
+                
+                <div class="profile-section">
+                    <h3 class="profile-section-title">
+                        <i class="fas fa-building"></i> Entreprises proposant cette activité
+                    </h3>
+                    ${companyCards}
                 </div>
             `;
             
@@ -2455,6 +1951,10 @@
                 company.activityIds.includes(activity.id)
             );
             
+            // Mettre à jour l'image du header
+            const heroImage = document.getElementById('companyHeroImage');
+            heroImage.innerHTML = `<img src="${company.logo}" alt="${company.name}" class="profile-hero-img" style="object-fit: contain; background-color: white; padding: 2rem;">`;
+            
             const profile = document.getElementById('companyProfile');
             
             // Générer les étoiles
@@ -2467,7 +1967,7 @@
                 }
             }
             
-            // Générer les cartes d'activités (simplifiées)
+            // Générer les cartes d'activités
             const activityCards = companyActivities.map(activity => `
                 <div class="activity-card" style="margin-bottom: 1.5rem;">
                     <div class="card-img-container">
@@ -2491,101 +1991,46 @@
                 </div>
             `).join('');
             
-            // Générer la galerie
-            const galleryItems = company.gallery.map(img => `
-                <div class="profile-grid-item">
-                    <img src="${img}" alt="${company.name}" class="profile-grid-img">
-                </div>
-            `).join('');
-            
             profile.innerHTML = `
-                <div class="profile-header">
-                    <button class="profile-back-btn" id="backFromCompanyDetail">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <div class="profile-hero">
-                        <img src="${company.logo}" alt="${company.name}" class="profile-hero-img" style="object-fit: contain; background-color: rgba(43, 122, 75, 0.05); padding: 2rem;">
+                <h1 class="profile-title">${company.name}</h1>
+                <div class="profile-meta">
+                    <div style="color: #FFC107;">${stars}</div>
+                    <div><i class="fas fa-hiking"></i> ${companyActivities.length} activités</div>
+                </div>
+                
+                <div class="profile-description">
+                    <p>${company.longDescription}</p>
+                </div>
+                
+                <div class="profile-section">
+                    <h3 class="profile-section-title">
+                        <i class="fas fa-address-card"></i> Contact
+                    </h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>${company.contact.email}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>${company.contact.phone}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${company.contact.address}</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <span>${company.contact.website}</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="profile-info">
-                    <div class="profile-header-info">
-                        <img src="${company.logo}" alt="Logo ${company.name}" class="profile-avatar">
-                        <div style="flex: 1;">
-                            <h1 class="profile-name">${company.name}</h1>
-                            <div class="profile-stats">
-                                <div class="stat">
-                                    <div class="stat-value">${company.rating}/5</div>
-                                    <div class="stat-label">Note</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">${companyActivities.length}</div>
-                                    <div class="stat-label">Activités</div>
-                                </div>
-                                <div class="stat">
-                                    <div class="stat-value">${company.gallery.length}</div>
-                                    <div class="stat-label">Photos</div>
-                                </div>
-                            </div>
-                            <div style="color: #ffc107; margin-bottom: 0.5rem; font-size: 1.1rem;">${stars}</div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-actions">
-                        <button class="profile-action-btn primary" style="flex: 1;">
-                            <i class="fas fa-phone"></i> Appeler
-                        </button>
-                        <button class="profile-action-btn secondary" style="flex: 1;">
-                            <i class="fas fa-envelope"></i> Email
-                        </button>
-                    </div>
-                    
-                    <div class="profile-description">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-info-circle" style="color: var(--forest-green);"></i> Description
-                        </h3>
-                        <p>${company.longDescription}</p>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-address-card" style="color: var(--forest-green);"></i> Contact
-                        </h3>
-                        <div class="profile-contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope" style="color: var(--forest-green);"></i>
-                                <span>${company.contact.email}</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone" style="color: var(--forest-green);"></i>
-                                <span>${company.contact.phone}</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt" style="color: var(--forest-green);"></i>
-                                <span>${company.contact.address}</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-globe" style="color: var(--forest-green);"></i>
-                                <span>${company.contact.website}</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-hiking" style="color: var(--forest-green);"></i> Activités proposées
-                        </h3>
-                        ${activityCards}
-                    </div>
-                    
-                    <div class="profile-section">
-                        <h3 class="profile-section-title">
-                            <i class="fas fa-images" style="color: var(--forest-green);"></i> Galerie
-                        </h3>
-                        <div class="profile-grid">
-                            ${galleryItems}
-                        </div>
-                    </div>
+                <div class="profile-section">
+                    <h3 class="profile-section-title">
+                        <i class="fas fa-hiking"></i> Activités proposées
+                    </h3>
+                    ${activityCards}
                 </div>
             `;
             
@@ -2740,14 +2185,6 @@
                 navigateToPage('home');
             });
             
-            // Bottom bar navigation
-            document.querySelectorAll('.bottom-nav-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    const page = this.getAttribute('data-page');
-                    navigateToPage(page);
-                });
-            });
-            
             // Boutons de navigation dans le contenu
             document.querySelectorAll('button[data-page]').forEach(btn => {
                 btn.addEventListener('click', function() {
@@ -2777,22 +2214,10 @@
                 select.addEventListener('change', filterActivities);
             });
             
-            // Boutons de tri sur la page d'accueil
+            // Boutons de tri
             document.querySelectorAll('.sort-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const sortType = this.getAttribute('data-sort');
-                    sortActivities(sortType);
-                    displayAllActivities();
-                });
-            });
-            
-            // Boutons de tri sur la page activités
-            document.querySelectorAll('#activitiesPage .sort-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('#activitiesPage .sort-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     
                     const sortType = this.getAttribute('data-sort');
@@ -2825,7 +2250,7 @@
                             typeSelect.value = filter;
                             filterActivities();
                         }
-                    }, 700);
+                    }, 100);
                 });
             });
             
@@ -2840,7 +2265,6 @@
                     const originalText = submitBtn.innerHTML;
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
                     submitBtn.disabled = true;
-                    submitBtn.style.background = 'var(--gradient-primary)';
                     
                     // Réinitialiser le formulaire
                     setTimeout(() => {
@@ -2851,25 +2275,13 @@
                 });
             }
             
-            // Réafficher la bottom bar quand on redimensionne la fenêtre
-            window.addEventListener('resize', function() {
-                const bottomBar = document.querySelector('.bottom-bar');
-                if (window.innerWidth > 768) {
-                    if (bottomBar) bottomBar.style.display = 'none';
-                } else if (currentPage !== 'activityDetail' && currentPage !== 'companyDetail') {
-                    if (bottomBar) bottomBar.style.display = 'block';
-                }
-            });
-            
-            // Animation au défilement
+            // Animation au défilement pour le header
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
-                if (window.scrollY > 100) {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
                 } else {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.05)';
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
                 }
             });
         }
