@@ -253,6 +253,25 @@
             font-size: 0.9rem;
         }
 
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--forest-green);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-back:hover {
+            color: #23663d;
+            transform: translateX(-5px);
+        }
+
         /* Section Recherche */
         .search-section {
             background-color: white;
@@ -525,11 +544,12 @@
             transform: scale(1.05);
         }
 
-        /* Pages détaillées */
+        /* Pages détaillées - Design Instagram */
         .page-container {
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
+            background-color: white;
         }
 
         .page-container.active {
@@ -537,171 +557,200 @@
             opacity: 1;
         }
 
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--forest-green);
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.5rem 0;
-            margin-bottom: 2rem;
+        /* Design de profil Instagram pour mobile */
+        .instagram-profile {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .profile-header {
+            position: relative;
+            padding-top: 20px;
+        }
+
+        .profile-back-btn {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            border: none;
+            cursor: pointer;
         }
 
-        .back-btn:hover {
-            color: #23663d;
-        }
-
-        .activity-detail {
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 3rem;
-        }
-
-        .activity-hero {
-            height: 400px;
+        .profile-hero {
+            height: 300px;
             position: relative;
+            overflow: hidden;
         }
 
-        .activity-hero-img {
+        .profile-hero-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .activity-hero-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: white;
-            padding: 2rem;
-        }
-
-        .activity-info {
-            padding: 2rem;
-        }
-
-        .activity-info-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .activity-info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .activity-partners {
-            margin-top: 3rem;
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .partner-card {
-            background-color: var(--off-white);
-            border-radius: var(--border-radius);
+        .profile-info {
             padding: 1.5rem;
+        }
+
+        .profile-header-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            box-shadow: var(--shadow);
-        }
-
-        .partner-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--light-green);
-        }
-
-        .partner-info h4 {
-            margin-bottom: 0.3rem;
-        }
-
-        .partner-info p {
-            margin-bottom: 0;
-            font-size: 0.9rem;
-            color: var(--soft-gray);
-        }
-
-        /* Page entreprise */
-        .company-detail {
-            background-color: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            margin-bottom: 3rem;
-        }
-
-        .company-header {
-            padding: 2rem;
-            background-color: var(--forest-green);
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .company-header-logo {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid white;
-        }
-
-        .company-header-info h1 {
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .company-header-rating {
-            color: #ffc107;
-            margin-bottom: 0.5rem;
-        }
-
-        .company-contact {
-            padding: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid #eee;
         }
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-right: 1.5rem;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-stats {
+            display: flex;
             gap: 1.5rem;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--soft-gray);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-action-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .profile-action-btn.primary {
+            background-color: var(--forest-green);
+            color: white;
+        }
+
+        .profile-action-btn.secondary {
+            background-color: var(--light-gray);
+            color: var(--soft-gray);
+        }
+
+        .profile-action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .profile-description {
+            margin-bottom: 2rem;
+        }
+
+        .profile-section {
+            margin-bottom: 2rem;
+        }
+
+        .profile-section-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-section-title i {
+            color: var(--forest-green);
+        }
+
+        .profile-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
         }
 
         .contact-item i {
-            color: var(--forest-green);
-            font-size: 1.2rem;
             width: 24px;
+            color: var(--forest-green);
         }
 
-        .company-activities {
-            padding: 2rem;
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .profile-grid-item {
+            height: 150px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .profile-grid-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .profile-grid-item:hover .profile-grid-img {
+            transform: scale(1.05);
+        }
+
+        /* Pour desktop */
+        @media (min-width: 769px) {
+            .instagram-profile {
+                max-width: 800px;
+                margin: 0 auto;
+                background-color: white;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                margin-top: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .profile-hero {
+                height: 400px;
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
+            }
         }
 
         /* Autres sections */
@@ -1004,14 +1053,27 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .activity-hero {
-                height: 300px;
+            /* Design Instagram pour mobile */
+            .instagram-profile {
+                min-height: 100vh;
             }
 
-            .company-header {
+            .profile-header-info {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
+            }
+
+            .profile-avatar {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+
+            .profile-actions {
+                flex-direction: column;
             }
         }
 
@@ -1030,6 +1092,10 @@
             
             .testimonial-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .profile-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1051,7 +1117,7 @@
     <header>
         <div class="container header-container">
             <div class="logo" id="homeLogo">mveng</div>
-            <!--<div class="hamburger" id="hamburger">☰</div>-->
+            <div class="hamburger" id="hamburger">☰</div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> Accueil</a></li>
                 <li><a href="#activites" class="nav-link" data-page="home"><i class="fas fa-hiking"></i> Activités</a></li>
@@ -1107,7 +1173,7 @@
             <div class="container search-container">
                 <div class="search-bar">
                     <input type="text" class="search-input" id="searchInput" placeholder="Rechercher une activité ou une entreprise...">
-                    <button class="search-btn" id="searchBtn">rechercher</button>
+                    <button class="search-btn" id="searchBtn">🔍</button>
                 </div>
                 <div class="filters">
                     <div class="filter-group">
@@ -1125,20 +1191,17 @@
                         <label for="duree">Durée</label>
                         <select id="duree" class="filter-select">
                             <option value="">Toutes les durées</option>
-                            <option value="1">Moins de 2h</option>
-                            <option value="2">2-4h</option>
-                            <option value="3">4-8h</option>
-                            <option value="4">Plus d'une journée</option>
+                            <option value="2">Moins de 4h</option>
+                            <option value="4">4h ou plus</option>
                         </select>
                     </div>
                     <div class="filter-group">
                         <label for="prix">Prix</label>
                         <select id="prix" class="filter-select">
                             <option value="">Tous les prix</option>
-                            <option value="1">Moins de 20€</option>
-                            <option value="2">20-50€</option>
-                            <option value="3">50-100€</option>
-                            <option value="4">Plus de 100€</option>
+                            <option value="20">Moins de 20€</option>
+                            <option value="50">20-50€</option>
+                            <option value="100">50-100€</option>
                         </select>
                     </div>
                     <div class="filter-group">
@@ -1374,32 +1437,16 @@
 
     <!-- Page d'activité détaillée -->
     <div id="activityDetailPage" class="page-container">
-        <section class="section">
-            <div class="container">
-                <button class="back-btn" id="backFromActivity">
-                    <i class="fas fa-arrow-left"></i> Retour aux activités
-                </button>
-                
-                <div class="activity-detail" id="activityDetailContent">
-                    <!-- Contenu généré par JavaScript -->
-                </div>
-            </div>
-        </section>
+        <div class="instagram-profile" id="activityProfile">
+            <!-- Contenu généré par JavaScript -->
+        </div>
     </div>
 
     <!-- Page d'entreprise détaillée -->
     <div id="companyDetailPage" class="page-container">
-        <section class="section">
-            <div class="container">
-                <button class="back-btn" id="backFromCompany">
-                    <i class="fas fa-arrow-left"></i> Retour aux entreprises
-                </button>
-                
-                <div class="company-detail" id="companyDetailContent">
-                    <!-- Contenu généré par JavaScript -->
-                </div>
-            </div>
-        </section>
+        <div class="instagram-profile" id="companyProfile">
+            <!-- Contenu généré par JavaScript -->
+        </div>
     </div>
 
     <!-- Footer -->
@@ -1452,11 +1499,13 @@
             {
                 id: 1,
                 name: "Randonnée en montagne",
-                description: "Découvrez les plus beaux sentiers de montagne avec un guide expérimenté. Paysages à couper le souffle garantis. Parfait pour les amateurs de nature et les photographes.",
-                longDescription: "Partez pour une journée inoubliable dans les massifs montagneux de la région. Notre randonnée guidée vous emmène à travers des sentiers préservés, avec des points de vue spectaculaires. Le guide partagera avec vous ses connaissances sur la flore, la faune et la géologie locale. Niveau de difficulté : intermédiaire. Prévoir de bonnes chaussures de randonnée et une bouteille d'eau.",
+                description: "Découvrez les plus beaux sentiers de montagne avec un guide expérimenté.",
+                longDescription: "Partez pour une journée inoubliable dans les massifs montagneux de la région. Notre randonnée guidée vous emmène à travers des sentiers préservés, avec des points de vue spectaculaires. Le guide partagera avec vous ses connaissances sur la flore, la faune et la géologie locale.",
                 image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "4h",
-                price: "35€ / personne",
+                durationValue: 4,
+                price: "35€",
+                priceValue: 35,
                 tags: ["Nature", "Sport", "Montagne"],
                 category: "randonnee",
                 location: "Alpes",
@@ -1466,11 +1515,13 @@
             {
                 id: 2,
                 name: "Atelier de peinture en pleine nature",
-                description: "Laissez parler votre créativité lors d'un atelier de peinture dans un cadre naturel exceptionnel. Matériel fourni.",
-                longDescription: "Inspirez-vous de la beauté naturelle pour créer votre propre œuvre d'art. Cet atelier est encadré par un artiste peintre professionnel qui vous guidera pas à pas. Peu importe votre niveau, débutant ou confirmé, vous repartirez avec votre création. Tout le matériel est fourni : toile, peintures, pinceaux et chevalet. Une pause déjeuner bio est incluse.",
+                description: "Laissez parler votre créativité lors d'un atelier de peinture dans un cadre naturel exceptionnel.",
+                longDescription: "Inspirez-vous de la beauté naturelle pour créer votre propre œuvre d'art. Cet atelier est encadré par un artiste peintre professionnel qui vous guidera pas à pas. Peu importe votre niveau, débutant ou confirmé, vous repartirez avec votre création.",
                 image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "3h",
-                price: "45€ / personne",
+                durationValue: 3,
+                price: "45€",
+                priceValue: 45,
                 tags: ["Créatif", "Détente", "Nature"],
                 category: "atelier",
                 location: "Provence",
@@ -1480,11 +1531,13 @@
             {
                 id: 3,
                 name: "Balade en mer en catamaran",
-                description: "Naviguez le long des côtes bretonnes à bord d'un catamaran confortable. Observation des dauphins possible.",
-                longDescription: "Embarquez pour une journée en mer à bord d'un catamaran de 12 mètres. Notre skipper expérimenté vous fera découvrir les criques secrètes et les paysages côtiers magnifiques. Avec un peu de chance, vous pourrez observer des dauphins, des phoques et une variété d'oiseaux marins. Le déjeuner à base de produits locaux est inclus, ainsi que les boissons. Prévoir maillot de bain et crème solaire.",
+                description: "Naviguez le long des côtes bretonnes à bord d'un catamaran confortable.",
+                longDescription: "Embarquez pour une journée en mer à bord d'un catamaran de 12 mètres. Notre skipper expérimenté vous fera découvrir les criques secrètes et les paysages côtiers magnifiques. Avec un peu de chance, vous pourrez observer des dauphins, des phoques et une variété d'oiseaux marins.",
                 image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "6h",
-                price: "75€ / personne",
+                durationValue: 6,
+                price: "75€",
+                priceValue: 75,
                 tags: ["Mer", "Détente", "Aventure"],
                 category: "mer",
                 location: "Bretagne",
@@ -1494,11 +1547,13 @@
             {
                 id: 4,
                 name: "Descente en VTT",
-                description: "Parcourez les sentiers forestiers en VTT avec un moniteur diplômé. Matériel fourni.",
-                longDescription: "Une descente endiablée à travers les sentiers forestiers, adaptée à votre niveau. Notre moniteur diplômé vous accompagnera tout au long du parcours et vous donnera des conseils techniques. Le VTT et le casque sont fournis. Plusieurs parcours sont disponibles selon votre niveau : débutant, intermédiaire ou expert. Une caméra embarquée est disponible en option pour immortaliser votre descente.",
+                description: "Parcourez les sentiers forestiers en VTT avec un moniteur diplômé.",
+                longDescription: "Une descente endiablée à travers les sentiers forestiers, adaptée à votre niveau. Notre moniteur diplômé vous accompagnera tout au long du parcours et vous donnera des conseils techniques. Le VTT et le casque sont fournis.",
                 image: "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "3h",
-                price: "40€ / personne",
+                durationValue: 3,
+                price: "40€",
+                priceValue: 40,
                 tags: ["Sport", "Aventure", "Forêt"],
                 category: "vtt",
                 location: "Pyrénées",
@@ -1508,11 +1563,13 @@
             {
                 id: 5,
                 name: "Camping sauvage",
-                description: "Passez une nuit sous les étoiles en pleine nature. Apprenez les techniques de survie en douceur.",
-                longDescription: "Une expérience unique pour se reconnecter à la nature. Nous vous apprendrons à monter un campement, à faire un feu sans allumettes, à filtrer de l'eau et à vous orienter sans GPS. La nuit se passera sous tente ou à la belle étoile selon vos préférences. Le petit-déjeuner campagnard est inclus. Cette activité est accessible à tous, aucune expérience préalable n'est nécessaire.",
+                description: "Passez une nuit sous les étoiles en pleine nature.",
+                longDescription: "Une expérience unique pour se reconnecter à la nature. Nous vous apprendrons à monter un campement, à faire un feu sans allumettes, à filtrer de l'eau et à vous orienter sans GPS. La nuit se passera sous tente ou à la belle étoile selon vos préférences.",
                 image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "24h",
-                price: "60€ / personne",
+                durationValue: 24,
+                price: "60€",
+                priceValue: 60,
                 tags: ["Nature", "Aventure", "Survie"],
                 category: "camping",
                 location: "Alpes",
@@ -1523,10 +1580,12 @@
                 id: 6,
                 name: "Observation des oiseaux",
                 description: "Partez à la découverte de la faune aviaire locale avec un ornithologue passionné.",
-                longDescription: "Muni de jumelles et d'un guide d'identification, partez à la rencontre des oiseaux de notre région. Notre ornithologue vous fera découvrir les différentes espèces, leurs chants, leurs habitats et leurs comportements. Cette activité est accessible à tous les âges. Le matériel d'observation est fourni. Un carnet de notes naturaliste vous sera offert en souvenir.",
+                longDescription: "Muni de jumelles et d'un guide d'identification, partez à la rencontre des oiseaux de notre région. Notre ornithologue vous fera découvrir les différentes espèces, leurs chants, leurs habitats et leurs comportements.",
                 image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "2h",
-                price: "25€ / personne",
+                durationValue: 2,
+                price: "25€",
+                priceValue: 25,
                 tags: ["Nature", "Découverte", "Faune"],
                 category: "randonnee",
                 location: "Pyrénées",
@@ -1536,11 +1595,13 @@
             {
                 id: 7,
                 name: "Escalade en falaise",
-                description: "Initiation à l'escalade sur des sites naturels sécurisés. Encadrement par des moniteurs diplômés.",
-                longDescription: "Découvrez les sensations de l'escalade en pleine nature sur des falaises adaptées aux débutants. Nos moniteurs diplômés d'État vous assurent une progression en toute sécurité. Tout l'équipement technique est fourni : baudrier, cordes, mousquetons, etc. Vous apprendrez les techniques de base, les nœuds essentiels et les principes de sécurité. Une activité idéale pour développer la confiance en soi.",
+                description: "Initiation à l'escalade sur des sites naturels sécurisés.",
+                longDescription: "Découvrez les sensations de l'escalade en pleine nature sur des falaises adaptées aux débutants. Nos moniteurs diplômés d'État vous assurent une progression en toute sécurité. Tout l'équipement technique est fourni.",
                 image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "4h",
-                price: "55€ / personne",
+                durationValue: 4,
+                price: "55€",
+                priceValue: 55,
                 tags: ["Sport", "Aventure", "Montagne"],
                 category: "randonnee",
                 location: "Alpes",
@@ -1550,11 +1611,13 @@
             {
                 id: 8,
                 name: "Canoë-kayak en rivière",
-                description: "Descendez une rivière calme en canoë ou kayak. Parfait pour les débutants et les familles.",
-                longDescription: "Une balade paisible en canoë ou kayak sur une rivière aux eaux calmes, idéale pour les débutants et les familles. Vous découvrirez la faune et la flore des berges depuis un point de vue unique. Notre guide vous donnera les techniques de base de pagayage et vous accompagnera tout au long du parcours. Les gilets de sauvetage sont fournis. Une pause pique-nique au bord de l'eau est incluse.",
+                description: "Descendez une rivière calme en canoë ou kayak.",
+                longDescription: "Une balade paisible en canoë ou kayak sur une rivière aux eaux calmes, idéale pour les débutants et les familles. Vous découvrirez la faune et la flore des berges depuis un point de vue unique.",
                 image: "https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "3h",
-                price: "35€ / personne",
+                durationValue: 3,
+                price: "35€",
+                priceValue: 35,
                 tags: ["Sport", "Eau", "Détente"],
                 category: "mer",
                 location: "Bretagne",
@@ -1564,11 +1627,13 @@
             {
                 id: 9,
                 name: "Yoga en plein air",
-                description: "Pratiquez le yoga dans un cadre naturel apaisant. Séance adaptée à tous les niveaux.",
-                longDescription: "Reconnectez-vous à votre corps et à votre esprit lors d'une séance de yoga en pleine nature. Notre professeur certifié adapte la séance à votre niveau, du débutant au pratiquant confirmé. Les postures sont choisies pour harmoniser le corps avec l'environnement naturel. Le tapis de yoga est fourni. Cette séance est suivie d'une méditation guidée et d'une dégustation de thé bio.",
+                description: "Pratiquez le yoga dans un cadre naturel apaisant.",
+                longDescription: "Reconnectez-vous à votre corps et à votre esprit lors d'une séance de yoga en pleine nature. Notre professeur certifié adapte la séance à votre niveau, du débutant au pratiquant confirmé.",
                 image: "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 duration: "1h30",
-                price: "20€ / personne",
+                durationValue: 1.5,
+                price: "20€",
+                priceValue: 20,
                 tags: ["Détente", "Bien-être", "Nature"],
                 category: "atelier",
                 location: "Provence",
@@ -1582,8 +1647,8 @@
             {
                 id: 1,
                 name: "Nature Aventure",
-                description: "Spécialiste des activités de plein air depuis 15 ans. Encadrement par des guides diplômés.",
-                longDescription: "Nature Aventure est une entreprise familiale créée en 2008. Nous sommes spécialisés dans les activités de plein air en montagne et en forêt. Notre équipe de guides diplômés d'État vous garantit des expériences sécurisées et enrichissantes. Nous accordons une grande importance à la préservation de l'environnement et au respect de la nature.",
+                description: "Spécialiste des activités de plein air depuis 15 ans.",
+                longDescription: "Nature Aventure est une entreprise familiale créée en 2008. Nous sommes spécialisés dans les activités de plein air en montagne et en forêt. Notre équipe de guides diplômés d'État vous garantit des expériences sécurisées et enrichissantes.",
                 logo: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 5,
                 contact: {
@@ -1603,8 +1668,8 @@
             {
                 id: 2,
                 name: "CréaNature",
-                description: "Ateliers créatifs en pleine nature. Découvrez votre potentiel artistique dans des cadres exceptionnels.",
-                longDescription: "CréaNature propose des ateliers artistiques en immersion totale dans la nature. Fondée par une artiste peintre professionnelle, notre entreprise a pour mission de rendre l'art accessible à tous, dans des lieux inspirants. Nos ateliers combinent création artistique et connexion avec la nature pour une expérience unique et ressourçante.",
+                description: "Ateliers créatifs en pleine nature.",
+                longDescription: "CréaNature propose des ateliers artistiques en immersion totale dans la nature. Fondée par une artiste peintre professionnelle, notre entreprise a pour mission de rendre l'art accessible à tous, dans des lieux inspirants.",
                 logo: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 4,
                 contact: {
@@ -1623,8 +1688,8 @@
             {
                 id: 3,
                 name: "Mer & Découverte",
-                description: "Sorties en mer et activités nautiques. Découvrez la faune marine et les paysages côtiers.",
-                longDescription: "Mer & Découverte est une entreprise bretonne spécialisée dans les activités nautiques et la découverte du milieu marin. Notre flotte de catamarans et de kayaks vous permet d'explorer les côtes bretonnes en toute sécurité. Nos guides naturalistes partagent avec passion leurs connaissances sur l'écosystème marin et la préservation des océans.",
+                description: "Sorties en mer et activités nautiques.",
+                longDescription: "Mer & Découverte est une entreprise bretonne spécialisée dans les activités nautiques et la découverte du milieu marin. Notre flotte de catamarans et de kayaks vous permet d'explorer les côtes bretonnes en toute sécurité.",
                 logo: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 5,
                 contact: {
@@ -1643,8 +1708,8 @@
             {
                 id: 4,
                 name: "Montagne Expérience",
-                description: "Randonnées et activités en montagne toute l'année. Matériel de qualité et sécurité maximale.",
-                longDescription: "Montagne Expérience est une référence dans les activités de montagne. Notre équipe de guides de haute montagne vous accompagne été comme hiver pour des expériences inoubliables. Nous mettons un point d'honneur à utiliser du matériel de haute qualité et à respecter les normes de sécurité les plus strictes. Notre philosophie : rendre la montagne accessible tout en préservant son fragile écosystème.",
+                description: "Randonnées et activités en montagne toute l'année.",
+                longDescription: "Montagne Expérience est une référence dans les activités de montagne. Notre équipe de guides de haute montagne vous accompagne été comme hiver pour des expériences inoubliables.",
                 logo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 4,
                 contact: {
@@ -1663,8 +1728,8 @@
             {
                 id: 5,
                 name: "VTT Passion",
-                description: "Location et encadrement VTT. Parcours adaptés à tous les niveaux dans des forêts préservées.",
-                longDescription: "VTT Passion est née de la passion de deux amis pour le vélo tout terrain. Nous proposons des parcours adaptés à tous les niveaux, des débutants aux experts. Notre parc de VTT est renouvelé chaque année pour vous garantir un matériel performant et sécurisé. Nous organisons également des stages techniques et des sorties découverte thématiques.",
+                description: "Location et encadrement VTT.",
+                longDescription: "VTT Passion est née de la passion de deux amis pour le vélo tout terrain. Nous proposons des parcours adaptés à tous les niveaux, des débutants aux experts.",
                 logo: "https://images.unsplash.com/photo-1511994717241-8e4f04b8e6d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 4,
                 contact: {
@@ -1682,8 +1747,8 @@
             {
                 id: 6,
                 name: "Zen & Nature",
-                description: "Activités bien-être en pleine nature. Yoga, méditation et détente dans des cadres apaisants.",
-                longDescription: "Zen & Nature vous invite à ralentir et à vous reconnecter avec vous-même au cœur de la nature. Nos instructeurs certifiés en yoga, méditation et sophrologie vous accompagnent dans des pratiques adaptées à vos besoins. Nous organisons également des retraites bien-être d'un week-end à une semaine pour une immersion totale dans une démarche de ressourcement.",
+                description: "Activités bien-être en pleine nature.",
+                longDescription: "Zen & Nature vous invite à ralentir et à vous reconnecter avec vous-même au cœur de la nature. Nos instructeurs certifiés en yoga, méditation et sophrologie vous accompagnent dans des pratiques adaptées à vos besoins.",
                 logo: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
                 rating: 5,
                 contact: {
@@ -1796,7 +1861,7 @@
             });
         }
 
-        // Afficher le détail d'une activité
+        // Afficher le détail d'une activité (design Instagram)
         function showActivityDetail(activityId) {
             const activity = activities.find(a => a.id === activityId);
             if (!activity) return;
@@ -1806,7 +1871,7 @@
                 activity.companyIds.includes(company.id)
             );
             
-            const content = document.getElementById('activityDetailContent');
+            const profile = document.getElementById('activityProfile');
             
             // Générer les étoiles pour chaque entreprise
             const companyCards = activityCompanies.map(company => {
@@ -1820,49 +1885,78 @@
                 }
                 
                 return `
-                    <div class="partner-card">
-                        <img src="${company.logo}" alt="Logo ${company.name}" class="partner-logo">
-                        <div class="partner-info">
-                            <h4>${company.name}</h4>
-                            <p>${company.description}</p>
-                            <div class="company-rating">${stars}</div>
-                            <button class="btn btn-small btn-primary" data-company-id="${company.id}" style="margin-top: 10px;">Voir l'entreprise</button>
+                    <div class="partner-card" style="background-color: var(--off-white); border-radius: var(--border-radius); padding: 1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;">
+                        <img src="${company.logo}" alt="Logo ${company.name}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--light-green);">
+                        <div style="flex: 1;">
+                            <h4 style="margin-bottom: 0.3rem;">${company.name}</h4>
+                            <p style="margin-bottom: 0.3rem; font-size: 0.9rem; color: var(--soft-gray);">${company.description}</p>
+                            <div style="color: #ffc107; font-size: 0.9rem;">${stars}</div>
                         </div>
+                        <button class="btn btn-small btn-primary" data-company-id="${company.id}" style="padding: 0.3rem 0.8rem;">Voir</button>
                     </div>
                 `;
             }).join('');
             
-            content.innerHTML = `
-                <div class="activity-hero">
-                    <img src="${activity.image}" alt="${activity.name}" class="activity-hero-img">
-                    <div class="activity-hero-content">
-                        <h1>${activity.name}</h1>
-                        <p>${activity.description}</p>
+            profile.innerHTML = `
+                <div class="profile-header">
+                    <button class="profile-back-btn" id="backFromActivityDetail">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="profile-hero">
+                        <img src="${activity.image}" alt="${activity.name}" class="profile-hero-img">
                     </div>
                 </div>
-                <div class="activity-info">
-                    <div class="activity-info-grid">
+                
+                <div class="profile-info">
+                    <div class="profile-header-info">
                         <div>
-                            <h2>Description détaillée</h2>
-                            <p>${activity.longDescription}</p>
-                            <div class="card-tags">
-                                ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+                            <h1 class="profile-name">${activity.name}</h1>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${activity.duration}</div>
+                                    <div class="stat-label">Durée</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${activity.price}</div>
+                                    <div class="stat-label">Prix</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${activity.popularity}%</div>
+                                    <div class="stat-label">Popularité</div>
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <h2>Informations pratiques</h2>
-                            <p><strong>Durée :</strong> ${activity.duration}</p>
-                            <p><strong>Prix :</strong> ${activity.price}</p>
-                            <p><strong>Localisation :</strong> ${activity.location}</p>
-                            <button class="btn btn-primary" style="width: 100%; margin-top: 20px;">Réserver cette activité</button>
                         </div>
                     </div>
                     
-                    <div class="activity-partners">
-                        <h2>Entreprises proposant cette activité</h2>
-                        <div class="partners-grid">
-                            ${companyCards}
+                    <div class="profile-actions">
+                        <button class="profile-action-btn primary" style="width: 100%;">
+                            <i class="fas fa-calendar-alt"></i> Réserver
+                        </button>
+                    </div>
+                    
+                    <div class="profile-description">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-info-circle"></i> Description
+                        </h3>
+                        <p>${activity.longDescription}</p>
+                        
+                        <div class="card-tags" style="margin-top: 1rem;">
+                            ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
                         </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-map-marker-alt"></i> Localisation
+                        </h3>
+                        <p><strong>Région :</strong> ${activity.location}</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-building"></i> Entreprises proposant cette activité
+                        </h3>
+                        ${companyCards}
                     </div>
                 </div>
             `;
@@ -1871,8 +1965,11 @@
             document.getElementById('homePage').classList.remove('active');
             document.getElementById('activityDetailPage').classList.add('active');
             
-            // Mettre à jour la bottom bar
-            updateBottomBar('activity');
+            // Masquer la bottom bar
+            document.querySelector('.bottom-bar').style.display = 'none';
+            
+            // Ajouter l'événement au bouton de retour
+            document.getElementById('backFromActivityDetail').addEventListener('click', goHome);
             
             // Ajouter les événements aux boutons "Voir l'entreprise"
             document.querySelectorAll('.partner-card .btn[data-company-id]').forEach(btn => {
@@ -1883,7 +1980,7 @@
             });
         }
 
-        // Afficher le détail d'une entreprise
+        // Afficher le détail d'une entreprise (design Instagram)
         function showCompanyDetail(companyId) {
             const company = companies.find(c => c.id === companyId);
             if (!company) return;
@@ -1893,7 +1990,7 @@
                 company.activityIds.includes(activity.id)
             );
             
-            const content = document.getElementById('companyDetailContent');
+            const profile = document.getElementById('companyProfile');
             
             // Générer les étoiles
             let stars = '';
@@ -1907,7 +2004,7 @@
             
             // Générer les cartes d'activités
             const activityCards = companyActivities.map(activity => `
-                <div class="activity-card">
+                <div class="activity-card" style="margin-bottom: 1rem;">
                     <img src="${activity.image}" alt="${activity.name}" class="card-img">
                     <div class="card-content">
                         <h3 class="card-title">${activity.name}</h3>
@@ -1926,54 +2023,98 @@
             
             // Générer la galerie
             const galleryItems = company.gallery.map(img => `
-                <div class="gallery-item">
-                    <img src="${img}" alt="${company.name}" class="gallery-img">
+                <div class="profile-grid-item">
+                    <img src="${img}" alt="${company.name}" class="profile-grid-img">
                 </div>
             `).join('');
             
-            content.innerHTML = `
-                <div class="company-header">
-                    <img src="${company.logo}" alt="Logo ${company.name}" class="company-header-logo">
-                    <div class="company-header-info">
-                        <h1>${company.name}</h1>
-                        <div class="company-header-rating">${stars}</div>
-                        <p>${company.description}</p>
+            profile.innerHTML = `
+                <div class="profile-header">
+                    <button class="profile-back-btn" id="backFromCompanyDetail">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="profile-hero">
+                        <img src="${company.logo}" alt="${company.name}" class="profile-hero-img" style="object-fit: contain; background-color: var(--light-gray);">
                     </div>
                 </div>
                 
-                <div class="company-contact">
-                    <h2>Contact</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>${company.contact.email}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>${company.contact.phone}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${company.contact.address}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <span>${company.contact.website}</span>
+                <div class="profile-info">
+                    <div class="profile-header-info">
+                        <img src="${company.logo}" alt="Logo ${company.name}" class="profile-avatar">
+                        <div>
+                            <h1 class="profile-name">${company.name}</h1>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <div class="stat-value">${company.rating}/5</div>
+                                    <div class="stat-label">Note</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${companyActivities.length}</div>
+                                    <div class="stat-label">Activités</div>
+                                </div>
+                                <div class="stat">
+                                    <div class="stat-value">${company.gallery.length}</div>
+                                    <div class="stat-label">Photos</div>
+                                </div>
+                            </div>
+                            <div style="color: #ffc107; margin-bottom: 0.5rem;">${stars}</div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="company-activities">
-                    <h2>Activités proposées</h2>
-                    <div class="grid">
+                    
+                    <div class="profile-actions">
+                        <button class="profile-action-btn primary">
+                            <i class="fas fa-phone"></i> Appeler
+                        </button>
+                        <button class="profile-action-btn secondary">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                    
+                    <div class="profile-description">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-info-circle"></i> Description
+                        </h3>
+                        <p>${company.longDescription}</p>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-address-card"></i> Contact
+                        </h3>
+                        <div class="profile-contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>${company.contact.email}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>${company.contact.phone}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${company.contact.address}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-globe"></i>
+                                <span>${company.contact.website}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-hiking"></i> Activités proposées
+                        </h3>
                         ${activityCards}
                     </div>
-                </div>
-                
-                <div class="company-activities">
-                    <h2>Galerie photos</h2>
-                    <div class="gallery-grid">
-                        ${galleryItems}
+                    
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">
+                            <i class="fas fa-images"></i> Galerie
+                        </h3>
+                        <div class="profile-grid">
+                            ${galleryItems}
+                        </div>
                     </div>
                 </div>
             `;
@@ -1982,8 +2123,11 @@
             document.getElementById('homePage').classList.remove('active');
             document.getElementById('companyDetailPage').classList.add('active');
             
-            // Mettre à jour la bottom bar
-            updateBottomBar('company');
+            // Masquer la bottom bar
+            document.querySelector('.bottom-bar').style.display = 'none';
+            
+            // Ajouter l'événement au bouton de retour
+            document.getElementById('backFromCompanyDetail').addEventListener('click', goHome);
             
             // Ajouter les événements aux boutons "En savoir plus" des activités
             document.querySelectorAll('.activity-card .card-btn[data-activity-id]').forEach(btn => {
@@ -1994,13 +2138,15 @@
             });
         }
 
-        // Recherche et filtrage
+        // Recherche et filtrage - CORRIGÉ
         function filterActivities() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const typeFilter = document.getElementById('type').value;
             const durationFilter = document.getElementById('duree').value;
             const priceFilter = document.getElementById('prix').value;
             const locationFilter = document.getElementById('localisation').value;
+            
+            console.log("Filtrage déclenché avec:", {searchTerm, typeFilter, durationFilter, priceFilter, locationFilter});
             
             currentFilteredActivities = activities.filter(activity => {
                 // Filtre par recherche
@@ -2012,31 +2158,46 @@
                 // Filtre par type
                 const matchesType = typeFilter === '' || activity.category === typeFilter;
                 
-                // Filtre par durée
+                // Filtre par durée - CORRIGÉ
                 let matchesDuration = true;
                 if (durationFilter !== '') {
-                    const duration = activity.duration;
-                    if (durationFilter === '1') matchesDuration = duration.includes('2h') || duration.includes('1h');
-                    else if (durationFilter === '2') matchesDuration = duration.includes('3h') || duration.includes('4h');
-                    else if (durationFilter === '3') matchesDuration = duration.includes('6h') || duration.includes('8h');
-                    else if (durationFilter === '4') matchesDuration = duration.includes('24h') || duration.includes('journée');
+                    const durationValue = activity.durationValue;
+                    if (durationFilter === '2') {
+                        matchesDuration = durationValue < 4;
+                    } else if (durationFilter === '4') {
+                        matchesDuration = durationValue >= 4;
+                    }
                 }
                 
-                // Filtre par prix
+                // Filtre par prix - CORRIGÉ
                 let matchesPrice = true;
                 if (priceFilter !== '') {
-                    const price = parseInt(activity.price);
-                    if (priceFilter === '1') matchesPrice = price < 20;
-                    else if (priceFilter === '2') matchesPrice = price >= 20 && price <= 50;
-                    else if (priceFilter === '3') matchesPrice = price >= 50 && price <= 100;
-                    else if (priceFilter === '4') matchesPrice = price > 100;
+                    const priceValue = activity.priceValue;
+                    const filterValue = parseInt(priceFilter);
+                    
+                    if (filterValue === 20) {
+                        matchesPrice = priceValue < 20;
+                    } else if (filterValue === 50) {
+                        matchesPrice = priceValue >= 20 && priceValue <= 50;
+                    } else if (filterValue === 100) {
+                        matchesPrice = priceValue >= 50 && priceValue <= 100;
+                    }
                 }
                 
                 // Filtre par localisation
-                const matchesLocation = locationFilter === '' || activity.location.toLowerCase().includes(locationFilter.toLowerCase());
+                const matchesLocation = locationFilter === '' || 
+                    activity.location.toLowerCase().includes(locationFilter.toLowerCase());
+                
+                console.log(`Activité "${activity.name}":`, {
+                    matchesSearch, matchesType, matchesDuration, matchesPrice, matchesLocation,
+                    durationValue: activity.durationValue,
+                    priceValue: activity.priceValue
+                });
                 
                 return matchesSearch && matchesType && matchesDuration && matchesPrice && matchesLocation;
             });
+            
+            console.log("Résultats après filtrage:", currentFilteredActivities.length);
             
             // Filtrer les entreprises en fonction des activités
             filterCompaniesByActivities(currentFilteredActivities);
@@ -2061,6 +2222,8 @@
                 companyIdsFromActivities.has(company.id)
             );
             
+            console.log("Entreprises filtrées:", currentFilteredCompanies.length);
+            
             // Afficher les entreprises filtrées
             displayCompanies(currentFilteredCompanies);
         }
@@ -2071,32 +2234,48 @@
             
             switch(sortType) {
                 case 'price-asc':
-                    currentFilteredActivities.sort((a, b) => {
-                        const priceA = parseInt(a.price);
-                        const priceB = parseInt(b.price);
-                        return priceA - priceB;
-                    });
+                    currentFilteredActivities.sort((a, b) => a.priceValue - b.priceValue);
                     break;
                 case 'price-desc':
-                    currentFilteredActivities.sort((a, b) => {
-                        const priceA = parseInt(a.price);
-                        const priceB = parseInt(b.price);
-                        return priceB - priceA;
-                    });
+                    currentFilteredActivities.sort((a, b) => b.priceValue - a.priceValue);
                     break;
                 case 'duration':
-                    currentFilteredActivities.sort((a, b) => {
-                        // Extraire les nombres de durée
-                        const durationA = parseInt(a.duration);
-                        const durationB = parseInt(b.duration);
-                        return durationA - durationB;
-                    });
+                    currentFilteredActivities.sort((a, b) => a.durationValue - b.durationValue);
                     break;
                 case 'popularity':
                 default:
                     currentFilteredActivities.sort((a, b) => b.popularity - a.popularity);
                     break;
             }
+        }
+
+        // Retour à la page d'accueil
+        function goHome() {
+            console.log("Retour à l'accueil");
+            
+            // Afficher la page d'accueil
+            document.getElementById('homePage').classList.add('active');
+            document.getElementById('activityDetailPage').classList.remove('active');
+            document.getElementById('companyDetailPage').classList.remove('active');
+            
+            // Réafficher la bottom bar sur mobile
+            if (window.innerWidth <= 768) {
+                document.querySelector('.bottom-bar').style.display = 'block';
+            }
+            
+            // Réinitialiser la recherche si besoin
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.value !== '') {
+                searchInput.value = '';
+                // Réappliquer les filtres vides
+                filterActivities();
+            }
+            
+            // Remonter en haut de la page
+            window.scrollTo(0, 0);
+            
+            // Mettre à jour la bottom bar
+            updateBottomBar('home');
         }
 
         // Mettre à jour la bottom bar
@@ -2108,36 +2287,8 @@
                 
                 if (page === 'home') {
                     document.querySelector('.bottom-nav-item[data-page="home"]').classList.add('active');
-                } else if (page === 'activity' || page === 'company') {
-                    // Garder l'état précédent ou désactiver tous
                 }
             }
-        }
-
-        // Retour à la page d'accueil
-        function goHome() {
-            document.getElementById('homePage').classList.add('active');
-            document.getElementById('activityDetailPage').classList.remove('active');
-            document.getElementById('companyDetailPage').classList.remove('active');
-            
-            // Réinitialiser la recherche
-            document.getElementById('searchInput').value = '';
-            document.getElementById('type').value = '';
-            document.getElementById('duree').value = '';
-            document.getElementById('prix').value = '';
-            document.getElementById('localisation').value = '';
-            
-            // Réafficher toutes les activités et entreprises
-            currentFilteredActivities = [...activities];
-            currentFilteredCompanies = [...companies];
-            displayActivities(activities);
-            displayCompanies(companies);
-            
-            // Mettre à jour la bottom bar
-            updateBottomBar('home');
-            
-            // Revenir en haut de la page
-            window.scrollTo(0, 0);
         }
 
         // Configuration des événements
@@ -2153,10 +2304,6 @@
             // Logo pour retour à l'accueil
             document.getElementById('homeLogo').addEventListener('click', goHome);
             
-            // Boutons de retour
-            document.getElementById('backFromActivity').addEventListener('click', goHome);
-            document.getElementById('backFromCompany').addEventListener('click', goHome);
-            
             // Barre de recherche
             document.getElementById('searchBtn').addEventListener('click', filterActivities);
             document.getElementById('searchInput').addEventListener('keyup', function(e) {
@@ -2165,9 +2312,12 @@
                 }
             });
             
-            // Filtres
+            // Filtres - CORRIGÉ : ajouter un événement pour chaque changement
             document.querySelectorAll('.filter-select').forEach(select => {
-                select.addEventListener('change', filterActivities);
+                select.addEventListener('change', function() {
+                    console.log(`Filtre ${this.id} changé: ${this.value}`);
+                    filterActivities();
+                });
             });
             
             // Boutons de tri
@@ -2191,9 +2341,8 @@
                     if (target === '#') {
                         goHome();
                     } else {
-                        document.getElementById('homePage').classList.add('active');
-                        document.getElementById('activityDetailPage').classList.remove('active');
-                        document.getElementById('companyDetailPage').classList.remove('active');
+                        // Fermer le menu mobile
+                        navMenu.classList.remove('active');
                         
                         // Faire défiler jusqu'à la section
                         const targetElement = document.querySelector(target);
@@ -2203,9 +2352,6 @@
                                 behavior: 'smooth'
                             });
                         }
-                        
-                        // Fermer le menu mobile
-                        navMenu.classList.remove('active');
                     }
                 });
             });
@@ -2219,9 +2365,11 @@
                     if (page === 'home') {
                         goHome();
                     } else if (target) {
-                        document.getElementById('homePage').classList.add('active');
-                        document.getElementById('activityDetailPage').classList.remove('active');
-                        document.getElementById('companyDetailPage').classList.remove('active');
+                        // Mettre à jour l'état actif
+                        document.querySelectorAll('.bottom-nav-item').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                        this.classList.add('active');
                         
                         // Faire défiler jusqu'à la section
                         const targetElement = document.getElementById(target);
@@ -2231,12 +2379,6 @@
                                 behavior: 'smooth'
                             });
                         }
-                        
-                        // Mettre à jour l'état actif
-                        document.querySelectorAll('.bottom-nav-item').forEach(el => {
-                            el.classList.remove('active');
-                        });
-                        this.classList.add('active');
                     }
                 });
             });
@@ -2307,6 +2449,24 @@
                 e.preventDefault();
                 alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
                 this.reset();
+            });
+            
+            // Réafficher la bottom bar quand on redimensionne la fenêtre
+            window.addEventListener('resize', function() {
+                const activityPage = document.getElementById('activityDetailPage');
+                const companyPage = document.getElementById('companyDetailPage');
+                
+                if (window.innerWidth > 768) {
+                    // Sur desktop, toujours afficher la bottom bar
+                    document.querySelector('.bottom-bar').style.display = 'none';
+                } else {
+                    // Sur mobile, l'afficher seulement sur la page d'accueil
+                    if (activityPage.classList.contains('active') || companyPage.classList.contains('active')) {
+                        document.querySelector('.bottom-bar').style.display = 'none';
+                    } else {
+                        document.querySelector('.bottom-bar').style.display = 'block';
+                    }
+                }
             });
         }
     </script>
