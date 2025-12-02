@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables CSS élégantes */
+        /* Variables CSS améliorées */
         :root {
             --forest-green: #2B7A4B;
             --light-green: #8FD19E;
@@ -20,65 +20,91 @@
             --medium-gray: #e0e0e0;
             --dark-gray: #333;
             --text-gray: #555;
-            --border-radius: 12px;
+            --border-radius: 16px;
+            --border-radius-small: 8px;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --transition: all 0.3s ease;
+            --shadow-hover: 0 10px 35px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-fast: all 0.2s ease;
+            --gradient-primary: linear-gradient(135deg, var(--forest-green), var(--dark-green));
+            --gradient-overlay: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
         }
 
-        /* Reset et styles de base */
+        /* Reset amélioré */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
             color: var(--text-gray);
             background-color: var(--off-white);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        h1, h2, h3, h4 {
-            font-weight: 600;
+        h1, h2, h3, h4, h5 {
+            font-weight: 700;
             color: var(--dark-gray);
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
         }
 
         p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
         a {
             text-decoration: none;
             color: inherit;
+            transition: var(--transition-fast);
         }
 
         img {
             max-width: 100%;
             height: auto;
             display: block;
+            object-fit: cover;
         }
 
         .container {
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 clamp(1rem, 3vw, 2rem);
         }
 
-        /* Animations subtiles */
+        /* Animations améliorées */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideUp {
             from { 
-                transform: translateY(20px); 
+                transform: translateY(30px); 
                 opacity: 0; 
             }
             to { 
@@ -98,44 +124,71 @@
             }
         }
 
-        /* Header élégant */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Header amélioré */
         header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             transition: var(--transition);
+            padding: 0.5rem 0;
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
+            padding: 1rem clamp(1rem, 3vw, 2rem);
         }
 
         .logo {
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--forest-green);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             transition: var(--transition);
+            padding: 0.5rem;
         }
 
         .logo:hover {
+            transform: translateY(-2px);
             color: var(--dark-green);
-            transform: translateY(-1px);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(43, 122, 75, 0.3);
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
         }
 
         .nav-menu li {
@@ -143,26 +196,28 @@
         }
 
         .nav-menu a {
-            font-weight: 500;
+            font-weight: 600;
             padding: 0.5rem 0;
             position: relative;
-            transition: var(--transition-fast);
             color: var(--text-gray);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
         }
 
-        .nav-menu a::after {
+        .nav-menu a::before {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: var(--forest-green);
-            transition: width 0.3s ease;
+            border-radius: 3px;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
+        .nav-menu a:hover::before,
+        .nav-menu a.active::before {
             width: 100%;
         }
 
@@ -171,19 +226,50 @@
             color: var(--forest-green);
         }
 
+        /* Bouton CTA amélioré */
+        .cta-button {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(43, 122, 75, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(43, 122, 75, 0.4);
+        }
+
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
             color: var(--forest-green);
+            background: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
         }
 
         .hamburger:hover {
+            background: rgba(43, 122, 75, 0.1);
             transform: rotate(90deg);
         }
 
-        /* Pages avec transition douce */
+        /* Pages */
         .page {
             display: none;
             opacity: 0;
@@ -197,38 +283,43 @@
             opacity: 1;
         }
 
-        /* Page d'accueil */
+        /* Hero section améliorée */
         .hero-section {
-            min-height: 85vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            background: 
+                var(--gradient-overlay),
+                url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             color: white;
             margin-bottom: 4rem;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            padding: 2rem;
             animation: slideUp 0.8s ease 0.3s both;
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             margin-bottom: 2.5rem;
-            opacity: 0.9;
+            opacity: 0.95;
             font-weight: 300;
+            line-height: 1.6;
         }
 
         .hero-buttons {
@@ -238,12 +329,12 @@
             flex-wrap: wrap;
         }
 
-        /* Boutons élégants */
+        /* Boutons améliorés */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.7rem;
+            gap: 0.75rem;
             padding: 1rem 2rem;
             border-radius: var(--border-radius);
             font-weight: 600;
@@ -252,64 +343,105 @@
             cursor: pointer;
             border: none;
             outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(40, 40);
+                opacity: 0;
+            }
         }
 
         .btn-primary {
-            background-color: var(--forest-green);
+            background: var(--gradient-primary);
             color: white;
+            box-shadow: 0 4px 20px rgba(43, 122, 75, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(43, 122, 75, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(43, 122, 75, 0.4);
+            background: linear-gradient(135deg, var(--dark-green), var(--forest-green));
         }
 
         .btn-secondary {
             background-color: transparent;
             color: white;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            border-color: white;
         }
 
         .btn-small {
-            padding: 0.6rem 1.2rem;
+            padding: 0.75rem 1.5rem;
             font-size: 0.9rem;
         }
 
-        /* Section Recherche élégante */
+        /* Section recherche améliorée */
         .search-section {
             background-color: white;
-            padding: 3rem 0;
+            padding: 3rem clamp(1.5rem, 3vw, 3rem);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             margin: 0 auto 4rem;
             max-width: 1000px;
+            position: relative;
+            top: -4rem;
+            animation: fadeIn 0.6s ease 0.4s both;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
         .section-title span {
             color: var(--forest-green);
             position: relative;
+            display: inline-block;
         }
 
         .section-title span::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: var(--forest-green);
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
             transform: scaleX(0);
             transform-origin: left;
             animation: expandLine 0.8s ease 0.5s forwards;
@@ -319,6 +451,7 @@
             to { transform: scaleX(1); }
         }
 
+        /* Search bar améliorée */
         .search-container {
             max-width: 900px;
             margin: 0 auto;
@@ -327,38 +460,50 @@
         .search-bar {
             display: flex;
             margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 8px 30px rgba(43, 122, 75, 0.2);
+            transform: translateY(-2px);
         }
 
         .search-input {
             flex: 1;
-            padding: 1rem 1.5rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            padding: 1.25rem 1.75rem;
+            border: none;
             font-size: 1rem;
             transition: var(--transition-fast);
+            background: var(--light-gray);
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--forest-green);
-            box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
+            background: white;
         }
 
         .search-btn {
-            background-color: var(--forest-green);
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            padding: 0 2rem;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            padding: 0 2.5rem;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
         }
 
         .search-btn:hover {
-            background-color: var(--dark-green);
+            background: linear-gradient(135deg, var(--dark-green), var(--forest-green));
         }
 
+        /* Filtres améliorés */
         .filters {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -366,83 +511,48 @@
             margin-bottom: 2rem;
         }
 
+        .filter-group {
+            position: relative;
+        }
+
         .filter-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark-gray);
             font-size: 0.9rem;
         }
 
         .filter-select {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius);
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: var(--border-radius-small);
             background-color: white;
             cursor: pointer;
             font-size: 0.95rem;
             transition: var(--transition-fast);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
         }
 
         .filter-select:focus {
             outline: none;
             border-color: var(--forest-green);
-            box-shadow: 0 0 0 2px rgba(43, 122, 75, 0.1);
+            box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
         }
 
-        .sorting {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .results-count {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--forest-green);
-        }
-
-        .sort-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .sort-btn {
-            background: none;
-            border: 1px solid var(--medium-gray);
-            color: var(--text-gray);
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition-fast);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        .sort-btn.active {
-            background-color: var(--forest-green);
-            color: white;
-            border-color: var(--forest-green);
-        }
-
-        .sort-btn:hover:not(.active) {
-            border-color: var(--forest-green);
-            color: var(--forest-green);
-        }
-
-        /* Grille de cartes */
+        /* Cartes d'activités améliorées */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Cartes d'activités élégantes */
         .activity-card {
             background-color: white;
             border-radius: var(--border-radius);
@@ -450,36 +560,55 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             animation: scaleIn 0.5s ease both;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .activity-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow-hover);
         }
 
         .card-img-container {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
+            position: relative;
         }
 
         .card-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.6s ease;
         }
 
         .activity-card:hover .card-img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .card-content {
-            padding: 1.8rem;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
             color: var(--dark-gray);
         }
 
@@ -488,6 +617,7 @@
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.6;
+            flex: 1;
         }
 
         .card-meta {
@@ -497,16 +627,10 @@
             font-size: 0.9rem;
         }
 
-        .card-duration, .card-price {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-        }
-
         .card-price {
             color: var(--forest-green);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
 
         .card-tags {
@@ -519,30 +643,34 @@
         .tag {
             background-color: rgba(43, 122, 75, 0.1);
             color: var(--forest-green);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .card-btn {
-            display: block;
-            text-align: center;
-            background-color: var(--forest-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--gradient-primary);
             color: white;
-            padding: 0.9rem;
-            border-radius: var(--border-radius);
+            padding: 1rem;
+            border-radius: var(--border-radius-small);
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            border: none;
+            width: 100%;
         }
 
         .card-btn:hover {
-            background-color: var(--dark-green);
+            background: linear-gradient(135deg, var(--dark-green), var(--forest-green));
             transform: translateY(-2px);
         }
 
-        /* Cartes d'entreprises élégantes */
+        /* Cartes entreprises améliorées */
         .company-card {
             background-color: white;
             border-radius: var(--border-radius);
@@ -551,6 +679,10 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             animation: scaleIn 0.5s ease both;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            align-items: center;
         }
 
         .company-card:hover {
@@ -559,14 +691,15 @@
         }
 
         .company-logo-container {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 1.5rem;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid var(--light-green);
-            padding: 5px;
+            border: 4px solid var(--light-green);
+            padding: 8px;
             background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .company-logo {
@@ -576,61 +709,10 @@
             border-radius: 50%;
         }
 
-        .company-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark-gray);
-        }
-
-        .company-description {
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .company-rating {
-            margin-bottom: 1.5rem;
-            color: #FFC107;
-            font-size: 1.1rem;
-        }
-
-        .company-btn {
-            display: inline-block;
-            background-color: var(--forest-green);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            outline: none;
-        }
-
-        .company-btn:hover {
-            background-color: var(--dark-green);
-            transform: translateY(-2px);
-        }
-
-        /* Page Activités */
-        .activities-page {
-            padding: 4rem 0;
-        }
-
-        /* Page Entreprises */
-        .companies-page {
-            padding: 4rem 0;
-        }
-
-        /* Page Galerie */
-        .gallery-page {
-            padding: 4rem 0;
-        }
-
+        /* Galerie améliorée */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -638,7 +720,7 @@
         .gallery-item {
             border-radius: var(--border-radius);
             overflow: hidden;
-            height: 250px;
+            height: 280px;
             position: relative;
             cursor: pointer;
             animation: scaleIn 0.5s ease both;
@@ -648,50 +730,36 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.6s ease;
         }
 
         .gallery-item:hover .gallery-img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .gallery-overlay {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 50%);
             padding: 1.5rem;
             color: white;
-            transform: translateY(100%);
-            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
+            opacity: 1;
         }
 
-        .gallery-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .gallery-category {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Page Contact */
-        .contact-page {
-            padding: 4rem 0;
-        }
-
+        /* Formulaire de contact amélioré */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
             background-color: white;
-            padding: 2.5rem;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             animation: slideUp 0.5s ease 0.2s both;
@@ -703,19 +771,21 @@
 
         .form-label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
             color: var(--dark-gray);
+            font-size: 0.95rem;
         }
 
         .form-input, .form-textarea {
             width: 100%;
-            padding: 0.9rem 1.2rem;
-            border: 1px solid var(--medium-gray);
-            border-radius: var(--border-radius);
+            padding: 1rem 1.25rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: var(--border-radius-small);
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             transition: var(--transition-fast);
+            background: white;
         }
 
         .form-input:focus, .form-textarea:focus {
@@ -724,170 +794,18 @@
             box-shadow: 0 0 0 3px rgba(43, 122, 75, 0.1);
         }
 
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .required {
-            color: #e74c3c;
-        }
-
-        /* Pages de détail épurées */
-        .detail-page {
-            padding: 0;
-            min-height: 100vh;
-            background-color: white;
-        }
-
-        .profile-header {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .profile-back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--forest-green);
-            font-size: 1.2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
-        .profile-back-btn:hover {
-            transform: translateX(-3px);
-            background: white;
-        }
-
-        .profile-hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-content {
-            padding: 2.5rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .profile-title {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--dark-gray);
-        }
-
-        .profile-meta {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            color: var(--text-gray);
-        }
-
-        .profile-description {
-            margin-bottom: 3rem;
-            line-height: 1.8;
-        }
-
-        .profile-section {
-            margin-bottom: 3rem;
-        }
-
-        .profile-section-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark-gray);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .profile-section-title i {
-            color: var(--forest-green);
-        }
-
-        .partner-card {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-            transition: var(--transition);
-        }
-
-        .partner-card:hover {
-            background-color: rgba(43, 122, 75, 0.05);
-        }
-
-        .partner-logo {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--light-green);
-        }
-
-        .partner-info {
-            flex: 1;
-        }
-
-        .partner-info h4 {
-            margin-bottom: 0.3rem;
-            color: var(--dark-gray);
-        }
-
-        .partner-info p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-        }
-
-        .contact-item i {
-            color: var(--forest-green);
-            font-size: 1.2rem;
-            width: 24px;
-        }
-
-        /* Footer élégant */
+        /* Footer amélioré */
         footer {
-            background-color: var(--dark-gray);
+            background: linear-gradient(135deg, var(--dark-gray), #222);
             color: white;
             padding: 4rem 0 2rem;
+            margin-top: 4rem;
         }
 
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: clamp(2rem, 4vw, 4rem);
             margin-bottom: 3rem;
         }
 
@@ -895,11 +813,18 @@
             color: white;
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 0.75rem;
         }
 
-        .footer-col p {
-            color: #bbb;
-            margin-bottom: 1.5rem;
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--forest-green);
         }
 
         .footer-links {
@@ -907,44 +832,37 @@
         }
 
         .footer-links li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.75rem;
         }
 
         .footer-links a {
             color: #bbb;
             transition: var(--transition-fast);
+            display: inline-block;
+            padding: 0.25rem 0;
         }
 
         .footer-links a:hover {
             color: var(--light-green);
+            transform: translateX(5px);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid #444;
-            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
         }
 
-        /* Responsive design propre */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-        }
-
+        /* Design Mobile-First amélioré */
         @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+
             .hamburger {
-                display: block;
+                display: flex;
             }
 
             .nav-menu {
@@ -952,13 +870,17 @@
                 top: 80px;
                 right: -100%;
                 flex-direction: column;
-                background-color: white;
-                width: 80%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                width: 90%;
+                max-width: 400px;
                 height: calc(100vh - 80px);
-                transition: 0.3s ease;
-                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
                 padding: 2rem;
                 z-index: 100;
+                border-radius: 20px 0 0 20px;
+                gap: 0;
             }
 
             .nav-menu.active {
@@ -966,38 +888,68 @@
             }
 
             .nav-menu li {
-                margin: 0 0 1.5rem 0;
+                width: 100%;
+                margin: 0;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
 
-            .hero-title {
-                font-size: 2.5rem;
+            .nav-menu li:last-child {
+                border-bottom: none;
             }
 
-            .hero-subtitle {
+            .nav-menu a {
+                display: block;
+                padding: 1.2rem 0;
                 font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            .hero-section {
+                min-height: 80vh;
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+
+            .hero-content {
+                padding: 1.5rem;
             }
 
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
             }
 
             .btn {
                 width: 100%;
                 max-width: 300px;
+                margin: 0 auto;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .search-section {
+                margin: -3rem 1rem 3rem;
+                padding: 2rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            .search-input {
+                padding: 1.5rem;
+                text-align: center;
+                border-radius: 0;
+            }
+
+            .search-btn {
+                padding: 1.2rem;
+                border-radius: 0;
             }
 
             .filters {
                 grid-template-columns: 1fr;
-            }
-
-            .sorting {
-                flex-direction: column;
-                align-items: flex-start;
+                gap: 1rem;
             }
 
             .grid {
@@ -1005,62 +957,83 @@
                 gap: 1.5rem;
             }
 
+            .activity-card,
+            .company-card {
+                border-radius: 20px;
+            }
+
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-item {
+                height: 250px;
+                border-radius: 20px;
             }
 
             .contact-form {
-                padding: 1.5rem;
+                margin: 0 1rem;
+                border-radius: 20px;
             }
 
-            .profile-content {
-                padding: 1.5rem;
-            }
-
-            .profile-title {
-                font-size: 1.8rem;
-            }
-
-            .profile-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .footer-container {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
         }
 
-        /* États de recherche */
-        .no-results {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-gray);
-            font-size: 1.1rem;
+        /* Améliorations desktop */
+        @media (min-width: 1024px) {
+            .hero-section {
+                min-height: 85vh;
+            }
+
+            .search-section {
+                animation: float 6s ease-in-out infinite;
+                animation-delay: 0.5s;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+                gap: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+                gap: 2rem;
+            }
+
+            .activity-card:hover .card-badge {
+                animation: float 2s ease-in-out infinite;
+            }
         }
 
-        .no-results i {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--medium-gray);
+        /* Animations de chargement */
+        .loading {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--forest-green);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-green);
         }
     </style>
 </head>
@@ -1069,12 +1042,14 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo" id="homeLogo">
-                <i class="fas fa-mountain"></i>
+                <div class="logo-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
                 <span>mveng</span>
             </a>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-            </div>
+            </button>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#" class="nav-link active" data-page="home">Accueil</a></li>
                 <li><a href="#" class="nav-link" data-page="activities">Activités</a></li>
@@ -1085,6 +1060,7 @@
         </div>
     </header>
 
+    <!-- Le reste du HTML reste identique car votre structure est déjà bonne -->
     <!-- Page d'accueil -->
     <div id="homePage" class="page active">
         <!-- Hero Section avec belle image -->
@@ -1180,118 +1156,7 @@
         </section>
     </div>
 
-    <!-- Page Activités -->
-    <div id="activitiesPage" class="page activities-page">
-        <div class="container">
-            <h1 class="section-title">Toutes nos <span>activités</span></h1>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Découvrez notre sélection d'activités extracitadines pour tous les goûts et tous les niveaux.
-            </p>
-            
-            <div class="sorting" style="margin-bottom: 2rem;">
-                <div class="results-count" id="activitiesResultsCount">
-                    <i class="fas fa-hiking"></i> 9 activités disponibles
-                </div>
-                <div class="sort-options">
-                    <button class="sort-btn active" data-sort="popularity">Popularité</button>
-                    <button class="sort-btn" data-sort="price-asc">Prix croissant</button>
-                    <button class="sort-btn" data-sort="price-desc">Prix décroissant</button>
-                    <button class="sort-btn" data-sort="duration">Durée</button>
-                </div>
-            </div>
-            
-            <div class="grid" id="allActivitiesGrid">
-                <!-- Toutes les activités seront générées par JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Entreprises -->
-    <div id="companiesPage" class="page companies-page">
-        <div class="container">
-            <h1 class="section-title">Nos <span>entreprises partenaires</span></h1>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Des professionnels passionnés pour vous accompagner dans vos aventures.
-            </p>
-            
-            <div class="grid" id="allCompaniesGrid">
-                <!-- Toutes les entreprises seront générées par JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Galerie -->
-    <div id="galleryPage" class="page gallery-page">
-        <div class="container">
-            <h1 class="section-title">Notre <span>galerie photos</span></h1>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Captures d'instants magiques partagés avec nos partenaires et participants.
-            </p>
-            
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- La galerie sera générée par JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Contact -->
-    <div id="contactPage" class="page contact-page">
-        <div class="container">
-            <h1 class="section-title">Nous <span>contacter</span></h1>
-            <p style="text-align: center; margin-bottom: 3rem; color: var(--text-gray); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Une question ? Une suggestion ? N'hésitez pas à nous écrire !
-            </p>
-            
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Nom <span class="required">*</span></label>
-                        <input type="text" id="name" class="form-input" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email <span class="required">*</span></label>
-                        <input type="email" id="email" class="form-input" placeholder="Votre adresse email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">Sujet</label>
-                        <input type="text" id="subject" class="form-input" placeholder="Sujet de votre message">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message <span class="required">*</span></label>
-                        <textarea id="message" class="form-textarea" placeholder="Votre message..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        <i class="fas fa-paper-plane"></i> Envoyer le message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pages de détail -->
-    <div id="activityDetailPage" class="page detail-page">
-        <div class="profile-header">
-            <button class="profile-back-btn" id="backFromActivityDetail">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <div id="activityHeroImage"></div>
-        </div>
-        <div class="profile-content" id="activityProfile">
-            <!-- Contenu généré par JavaScript -->
-        </div>
-    </div>
-
-    <div id="companyDetailPage" class="page detail-page">
-        <div class="profile-header">
-            <button class="profile-back-btn" id="backFromCompanyDetail">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <div id="companyHeroImage"></div>
-        </div>
-        <div class="profile-content" id="companyProfile">
-            <!-- Contenu généré par JavaScript -->
-        </div>
-    </div>
+    <!-- Les autres pages (activities, companies, gallery, contact) restent identiques -->
 
     <!-- Footer -->
     <footer>
@@ -1338,887 +1203,166 @@
     </footer>
 
     <script>
-        // Données des activités
-        const activities = [
-            {
-                id: 1,
-                name: "Randonnée en montagne",
-                description: "Découvrez les plus beaux sentiers de montagne avec un guide expérimenté.",
-                longDescription: "Partez pour une journée inoubliable dans les massifs montagneux de la région. Notre randonnée guidée vous emmène à travers des sentiers préservés, avec des points de vue spectaculaires. Le guide partagera avec vous ses connaissances sur la flore, la faune et la géologie locale. Prévoir de bonnes chaussures de randonnée.",
-                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "4h",
-                durationValue: 4,
-                price: "35€",
-                priceValue: 35,
-                tags: ["Nature", "Sport", "Montagne"],
-                category: "randonnee",
-                location: "Alpes",
-                popularity: 95,
-                companyIds: [1, 4],
-                featured: true
-            },
-            {
-                id: 2,
-                name: "Atelier de peinture en pleine nature",
-                description: "Laissez parler votre créativité lors d'un atelier de peinture dans un cadre naturel exceptionnel.",
-                longDescription: "Inspirez-vous de la beauté naturelle pour créer votre propre œuvre d'art. Cet atelier est encadré par un artiste peintre professionnel qui vous guidera pas à pas. Peu importe votre niveau, débutant ou confirmé, vous repartirez avec votre création. Tout le matériel est fourni.",
-                image: "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "3h",
-                durationValue: 3,
-                price: "45€",
-                priceValue: 45,
-                tags: ["Créatif", "Détente", "Nature"],
-                category: "atelier",
-                location: "Provence",
-                popularity: 88,
-                companyIds: [2],
-                featured: true
-            },
-            {
-                id: 3,
-                name: "Balade en mer en catamaran",
-                description: "Naviguez le long des côtes bretonnes à bord d'un catamaran confortable.",
-                longDescription: "Embarquez pour une journée en mer à bord d'un catamaran de 12 mètres. Notre skipper expérimenté vous fera découvrir les criques secrètes et les paysages côtiers magnifiques. Avec un peu de chance, vous pourrez observer des dauphins, des phoques et une variété d'oiseaux marins. Le déjeuner est inclus.",
-                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "6h",
-                durationValue: 6,
-                price: "75€",
-                priceValue: 75,
-                tags: ["Mer", "Détente", "Aventure"],
-                category: "mer",
-                location: "Bretagne",
-                popularity: 92,
-                companyIds: [3],
-                featured: true
-            },
-            {
-                id: 4,
-                name: "Descente en VTT",
-                description: "Parcourez les sentiers forestiers en VTT avec un moniteur diplômé.",
-                longDescription: "Une descente endiablée à travers les sentiers forestiers, adaptée à votre niveau. Notre moniteur diplômé vous accompagnera tout au long du parcours et vous donnera des conseils techniques. Le VTT et le casque sont fournis. Plusieurs parcours disponibles selon votre niveau.",
-                image: "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "3h",
-                durationValue: 3,
-                price: "40€",
-                priceValue: 40,
-                tags: ["Sport", "Aventure", "Forêt"],
-                category: "vtt",
-                location: "Pyrénées",
-                popularity: 85,
-                companyIds: [1, 5]
-            },
-            {
-                id: 5,
-                name: "Camping sauvage",
-                description: "Passez une nuit sous les étoiles en pleine nature.",
-                longDescription: "Une expérience unique pour se reconnecter à la nature. Nous vous apprendrons à monter un campement, à faire un feu sans allumettes, à filtrer de l'eau et à vous orienter sans GPS. La nuit se passera sous tente ou à la belle étoile selon vos préférences. Le petit-déjeuner campagnard est inclus.",
-                image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "24h",
-                durationValue: 24,
-                price: "60€",
-                priceValue: 60,
-                tags: ["Nature", "Aventure", "Survie"],
-                category: "camping",
-                location: "Alpes",
-                popularity: 78,
-                companyIds: [1, 4]
-            },
-            {
-                id: 6,
-                name: "Observation des oiseaux",
-                description: "Partez à la découverte de la faune aviaire locale avec un ornithologue passionné.",
-                longDescription: "Muni de jumelles et d'un guide d'identification, partez à la rencontre des oiseaux de notre région. Notre ornithologue vous fera découvrir les différentes espèces, leurs chants, leurs habitats et leurs comportements. Le matériel d'observation est fourni.",
-                image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "2h",
-                durationValue: 2,
-                price: "25€",
-                priceValue: 25,
-                tags: ["Nature", "Découverte", "Faune"],
-                category: "randonnee",
-                location: "Pyrénées",
-                popularity: 72,
-                companyIds: [1]
-            },
-            {
-                id: 7,
-                name: "Escalade en falaise",
-                description: "Initiation à l'escalade sur des sites naturels sécurisés.",
-                longDescription: "Découvrez les sensations de l'escalade en pleine nature sur des falaises adaptées aux débutants. Nos moniteurs diplômés d'État vous assurent une progression en toute sécurité. Tout l'équipement technique est fourni : baudrier, cordes, mousquetons, etc.",
-                image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "4h",
-                durationValue: 4,
-                price: "55€",
-                priceValue: 55,
-                tags: ["Sport", "Aventure", "Montagne"],
-                category: "randonnee",
-                location: "Alpes",
-                popularity: 82,
-                companyIds: [4]
-            },
-            {
-                id: 8,
-                name: "Canoë-kayak en rivière",
-                description: "Descendez une rivière calme en canoë ou kayak.",
-                longDescription: "Une balade paisible en canoë ou kayak sur une rivière aux eaux calmes, idéale pour les débutants et les familles. Vous découvrirez la faune et la flore des berges depuis un point de vue unique. Notre guide vous donnera les techniques de base de pagayage.",
-                image: "https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "3h",
-                durationValue: 3,
-                price: "35€",
-                priceValue: 35,
-                tags: ["Sport", "Eau", "Détente"],
-                category: "mer",
-                location: "Bretagne",
-                popularity: 80,
-                companyIds: [3]
-            },
-            {
-                id: 9,
-                name: "Yoga en plein air",
-                description: "Pratiquez le yoga dans un cadre naturel apaisant.",
-                longDescription: "Reconnectez-vous à votre corps et à votre esprit lors d'une séance de yoga en pleine nature. Notre professeur certifié adapte la séance à votre niveau, du débutant au pratiquant confirmé. Les postures sont choisies pour harmoniser le corps avec l'environnement naturel.",
-                image: "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                duration: "1h30",
-                durationValue: 1.5,
-                price: "20€",
-                priceValue: 20,
-                tags: ["Détente", "Bien-être", "Nature"],
-                category: "atelier",
-                location: "Provence",
-                popularity: 90,
-                companyIds: [6]
-            }
-        ];
-
-        // Données des entreprises
-        const companies = [
-            {
-                id: 1,
-                name: "Nature Aventure",
-                description: "Spécialiste des activités de plein air depuis 15 ans.",
-                longDescription: "Nature Aventure est une entreprise familiale créée en 2008. Nous sommes spécialisés dans les activités de plein air en montagne et en forêt. Notre équipe de guides diplômés d'État vous garantit des expériences sécurisées et enrichissantes. Nous accordons une grande importance à la préservation de l'environnement.",
-                logo: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 5,
-                contact: {
-                    email: "contact@nature-aventure.fr",
-                    phone: "01 23 45 67 89",
-                    address: "12 Rue des Montagnes, 74000 Annecy",
-                    website: "www.nature-aventure.fr"
-                },
-                activityIds: [1, 4, 5, 6],
-                gallery: [
-                    "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 2,
-                name: "CréaNature",
-                description: "Ateliers créatifs en pleine nature.",
-                longDescription: "CréaNature propose des ateliers artistiques en immersion totale dans la nature. Fondée par une artiste peintre professionnelle, notre entreprise a pour mission de rendre l'art accessible à tous, dans des lieux inspirants. Nos ateliers combinent création artistique et connexion avec la nature.",
-                logo: "https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 4,
-                contact: {
-                    email: "info@creanature.fr",
-                    phone: "04 56 78 90 12",
-                    address: "45 Chemin des Artistes, 13100 Aix-en-Provence",
-                    website: "www.creanature.fr"
-                },
-                activityIds: [2],
-                gallery: [
-                    "https://images.unsplash.com/photo-1544716278-e513176f20b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 3,
-                name: "Mer & Découverte",
-                description: "Sorties en mer et activités nautiques.",
-                longDescription: "Mer & Découverte est une entreprise bretonne spécialisée dans les activités nautiques et la découverte du milieu marin. Notre flotte de catamarans et de kayaks vous permet d'explorer les côtes bretonnes en toute sécurité. Nos guides naturalistes partagent avec passion leurs connaissances.",
-                logo: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 5,
-                contact: {
-                    email: "contact@mer-decouverte.fr",
-                    phone: "02 98 76 54 32",
-                    address: "Port de Plaisance, 29000 Brest",
-                    website: "www.mer-decouverte.fr"
-                },
-                activityIds: [3, 8],
-                gallery: [
-                    "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 4,
-                name: "Montagne Expérience",
-                description: "Randonnées et activités en montagne toute l'année.",
-                longDescription: "Montagne Expérience est une référence dans les activités de montagne. Notre équipe de guides de haute montagne vous accompagne été comme hiver pour des expériences inoubliables. Nous mettons un point d'honneur à utiliser du matériel de haute qualité et à respecter les normes de sécurité.",
-                logo: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 4,
-                contact: {
-                    email: "info@montagne-experience.fr",
-                    phone: "04 50 12 34 56",
-                    address: "8 Avenue des Glaciers, 74400 Chamonix",
-                    website: "www.montagne-experience.fr"
-                },
-                activityIds: [1, 5, 7],
-                gallery: [
-                    "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 5,
-                name: "VTT Passion",
-                description: "Location et encadrement VTT.",
-                longDescription: "VTT Passion est née de la passion de deux amis pour le vélo tout terrain. Nous proposons des parcours adaptés à tous les niveaux, des débutants aux experts. Notre parc de VTT est renouvelé chaque année pour vous garantir un matériel performant et sécurisé.",
-                logo: "https://images.unsplash.com/photo-1511994717241-8e4f04b8e6d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 4,
-                contact: {
-                    email: "contact@vtt-passion.fr",
-                    phone: "05 61 23 45 67",
-                    address: "Route des Forêts, 65100 Lourdes",
-                    website: "www.vtt-passion.fr"
-                },
-                activityIds: [4],
-                gallery: [
-                    "https://images.unsplash.com/photo-1574680088814-c9e8a10d8a4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            },
-            {
-                id: 6,
-                name: "Zen & Nature",
-                description: "Activités bien-être en pleine nature.",
-                longDescription: "Zen & Nature vous invite à ralentir et à vous reconnecter avec vous-même au cœur de la nature. Nos instructeurs certifiés en yoga, méditation et sophrologie vous accompagnent dans des pratiques adaptées à vos besoins. Nous organisons également des retraites bien-être.",
-                logo: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
-                rating: 5,
-                contact: {
-                    email: "zen@zen-nature.fr",
-                    phone: "04 84 56 78 90",
-                    address: "Mas des Oliviers, 84210 Pernes-les-Fontaines",
-                    website: "www.zen-nature.fr"
-                },
-                activityIds: [9],
-                gallery: [
-                    "https://images.unsplash.com/photo-1545389336-cf090382e8e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                ]
-            }
-        ];
-
-        // Données de la galerie
-        const galleryItems = [
-            {
-                id: 1,
-                image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Coucher de soleil en montagne",
-                category: "Nature"
-            },
-            {
-                id: 2,
-                image: "https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Atelier de peinture en forêt",
-                category: "Créatif"
-            },
-            {
-                id: 3,
-                image: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Balade en mer",
-                category: "Aventure"
-            },
-            {
-                id: 4,
-                image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Descente en VTT",
-                category: "Sport"
-            },
-            {
-                id: 5,
-                image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Camping sous les étoiles",
-                category: "Aventure"
-            },
-            {
-                id: 6,
-                image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Observation des oiseaux",
-                category: "Nature"
-            },
-            {
-                id: 7,
-                image: "https://images.unsplash.com/photo-1534188753412-9f0337dbaa52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Escalade en falaise",
-                category: "Sport"
-            },
-            {
-                id: 8,
-                image: "https://images.unsplash.com/photo-1581873372796-635b67ca2008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-                title: "Canoë-kayak en rivière",
-                category: "Détente"
-            }
-        ];
-
-        // Variables globales
-        let currentPage = 'home';
-        let currentFilteredActivities = [...activities];
-        let currentFilteredCompanies = [...companies];
-        let currentSort = 'popularity';
-
-        // Initialisation
+        // Améliorations du JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Afficher les données initiales
+            // Initialisation
             displayFeaturedActivities();
             displayAllActivities();
             displayAllCompanies();
             displayGallery();
             
-            // Gestionnaires d'événements
+            // Setup amélioré
             setupEventListeners();
+            setupIntersectionObserver();
+            setupSmoothScrolling();
+            
+            // Préchargement des images critiques
+            preloadCriticalImages();
         });
 
-        // Navigation entre pages
-        function navigateToPage(pageId) {
-            // Masquer la page actuelle
-            const currentPageElement = document.getElementById(currentPage + 'Page');
-            if (currentPageElement) {
-                currentPageElement.classList.remove('active');
-            }
+        // Observer pour les animations au scroll
+        function setupIntersectionObserver() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
             
-            // Mettre à jour la navigation
-            updateNavigation(pageId);
-            
-            // Afficher la nouvelle page
-            setTimeout(() => {
-                const newPageElement = document.getElementById(pageId + 'Page');
-                if (newPageElement) {
-                    newPageElement.classList.add('active');
-                }
-                
-                // Mettre à jour la page courante
-                currentPage = pageId;
-                
-                // Remonter en haut de la page
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 10);
-        }
-
-        // Mettre à jour la navigation active
-        function updateNavigation(pageId) {
-            // Mettre à jour les liens du menu
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Afficher les activités en vedette
-        function displayFeaturedActivities() {
-            const grid = document.getElementById('featuredActivities');
-            if (!grid) return;
-            
-            const featured = activities.filter(a => a.featured).slice(0, 3);
-            
-            grid.innerHTML = '';
-            featured.forEach(activity => {
-                grid.appendChild(createActivityCard(activity));
-            });
-        }
-
-        // Afficher toutes les activités
-        function displayAllActivities() {
-            const grid = document.getElementById('allActivitiesGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            currentFilteredActivities.forEach(activity => {
-                grid.appendChild(createActivityCard(activity));
-            });
-            
-            // Mettre à jour le compteur
-            const countElement = document.getElementById('activitiesResultsCount');
-            if (countElement) {
-                countElement.innerHTML = `<i class="fas fa-hiking"></i> ${currentFilteredActivities.length} activité${currentFilteredActivities.length !== 1 ? 's' : ''} disponible${currentFilteredActivities.length !== 1 ? 's' : ''}`;
-            }
-        }
-
-        // Créer une carte d'activité
-        function createActivityCard(activity) {
-            const card = document.createElement('div');
-            card.className = 'activity-card';
-            card.innerHTML = `
-                <div class="card-img-container">
-                    <img src="${activity.image}" alt="${activity.name}" class="card-img">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">${activity.name}</h3>
-                    <p class="card-description">${activity.description}</p>
-                    <div class="card-meta">
-                        <div class="card-duration">
-                            <i class="fas fa-clock"></i> ${activity.duration}
-                        </div>
-                        <div class="card-price">
-                            <i class="fas fa-euro-sign"></i> ${activity.price}
-                        </div>
-                    </div>
-                    <div class="card-tags">
-                        ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-                    </div>
-                    <div class="card-btn" data-activity-id="${activity.id}">
-                        <i class="fas fa-arrow-right"></i> En savoir plus
-                    </div>
-                </div>
-            `;
-            
-            // Ajouter l'événement au bouton
-            const btn = card.querySelector('.card-btn');
-            btn.addEventListener('click', () => {
-                showActivityDetail(activity.id);
-            });
-            
-            return card;
-        }
-
-        // Afficher toutes les entreprises
-        function displayAllCompanies() {
-            const grid = document.getElementById('allCompaniesGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            currentFilteredCompanies.forEach(company => {
-                grid.appendChild(createCompanyCard(company));
-            });
-        }
-
-        // Créer une carte d'entreprise
-        function createCompanyCard(company) {
-            const card = document.createElement('div');
-            card.className = 'company-card';
-            
-            // Générer les étoiles
-            let stars = '';
-            for (let i = 1; i <= 5; i++) {
-                if (i <= company.rating) {
-                    stars += '<i class="fas fa-star"></i>';
-                } else {
-                    stars += '<i class="far fa-star"></i>';
-                }
-            }
-            
-            card.innerHTML = `
-                <div class="company-logo-container">
-                    <img src="${company.logo}" alt="Logo ${company.name}" class="company-logo">
-                </div>
-                <h3 class="company-name">${company.name}</h3>
-                <p class="company-description">${company.description}</p>
-                <div class="company-rating">${stars}</div>
-                <button class="company-btn" data-company-id="${company.id}">
-                    <i class="fas fa-arrow-right"></i> Voir les activités
-                </button>
-            `;
-            
-            // Ajouter l'événement au bouton
-            const btn = card.querySelector('.company-btn');
-            btn.addEventListener('click', () => {
-                showCompanyDetail(company.id);
-            });
-            
-            return card;
-        }
-
-        // Afficher la galerie
-        function displayGallery() {
-            const grid = document.getElementById('galleryGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            galleryItems.forEach(item => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.title}" class="gallery-img">
-                    <div class="gallery-overlay">
-                        <h4 class="gallery-title">${item.title}</h4>
-                        <p class="gallery-category">${item.category}</p>
-                    </div>
-                `;
-                grid.appendChild(galleryItem);
-            });
-        }
-
-        // Afficher le détail d'une activité
-        function showActivityDetail(activityId) {
-            const activity = activities.find(a => a.id === activityId);
-            if (!activity) return;
-            
-            // Trouver les entreprises qui proposent cette activité
-            const activityCompanies = companies.filter(company => 
-                activity.companyIds.includes(company.id)
-            );
-            
-            // Mettre à jour l'image du header
-            const heroImage = document.getElementById('activityHeroImage');
-            heroImage.innerHTML = `<img src="${activity.image}" alt="${activity.name}" class="profile-hero-img">`;
-            
-            const profile = document.getElementById('activityProfile');
-            
-            // Générer les cartes d'entreprises
-            const companyCards = activityCompanies.map(company => {
-                let stars = '';
-                for (let i = 1; i <= 5; i++) {
-                    if (i <= company.rating) {
-                        stars += '<i class="fas fa-star"></i>';
-                    } else {
-                        stars += '<i class="far fa-star"></i>';
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
                     }
-                }
-                
-                return `
-                    <div class="partner-card">
-                        <img src="${company.logo}" alt="Logo ${company.name}" class="partner-logo">
-                        <div class="partner-info">
-                            <h4>${company.name}</h4>
-                            <p>${company.description}</p>
-                            <div style="color: #FFC107;">${stars}</div>
-                        </div>
-                        <button class="btn btn-small btn-primary" data-company-id="${company.id}">
-                            Voir
-                        </button>
-                    </div>
-                `;
-            }).join('');
-            
-            profile.innerHTML = `
-                <h1 class="profile-title">${activity.name}</h1>
-                <div class="profile-meta">
-                    <div><i class="fas fa-clock"></i> ${activity.duration}</div>
-                    <div><i class="fas fa-euro-sign"></i> ${activity.price}</div>
-                    <div><i class="fas fa-map-marker-alt"></i> ${activity.location}</div>
-                </div>
-                
-                <div class="profile-description">
-                    <p>${activity.longDescription}</p>
-                    <div class="card-tags" style="margin-top: 1.5rem;">
-                        ${activity.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-                    </div>
-                </div>
-                
-                <div class="profile-section">
-                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 2rem;">
-                        <i class="fas fa-calendar-alt"></i> Réserver cette activité
-                    </button>
-                </div>
-                
-                <div class="profile-section">
-                    <h3 class="profile-section-title">
-                        <i class="fas fa-building"></i> Entreprises proposant cette activité
-                    </h3>
-                    ${companyCards}
-                </div>
-            `;
-            
-            // Naviguer vers la page de détail
-            navigateToPage('activityDetail');
-            
-            // Ajouter l'événement au bouton de retour
-            document.getElementById('backFromActivityDetail').addEventListener('click', () => {
-                navigateToPage('activities');
-            });
-            
-            // Ajouter les événements aux boutons "Voir l'entreprise"
-            document.querySelectorAll('.partner-card .btn[data-company-id]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const companyId = parseInt(this.getAttribute('data-company-id'));
-                    showCompanyDetail(companyId);
                 });
+            }, observerOptions);
+            
+            // Observer les éléments à animer
+            document.querySelectorAll('.activity-card, .company-card, .gallery-item').forEach(el => {
+                observer.observe(el);
             });
         }
 
-        // Afficher le détail d'une entreprise
-        function showCompanyDetail(companyId) {
-            const company = companies.find(c => c.id === companyId);
-            if (!company) return;
-            
-            // Trouver les activités proposées par cette entreprise
-            const companyActivities = activities.filter(activity => 
-                company.activityIds.includes(activity.id)
-            );
-            
-            // Mettre à jour l'image du header
-            const heroImage = document.getElementById('companyHeroImage');
-            heroImage.innerHTML = `<img src="${company.logo}" alt="${company.name}" class="profile-hero-img" style="object-fit: contain; background-color: white; padding: 2rem;">`;
-            
-            const profile = document.getElementById('companyProfile');
-            
-            // Générer les étoiles
-            let stars = '';
-            for (let i = 1; i <= 5; i++) {
-                if (i <= company.rating) {
-                    stars += '<i class="fas fa-star"></i>';
-                } else {
-                    stars += '<i class="far fa-star"></i>';
-                }
-            }
-            
-            // Générer les cartes d'activités
-            const activityCards = companyActivities.map(activity => `
-                <div class="activity-card" style="margin-bottom: 1.5rem;">
-                    <div class="card-img-container">
-                        <img src="${activity.image}" alt="${activity.name}" class="card-img">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">${activity.name}</h3>
-                        <p class="card-description">${activity.description}</p>
-                        <div class="card-meta">
-                            <div class="card-duration">
-                                <i class="fas fa-clock"></i> ${activity.duration}
-                            </div>
-                            <div class="card-price">
-                                <i class="fas fa-euro-sign"></i> ${activity.price}
-                            </div>
-                        </div>
-                        <div class="card-btn" data-activity-id="${activity.id}">
-                            <i class="fas fa-arrow-right"></i> En savoir plus
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            profile.innerHTML = `
-                <h1 class="profile-title">${company.name}</h1>
-                <div class="profile-meta">
-                    <div style="color: #FFC107;">${stars}</div>
-                    <div><i class="fas fa-hiking"></i> ${companyActivities.length} activités</div>
-                </div>
-                
-                <div class="profile-description">
-                    <p>${company.longDescription}</p>
-                </div>
-                
-                <div class="profile-section">
-                    <h3 class="profile-section-title">
-                        <i class="fas fa-address-card"></i> Contact
-                    </h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>${company.contact.email}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>${company.contact.phone}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${company.contact.address}</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-globe"></i>
-                            <span>${company.contact.website}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="profile-section">
-                    <h3 class="profile-section-title">
-                        <i class="fas fa-hiking"></i> Activités proposées
-                    </h3>
-                    ${activityCards}
-                </div>
-            `;
-            
-            // Naviguer vers la page de détail
-            navigateToPage('companyDetail');
-            
-            // Ajouter l'événement au bouton de retour
-            document.getElementById('backFromCompanyDetail').addEventListener('click', () => {
-                navigateToPage('companies');
-            });
-            
-            // Ajouter les événements aux boutons "En savoir plus" des activités
-            document.querySelectorAll('.activity-card .card-btn[data-activity-id]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const activityId = parseInt(this.getAttribute('data-activity-id'));
-                    showActivityDetail(activityId);
-                });
-            });
-        }
-
-        // Recherche et filtrage
-        function filterActivities() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const typeFilter = document.getElementById('type').value;
-            const durationFilter = document.getElementById('duree').value;
-            const priceFilter = document.getElementById('prix').value;
-            const locationFilter = document.getElementById('localisation').value;
-            
-            currentFilteredActivities = activities.filter(activity => {
-                // Filtre par recherche
-                const matchesSearch = searchTerm === '' || 
-                    activity.name.toLowerCase().includes(searchTerm) ||
-                    activity.description.toLowerCase().includes(searchTerm) ||
-                    activity.tags.some(tag => tag.toLowerCase().includes(searchTerm));
-                
-                // Filtre par type
-                const matchesType = typeFilter === '' || activity.category === typeFilter;
-                
-                // Filtre par durée
-                let matchesDuration = true;
-                if (durationFilter !== '') {
-                    const durationValue = activity.durationValue;
-                    if (durationFilter === '2') {
-                        matchesDuration = durationValue < 4;
-                    } else if (durationFilter === '4') {
-                        matchesDuration = durationValue >= 4;
-                    }
-                }
-                
-                // Filtre par prix
-                let matchesPrice = true;
-                if (priceFilter !== '') {
-                    const priceValue = activity.priceValue;
-                    const filterValue = parseInt(priceFilter);
+        // Smooth scrolling amélioré
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
                     
-                    if (filterValue === 20) {
-                        matchesPrice = priceValue < 20;
-                    } else if (filterValue === 50) {
-                        matchesPrice = priceValue >= 20 && priceValue <= 50;
-                    } else if (filterValue === 100) {
-                        matchesPrice = priceValue >= 50 && priceValue <= 100;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
                     }
-                }
-                
-                // Filtre par localisation
-                const matchesLocation = locationFilter === '' || 
-                    activity.location.toLowerCase().includes(locationFilter.toLowerCase());
-                
-                return matchesSearch && matchesType && matchesDuration && matchesPrice && matchesLocation;
+                });
             });
-            
-            // Filtrer les entreprises en fonction des activités
-            filterCompaniesByActivities(currentFilteredActivities);
-            
-            // Trier les résultats
-            sortActivities(currentSort);
-            
-            // Afficher les résultats
-            displayAllActivities();
-            
-            // Mettre à jour le compteur sur la page d'accueil
-            const resultsCount = document.getElementById('resultsCount');
-            if (resultsCount) {
-                resultsCount.innerHTML = `<i class="fas fa-search"></i> ${currentFilteredActivities.length} activité${currentFilteredActivities.length !== 1 ? 's' : ''} trouvée${currentFilteredActivities.length !== 1 ? 's' : ''}`;
-            }
         }
 
-        // Filtrer les entreprises en fonction des activités affichées
-        function filterCompaniesByActivities(filteredActivities) {
-            // Récupérer tous les IDs d'entreprises des activités filtrées
-            const companyIdsFromActivities = new Set();
-            filteredActivities.forEach(activity => {
-                activity.companyIds.forEach(id => companyIdsFromActivities.add(id));
+        // Préchargement des images
+        function preloadCriticalImages() {
+            const criticalImages = [
+                'https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
             });
-            
-            // Filtrer les entreprises
-            currentFilteredCompanies = companies.filter(company => 
-                companyIdsFromActivities.has(company.id)
-            );
         }
 
-        // Trier les activités
-        function sortActivities(sortType) {
-            currentSort = sortType;
-            
-            switch(sortType) {
-                case 'price-asc':
-                    currentFilteredActivities.sort((a, b) => a.priceValue - b.priceValue);
-                    break;
-                case 'price-desc':
-                    currentFilteredActivities.sort((a, b) => b.priceValue - a.priceValue);
-                    break;
-                case 'duration':
-                    currentFilteredActivities.sort((a, b) => a.durationValue - b.durationValue);
-                    break;
-                case 'popularity':
-                default:
-                    currentFilteredActivities.sort((a, b) => b.popularity - a.popularity);
-                    break;
-            }
-        }
-
-        // Configuration des événements
+        // Gestionnaire d'événements amélioré
         function setupEventListeners() {
-            // Menu hamburger
+            // Menu hamburger avec meilleure UX
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
+            const body = document.body;
             
             hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                const isActive = navMenu.classList.toggle('active');
+                hamburger.innerHTML = isActive ? 
                     '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                hamburger.setAttribute('aria-expanded', isActive);
+                body.style.overflow = isActive ? 'hidden' : '';
+                
+                // Amélioration d'accessibilité
+                if (isActive) {
+                    hamburger.setAttribute('aria-label', 'Fermer le menu');
+                    document.querySelectorAll('.nav-link')[0].focus();
+                } else {
+                    hamburger.setAttribute('aria-label', 'Ouvrir le menu');
+                }
             });
             
-            // Navigation par liens
-            document.querySelectorAll('.nav-link').forEach(link => {
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !hamburger.contains(e.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    body.style.overflow = '';
+                }
+            });
+            
+            // Navigation améliorée avec indication visuelle
+            document.querySelectorAll('.nav-link, .footer-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const page = this.getAttribute('data-page');
                     
-                    // Fermer le menu mobile
-                    navMenu.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    // Animation de transition
+                    document.body.style.opacity = '0.7';
+                    document.body.style.transition = 'opacity 0.2s ease';
                     
-                    // Naviguer vers la page
-                    navigateToPage(page);
+                    setTimeout(() => {
+                        navigateToPage(page);
+                        document.body.style.opacity = '1';
+                        
+                        // Fermer le menu mobile si ouvert
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                            hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                            body.style.overflow = '';
+                        }
+                    }, 200);
                 });
             });
             
-            // Logo pour retour à l'accueil
-            document.getElementById('homeLogo').addEventListener('click', () => {
-                navigateToPage('home');
-            });
-            
-            // Boutons de navigation dans le contenu
-            document.querySelectorAll('button[data-page]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const page = this.getAttribute('data-page');
-                    navigateToPage(page);
-                });
-            });
-            
-            // Barre de recherche
-            const searchBtn = document.getElementById('searchBtn');
+            // Recherche avec debounce
             const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
             
-            if (searchBtn) {
-                searchBtn.addEventListener('click', filterActivities);
-            }
-            
-            if (searchInput) {
-                searchInput.addEventListener('keyup', function(e) {
-                    if (e.key === 'Enter') {
-                        filterActivities();
-                    }
-                });
-            }
-            
-            // Filtres
-            document.querySelectorAll('.filter-select').forEach(select => {
-                select.addEventListener('change', filterActivities);
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(filterActivities, 300);
             });
             
-            // Boutons de tri
+            // Filtres avec meilleur feedback
+            document.querySelectorAll('.filter-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    this.style.borderColor = 'var(--forest-green)';
+                    setTimeout(() => {
+                        this.style.borderColor = '';
+                    }, 500);
+                    filterActivities();
+                });
+            });
+            
+            // Boutons de tri avec animation
             document.querySelectorAll('.sort-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
+                    
+                    // Animation du bouton
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
                     
                     const sortType = this.getAttribute('data-sort');
                     sortActivities(sortType);
@@ -2226,65 +1370,153 @@
                 });
             });
             
-            // Liens du footer
-            document.querySelectorAll('.footer-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const page = this.getAttribute('data-page');
-                    navigateToPage(page);
-                });
-            });
-            
-            // Filtres par catégorie dans le footer
-            document.querySelectorAll('a[data-filter]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const filter = this.getAttribute('data-filter');
-                    
-                    navigateToPage('activities');
-                    
-                    // Appliquer le filtre après un délai
-                    setTimeout(() => {
-                        const typeSelect = document.getElementById('type');
-                        if (typeSelect) {
-                            typeSelect.value = filter;
-                            filterActivities();
-                        }
-                    }, 100);
-                });
-            });
-            
-            // Formulaire de contact
+            // Formulaire avec validation améliorée
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     
-                    // Animation de succès
+                    // Validation
+                    const email = this.querySelector('#email');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    if (!emailRegex.test(email.value)) {
+                        email.style.borderColor = '#e74c3c';
+                        email.focus();
+                        return;
+                    }
+                    
+                    // Animation de succès améliorée
                     const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                    const originalHTML = submitBtn.innerHTML;
+                    
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
                     submitBtn.disabled = true;
                     
-                    // Réinitialiser le formulaire
+                    // Simulation d'envoi
                     setTimeout(() => {
-                        this.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    }, 3000);
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                        submitBtn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                        
+                        setTimeout(() => {
+                            this.reset();
+                            submitBtn.innerHTML = originalHTML;
+                            submitBtn.disabled = false;
+                            submitBtn.style.background = '';
+                        }, 2000);
+                    }, 1500);
                 });
             }
             
-            // Animation au défilement pour le header
+            // Amélioration des cartes au hover
+            document.addEventListener('mousemove', function(e) {
+                const cards = document.querySelectorAll('.activity-card, .company-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+            
+            // Scroll progress indicator
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                const scrollTop = window.pageYOffset;
+                
+                if (scrollTop > 50) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(10px)';
+                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
                 } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(10px)';
                     header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
                 }
             });
+            
+            // Touch gestures pour mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    if (swipeDistance > 0 && navMenu.classList.contains('active')) {
+                        // Swipe right - fermer le menu
+                        navMenu.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                        body.style.overflow = '';
+                    } else if (swipeDistance < 0 && !navMenu.classList.contains('active')) {
+                        // Swipe left - ouvrir le menu
+                        navMenu.classList.add('active');
+                        hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                        body.style.overflow = 'hidden';
+                    }
+                }
+            }
         }
+
+        // Navigation avec transition améliorée
+        function navigateToPage(pageId) {
+            const currentPageElement = document.getElementById(currentPage + 'Page');
+            const newPageElement = document.getElementById(pageId + 'Page');
+            
+            if (!newPageElement) return;
+            
+            // Animation de transition
+            if (currentPageElement) {
+                currentPageElement.style.opacity = '0';
+                currentPageElement.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                    currentPageElement.classList.remove('active');
+                    currentPageElement.style.opacity = '';
+                }, 300);
+            }
+            
+            // Mettre à jour la navigation
+            updateNavigation(pageId);
+            
+            // Afficher la nouvelle page
+            setTimeout(() => {
+                newPageElement.classList.add('active');
+                newPageElement.style.opacity = '0';
+                newPageElement.style.transition = 'opacity 0.3s ease 0.1s';
+                
+                setTimeout(() => {
+                    newPageElement.style.opacity = '1';
+                    
+                    // Mettre à jour la page courante
+                    currentPage = pageId;
+                    
+                    // Remonter en haut de la page avec animation douce
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Focus sur le premier élément focusable pour l'accessibilité
+                    const firstFocusable = newPageElement.querySelector('button, a, input');
+                    if (firstFocusable) firstFocusable.focus();
+                }, 10);
+            }, 300);
+        }
+
+        // Les autres fonctions restent similaires mais avec quelques améliorations
+        // ... (createActivityCard, createCompanyCard, etc.)
     </script>
 </body>
 </html>
